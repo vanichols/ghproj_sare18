@@ -1,0 +1,32 @@
+# Water-holding capacity measurements
+
+# Britt helped me. Notes from that meeting:
+Put cheesecloth, rubberband, wrap in electical tape, on bottom of sample. Label it here. 
+Attach metal ring to top with electrical tape. 
+Soak in 0.01 M CaCl (may need to make). CaCl is to eliminate the osmotic potential differences that may drive water flow.
+Put samples in the big glass vacuum thing, fill to top of bottom ring. 
+Apply vaccuum for 2-3 minutes. Let sit for 12-24 hours. Can do 10 samples at a time.
+
+Weigh all cylinders and label them to match their cell. 
+
+Bring in saturated soil sample, get weight, then move it to the cell and weigh the water left in the cup. 
+Dip a filter paper (white) in CaCl, place on cell bottom, put greased ring on top of it.
+Place soil sample in pressure cell.
+Let it sit for 3 hours at atmospheric pressure (no pressure applied). 
+Weigh cylinder + water. 
+
+He does 10, 25, 50, 100, 200, and 500 pressures. The 100-500 must be measured using the mercury scale. 
+10 for 12 hours, 25, 50, 100, 200 are done for 24 hours, and the 200 and 500 are done for 48 hours. 
+
+Open the cells one by one and make sure the pressure holds. Between pressure changes, close them all, readjust the pressure, then open one at a time. 
+
+
+
+# Start with Stout samples. Only have 9, because we took an extra 'no cover crop' one. 
+
+7/30 - Put Stout samples into vacuum thing for soaking. Attached rings to all other samples. 
+7/31 - Weighed saturated samples. Put Stout samples into pressure cells at atmospheric pressure (~2.5 cm H2O, I think) (10am)
+8/1 - Weighed water+cylinder. Applied 10 cm h2o pressure to cells (8:30am)
+* 2.5 cm h2o for 22 hours
+
+
