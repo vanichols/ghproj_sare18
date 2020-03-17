@@ -2,7 +2,9 @@
 title: "SARE water holding capacity calcs"
 author: "Gina Nichols"
 date: "3/17/2020"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -131,8 +133,6 @@ dat5 %>%
   ggplot(aes(press_cm, vtheta, color = cc_trt)) + 
   geom_point(alpha = 0.5) + 
   geom_line(alpha = 0.5, aes(group = code)) + 
-  #stat_summary(fun.y = mean, geom="line", size = 2) +
-  #stat_summary(fun.data = "mean_se", size = 1) +
   facet_grid(site_name ~ cc_trt) + 
   labs(x = "Pressure Applied (cm H2O)",
        y = "Volumetric Water Content (%)")
@@ -146,8 +146,7 @@ Data for each cell, log-scale
 dat5 %>%
   # I don't think the water left after 500 cm ever comes into play (?)
   filter(press_cm != 999,
-         press_cm != 0) %>% 
-  #mutate(press_cm2 = press_cm + 0.1) %>% #--add atmospheric pressure to every value so there isn't a 0
+         press_cm != 0) %>% #--I can't take the log of 0
   unite(site_name, sys_trt, col = "site_name") %>% 
   ggplot(aes(press_cm, vtheta, color = cc_trt)) + 
   geom_point(alpha = 0.5) + 
