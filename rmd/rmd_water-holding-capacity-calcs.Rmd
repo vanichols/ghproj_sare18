@@ -1,0 +1,178 @@
+---
+title: "SARE water holding capacity calcs"
+author: "Gina Nichols"
+date: "3/17/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+library(tidyverse)
+library(broom)
+library(janitor)
+key <- read_csv("../data/raw/rd_euIDs.csv")
+datraw <- 
+  read_csv("../data/tidy/td_pressure-cells.csv")  %>% 
+  left_join(key)
+```
+
+## Data processing
+*NOTE:* Calcs are loosely based on Agron479 lab, although I found that lab hard to follow.
+
+I have my plot-treatment key (called *key*):
+```{r}
+head(key)
+```
+
+I have my raw data (called *datraw*):
+```{r}
+head(datraw)
+```
+
+
+
+# 1. Calculate the bulk density
+
+```{r calcs1}
+
+dat1 <- datraw %>% 
+  # assume volume of soil sample is 347.50 cm3
+  mutate(soilvol_cm3 = 347.5) %>%
+  # calc bulk density based on dry weight of soil
+  mutate(bulkden_gcm3 = drysoil_g / soilvol_cm3) %>% 
+  select(code, drysoil_g, bulkden_gcm3)
+
+head(dat1)
+
+```
+
+# 2. Calculate actual amount of water released at each pressure. 
+Note that pressure of 999 refers to the amount of water remaining in the soil after the 500 cm pressure was applied. This was determined by weighing the soil, drying it, then reweighing it. 
+```{r calcs2}
+
+dat2 <- 
+  datraw %>%
+  mutate(
+    w_0cm_g = satwater_g,
+    w_2.5cm_g = atm - cylinder_g,
+    w_10cm_g = `10_cm` - cylinder_g,
+    w_25cm_g = `25_cm` - cylinder_g,
+    w_50cm_g = `50_cm` - cylinder_g,
+    w_100cm_g = `100_cm` - cylinder_g,
+    w_200cm_g = `200_cm` - cylinder_g,
+    w_500cm_g = `500_cm` - cylinder_g,
+    w_999cm_g = sampafter500_g - ringpluscrap_g - drysoil_g
+  ) %>%
+  select(code, starts_with("w_"))
+
+head(dat2)
+```
+
+
+# 3. Gather into long form to get cumulatives. 
+```{r calc3}
+
+dat3 <- 
+  dat2 %>% 
+  gather(w_0cm_g:w_999cm_g, key = press_cm, value = water_g) %>%
+  separate(press_cm, into = c("water", "press_cm", "grams"), sep = "_") %>%
+  select(-water, -grams) %>% 
+  # get pressure as a numeric value
+  mutate(press_cm = parse_number(press_cm)) %>%
+  # arrange within a sample
+  group_by(code) %>%
+  arrange(code, -press_cm) %>%
+  # get cumulative water retained in soil at that pressure point (is this right?)
+  mutate(cumwater_g = cumsum(water_g))
+
+head(dat3)
+
+```
+
+
+# 4. Calculate water content of soil.
+Divide the cumulative water released at each pressure by the weight of the dry soil (gravimetric water content). 
+The gravimetric water content is converted to volumetric using the bulk density. 
+  
+```{r dat4}
+
+dat4 <- 
+  dat3 %>% 
+  left_join(dat1) %>% 
+  mutate(gtheta = cumwater_g / drysoil_g,
+         vtheta = gtheta * bulkden_gcm3) %>% 
+  ungroup() %>% 
+  mutate_if(is.numeric, round, 3)
+
+head(dat4)
+```
+
+# 5. Join the data with the key so I have treatment info.
+```{r dat5}
+dat5 <- 
+  dat4 %>% 
+  left_join(key) %>% 
+  select(code, site_name, sys_trt, cc_trt, rep,
+         bulkden_gcm3, press_cm, gtheta, vtheta)
+
+head(dat5)
+```
+
+## Figures
+
+
+Data for each cell, no transformation
+```{r fig1}
+
+dat5 %>%
+  # I don't think the water left after 500 cm ever comes into play (?)
+  filter(press_cm != 999) %>% 
+  unite(site_name, sys_trt, col = "site_name") %>% 
+  ggplot(aes(press_cm, vtheta, color = cc_trt)) + 
+  geom_point(alpha = 0.5) + 
+  geom_line(alpha = 0.5, aes(group = code)) + 
+  #stat_summary(fun.y = mean, geom="line", size = 2) +
+  #stat_summary(fun.data = "mean_se", size = 1) +
+  facet_grid(site_name ~ cc_trt) + 
+  labs(x = "Pressure Applied (cm H2O)",
+       y = "Volumetric Water Content (%)")
+
+
+```
+
+Data for each cell, log-scale
+```{r fig2}
+
+dat5 %>%
+  # I don't think the water left after 500 cm ever comes into play (?)
+  filter(press_cm != 999,
+         press_cm != 0) %>% 
+  #mutate(press_cm2 = press_cm + 0.1) %>% #--add atmospheric pressure to every value so there isn't a 0
+  unite(site_name, sys_trt, col = "site_name") %>% 
+  ggplot(aes(press_cm, vtheta, color = cc_trt)) + 
+  geom_point(alpha = 0.5) + 
+  geom_line(alpha = 0.5, aes(group = code)) + 
+  facet_grid(site_name ~ cc_trt) + 
+  labs(x = "Pressure Applied (cm H2O)",
+       y = "Volumetric Water Content (%)") + 
+  coord_trans(x = "log10")
+
+
+```
+
+Data averaged for each treatment, no transformation
+```{r fig3}
+
+dat5 %>%
+  # I don't think the water left after 500 cm ever comes into play (?)
+  filter(press_cm != 999) %>% 
+  unite(site_name, sys_trt, col = "site_name") %>% 
+  ggplot(aes(press_cm, vtheta, color = cc_trt)) + 
+  stat_summary(fun.y = mean, geom="line", size = 2) +
+  stat_summary(fun.data = "mean_se", size = 1) +
+  facet_grid(. ~ site_name) + 
+  labs(x = "Pressure Applied (cm H2O)",
+       y = "Volumetric Water Content (%)")
+
+
+```

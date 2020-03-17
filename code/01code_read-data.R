@@ -24,27 +24,28 @@ library(readxl)
 # read in excel sheet -----------------------------------------------------
 
 stout <- 
-  read_excel("_data/raw/rd_pressure-cells2.xlsx", sheet = "Stout", skip = 1) %>%
+  read_excel("data/raw/rd_pressure-cells2.xlsx", sheet = "Stout", skip = 1) %>%
   filter(!is.na(code))
   
 funcke <- 
-  read_excel("_data/raw/rd_pressure-cells2.xlsx", sheet = "Funcke", skip = 1) %>%
+  read_excel("data/raw/rd_pressure-cells2.xlsx", sheet = "Funcke", skip = 1) %>%
   select(-orig_code) %>%
   filter(!is.na(code)) %>%
   mutate(atm1 = as.numeric(atm1))
 
 boydgr <- 
-  read_excel("_data/raw/rd_pressure-cells2.xlsx", sheet = "Boydgrain", skip = 1) %>% 
+  read_excel("data/raw/rd_pressure-cells2.xlsx", sheet = "Boydgrain", skip = 1) %>% 
   filter(!is.na(code)) %>% 
   mutate_at(vars(contains("cm")), as.numeric) %>% 
   mutate_at(vars(contains("_g")), as.numeric)
 
 boydsil <- 
-  read_excel("_data/raw/rd_pressure-cells2.xlsx", sheet = "Boydsilage", skip = 1) %>% 
+  read_excel("data/raw/rd_pressure-cells2.xlsx", sheet = "Boydsilage", skip = 1) %>% 
   filter(!is.na(code)) %>% 
   mutate_at(vars(contains("cm")), as.numeric) %>% 
   mutate_at(vars(contains("_g")), as.numeric) %>% 
   select(-notes)
+
 
 # fix things? and combine ------------------------------------------------------
 
@@ -60,4 +61,4 @@ boydsil2 <-
   filter(code != "B42-p28")
 
 bind_rows(stout, funcke2, boydgr, boydsil2) %>%
-  write_csv("_data/tidy/td_pressure-cells.csv")
+  write_csv("data/tidy/td_pressure-cells.csv")
