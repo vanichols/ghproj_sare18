@@ -6,11 +6,11 @@
 #
 # purpose: calculate things in data
 # 
-# inputs: td_pressure-cells
+# inputs: td_pressure-cells, re_euIDs
 #
 # outputs:
 #
-# notes
+# notes: for porosity calcs used: http://lawr.ucdavis.edu/classes/SSC100/probsets/pset01.html
 #
 ##############################
 
@@ -153,35 +153,58 @@ dat_theta %>%
   facet_grid(.~name) + 
   labs(title = "gtheta method = red\nbritt method = green\nmineral method = blue")
   
+# so vetha1 and vtheta2a are the same
 
 # look at it --------------------------------------------------------------
 
-#--log scale
 dat_theta %>%
-  left_join(key) %>% 
-  mutate(
-    lpress_cm = log(press_cm)
-    ) %>% 
-  unite(site_name, sys_trt, col = "site_trt") %>% 
-  ggplot(aes(lpress_cm, vtheta2b, color = cc_trt)) + 
-  geom_point(alpha = 0.5) + 
-  geom_line(alpha = 0.5, aes(group = code)) + 
-  stat_summary(fun.y = mean, geom="line", size = 2) +
-  stat_summary(fun.data = "mean_se", size = 1) +
-  facet_grid(~site_trt)
-
-
-#--raw scale
-dat_theta %>%
+  select(-vtheta2a) %>% 
+  filter(press_cm != 0) %>% 
+  pivot_longer(vtheta1:vtheta2b) %>% 
   left_join(key) %>% 
   unite(site_name, sys_trt, col = "site_trt") %>% 
-  ggplot(
-    aes(press_cm, 
-        vtheta2b, 
-        color = cc_trt)) + 
+  # plot
+  ggplot(aes(press_cm, value, color = cc_trt)) + 
+  # raw data
   geom_point(alpha = 0.5) + 
   geom_line(alpha = 0.5, aes(group = code)) + 
+  scale_x_log10() +
+  # summary of data
   stat_summary(fun.y = mean, geom="line", size = 2) +
   stat_summary(fun.data = "mean_se", size = 1) +
-  facet_grid(~site_trt)
+  facet_grid(name ~ site_trt)
 
+# they look the same, no matter which method you use, tell britt
+ggsave("porosity-2-methods-results.png")
+
+
+#--bulk densities?
+dat_soil %>% 
+  left_join(key) %>% 
+  unite(site_name, sys_trt, col = "site_trt") %>% 
+  ggplot(aes(site_trt, bulkden_gcm3, color = cc_trt)) + 
+  geom_point(aes(color = cc_trt)) + 
+  stat_summary(fun.y = mean, geom = "point", size = 2) + 
+  stat_summary(fun.data = "mean_se", size = 1)
+
+dat_soil %>% 
+  left_join(key) %>% 
+  unite(site_name, sys_trt, col = "site_trt") %>% 
+  ggplot(aes(cc_trt, bulkden_gcm3)) + 
+  geom_point(aes(color = cc_trt)) + 
+  stat_summary(fun.y = mean, geom = "point", size = 2) + 
+  stat_summary(fun.data = "mean_se", size = 1)
+
+
+#--power analysis, detect a 0.5 change
+# what is the variation?
+dat_soil %>% 
+  summarise(sd(bulkden_gcm3))
+# sd = 0.104
+# var = 0.0108
+
+# from https://www.r-bloggers.com/calculating-required-sample-size-in-r-and-sas/
+delta <- 0.5
+sigma <- 0.1
+
+(4 * (1.96 + 1.28)^2 * sigma ) / (delta^2) #--I had the power
