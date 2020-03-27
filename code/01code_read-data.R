@@ -3,6 +3,7 @@
 # created: Oct 10 2019
 # last modified: Oct 31 2019 (updated to Funcke from Funke)
 #                Dec 19 2019 (adding boyd measurements)
+#                march 27 2020 (updating based on britt's calcs)
 #
 # purpose: read in raw pressure cell data
 # 
@@ -60,5 +61,7 @@ boydsil2 <-
   boydsil %>% 
   filter(code != "B42-p28")
 
+
+# write to tidy data ------------------------------------------------------
 bind_rows(stout, funcke2, boydgr, boydsil2) %>%
   write_csv("data/tidy/td_pressure-cells.csv")
