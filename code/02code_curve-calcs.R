@@ -183,6 +183,24 @@ tidy_boyd %>%
 ggsave("figs/boyd-wrc-reps.png")
 
 
+tidy_data %>%
+  filter(str_detect(site_trt, "Fun")) %>% 
+  filter(press_cm != 0) %>% #--can't take log of 0 :(
+  pivot_longer(vtheta_poros1:vtheta_poros2) %>% 
+  # plot
+  ggplot(aes(press_cm, value)) + 
+  # raw data
+  geom_point(alpha = 0.8, aes(color = as_factor(rep))) + 
+  geom_line(alpha = 0.8, aes(group = code, color = as_factor(rep), linetype = cc_trt), size = 2) + 
+  scale_x_log10() +
+  # summary of data
+  #stat_summary(fun.y = mean, geom="line", size = 2) +
+  #stat_summary(fun.data = "mean_se", size = 1) +
+  facet_grid(name ~ site_trt, scales = "free") + 
+  theme_bw()
+
+ggsave("figs/boyd-wrc-reps.png")
+
 tidy_boyd %>%
   filter(press_cm != 0) %>% #--can't take log of 0 :(
   pivot_longer(vtheta_poros1:vtheta_poros2) %>% 
