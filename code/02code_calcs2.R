@@ -205,7 +205,7 @@ dat_soil %>%
 # var = 0.0108
 
 # from https://www.r-bloggers.com/calculating-required-sample-size-in-r-and-sas/
-delta <- 0.5
-sigma <- 0.1
+delta <- 0.5 #--this is the minimum change I want to be significant
+sigma <- 0.01 #--this is variance
 
 (4 * (1.96 + 1.28)^2 * sigma ) / (delta^2) #--I had the power
