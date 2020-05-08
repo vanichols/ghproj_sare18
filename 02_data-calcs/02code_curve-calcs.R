@@ -2,11 +2,13 @@
 # author: Gina (vnichols@iastate.edu)
 # created: Oct 10 2019
 # last modified: Oct 21 2019 (do calcs, oh ASA...)
-#                march 27 2018 (update based on britt's calcs)
+#                march 27 2020 (update based on britt's calcs)
+#                march 30 2020 (made sure it runs for britt)
+#                may 8 2020 (rearrange folders, make sure it still runs)
 #
 # purpose: calculate things in data
 # 
-# inputs: td_pressure-cells, re_euIDs
+# inputs: pp_pressure-cells, rd_euIDs
 #
 # outputs:
 #
@@ -23,13 +25,16 @@ library(readxl)
 
 # read in data -----------------------------------------------------
 
-key <- read_csv("data/raw/rd_euIDs.csv")
+key <- read_csv("raw-data/rd_euIDs.csv")
 
 datraw <- 
-  read_csv("data/tidy/td_pressure-cells.csv")  %>% 
+  read_csv("01_pre-process/pp_pressure-cells.csv")  %>% 
   mutate(soilvol_cm3 = 347.5,
          bulkden_gcm3 = drysoil_g / soilvol_cm3
   ) # assume volume of soil sample is 347.50 cm3 (? is this right???)
+
+
+# soil data ---------------------------------------------------------------
 
 dat_soil <- 
   datraw %>% 
@@ -82,28 +87,12 @@ dat_poros <-
   select(code, drysoil_g, bulkden_gcm3, 
          water_at_sat_g, air_cm3, poros_britt, poros_mineral)
 
-dat_poros
-
+#--look at it
 dat_poros  %>% 
   ggplot(aes(poros_mineral, poros_britt)) + 
   geom_point() + 
   geom_abline()
   
-# what does britt's look like?
-britt <- read_excel("data/raw/rd_britt-porosity.xlsx")
-
-britt %>% 
-  ggplot(aes(e2, e1)) + 
-  geom_point(color = "red", size = 4) + 
-  geom_point(data = dat_poros, size = 4, aes(poros_mineral, poros_britt)) +
-  geom_abline() + 
-  coord_cartesian(xlim = c(0.35, 0.65), ylim = c(0.35, 0.65)) +
-  labs(x = "porosity based on mineral density of 2.65",
-       y = "porosity based on water in saturated sample",
-       title = "Britt samples = red\nGina samples = black")
-
-#--show this to britt
-ggsave("porosity-2-methods.png", width = 5, height = 5)
 
 # soil water contents at each pressure ------------------------------------
 
@@ -137,6 +126,7 @@ dat_theta <-
   left_join(dat_soil) %>% 
   mutate(
     water_inside_soil_still = water_at_sat_g - cumwater_g,
+    #--calculate using gravimetric water and bulk density
     gtheta = water_inside_soil_still / drysoil_g,
     vtheta1 = gtheta * bulkden_gcm3,
     frac_water = cumwater_g/water_at_sat_g,
@@ -156,27 +146,81 @@ dat_theta %>%
   
 # so vetha1 and vtheta2a are the same
 
-# look at it --------------------------------------------------------------
+#--write final values to data frame
 
-dat_theta %>%
-  select(-vtheta2a) %>% 
-  filter(press_cm != 0) %>% 
-  pivot_longer(vtheta1:vtheta2b) %>% 
+tidy_data <- 
+  dat_theta %>%
+  rename(vtheta_poros1 = vtheta2a,
+         vtheta_poros2 = vtheta2b) %>% 
+#  pivot_longer(vtheta1:vtheta2b) %>% 
   left_join(key) %>% 
   unite(site_name, sys_trt, col = "site_trt") %>% 
+  mutate(sample_year = 2019) %>% 
+  select(sample_year, code, site_trt, site_desc, 
+         crop_trt, cc_trt, rep, plot, press_cm, vtheta_poros1, vtheta_poros2)
+
+tidy_data %>% write_csv("02_data-calcs/dc_swrc.csv")
+
+tidy_boyd <- 
+  tidy_data %>% 
+  filter(str_detect(site_trt, "Boyd")) 
+
+
+# look at it --------------------------------------------------------------
+
+tidy_boyd %>%
+  filter(press_cm != 0) %>% #--can't take log of 0 :(
+  pivot_longer(vtheta_poros1:vtheta_poros2) %>% 
   # plot
   ggplot(aes(press_cm, value, color = cc_trt)) + 
   # raw data
-  geom_point(alpha = 0.5) + 
-  geom_line(alpha = 0.5, aes(group = code)) + 
+  geom_point(alpha = 0.8) + 
+  geom_line(alpha = 0.8, aes(group = code)) + 
+  scale_x_log10() +
+  # summary of data
+  #stat_summary(fun.y = mean, geom="line", size = 2) +
+  #stat_summary(fun.data = "mean_se", size = 1) +
+  facet_grid(name ~ site_trt, scales = "free") + 
+  theme_bw()
+
+ggsave("02_data-calcs/fig_boyd-swrc-reps.png")
+
+
+tidy_data %>%
+  filter(str_detect(site_trt, "Fun")) %>% 
+  filter(press_cm != 0) %>% #--can't take log of 0 :(
+  pivot_longer(vtheta_poros1:vtheta_poros2) %>% 
+  # plot
+  ggplot(aes(press_cm, value)) + 
+  # raw data
+  geom_point(alpha = 0.8, aes(color = as_factor(rep))) + 
+  geom_line(alpha = 0.8, aes(group = code, color = as_factor(rep), linetype = cc_trt), size = 2) + 
+  scale_x_log10() +
+  # summary of data
+  #stat_summary(fun.y = mean, geom="line", size = 2) +
+  #stat_summary(fun.data = "mean_se", size = 1) +
+  facet_grid(name ~ site_trt, scales = "free") + 
+  theme_bw()
+
+ggsave("02_data-calcs/fig_funcke-wrc-reps.png")
+
+tidy_boyd %>%
+  filter(press_cm != 0) %>% #--can't take log of 0 :(
+  pivot_longer(vtheta_poros1:vtheta_poros2) %>% 
+  # plot
+  ggplot(aes(press_cm, value, color = cc_trt)) + 
+  # raw data
+  #geom_point(alpha = 0.8) + 
+  #geom_line(alpha = 0.8, aes(group = code)) + 
   scale_x_log10() +
   # summary of data
   stat_summary(fun.y = mean, geom="line", size = 2) +
   stat_summary(fun.data = "mean_se", size = 1) +
-  facet_grid(name ~ site_trt)
+  facet_grid(name ~ site_trt, scales = "free") + 
+  theme_bw()
 
-# they look the same, no matter which method you use, tell britt
-ggsave("porosity-2-methods-results.png")
+ggsave("02_data-calcs/fig_boyd-swrc-means.png")
+
 
 
 #--bulk densities?
@@ -187,6 +231,8 @@ dat_soil %>%
   geom_point(aes(color = cc_trt)) + 
   stat_summary(fun.y = mean, geom = "point", size = 2) + 
   stat_summary(fun.data = "mean_se", size = 1)
+
+ggsave("02_data-calcs/fig_bulk-dens.png")
 
 dat_soil %>% 
   left_join(key) %>% 
@@ -205,7 +251,7 @@ dat_soil %>%
 # var = 0.0108
 
 # from https://www.r-bloggers.com/calculating-required-sample-size-in-r-and-sas/
-delta <- 0.5 #--this is the minimum change I want to be significant
-sigma <- 0.01 #--this is variance
+delta <- 0.5 #--how big of a difference is meaningful? say 0.5
+sigma <- 0.1 #--this is the amount of variation
 
-(4 * (1.96 + 1.28)^2 * sigma ) / (delta^2) #--I had the power
+(4 * (1.96 + 1.28)^2 * sigma ) / (delta^2) #--I had the power, I took 20 samples. Argh. 

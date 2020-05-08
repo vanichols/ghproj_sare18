@@ -1,0 +1,289 @@
+sample_year,code,site_trt,site_desc,crop_trt,cc_trt,rep,plot,press_cm,vtheta_poros1,vtheta_poros2
+2019,B42-p10,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,2,10,0,0.48489208633093495,0.2214388489208633
+2019,B42-p10,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,2,10,2.5,0.4692949640287767,0.2143160087953376
+2019,B42-p10,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,2,10,10,0.4567482014388486,0.2085861964434387
+2019,B42-p10,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,2,10,25,0.42848920863309325,0.19568097688021688
+2019,B42-p10,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,2,10,50,0.40538129496402847,0.18512813440642142
+2019,B42-p10,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,2,10,100,0.3883165467625896,0.17733506393698092
+2019,B42-p10,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,2,10,200,0.35202877697841695,0.16076329013940177
+2019,B42-p10,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,2,10,500,0.3389064748201436,0.1547706423585167
+2019,B42-p11,Boyd42_sil,"Boyd Farm, soybean plots",soy,no,2,11,0,0.4731223021582733,0.22805755395683458
+2019,B42-p11,Boyd42_sil,"Boyd Farm, soybean plots",soy,no,2,11,2.5,0.4466474820143884,0.2152959853393364
+2019,B42-p11,Boyd42_sil,"Boyd Farm, soybean plots",soy,no,2,11,10,0.4377841726618704,0.21102363410652178
+2019,B42-p11,Boyd42_sil,"Boyd Farm, soybean plots",soy,no,2,11,25,0.4026474820143884,0.19408681314786383
+2019,B42-p11,Boyd42_sil,"Boyd Farm, soybean plots",soy,no,2,11,50,0.37579856115107907,0.18114491801729232
+2019,B42-p11,Boyd42_sil,"Boyd Farm, soybean plots",soy,no,2,11,100,0.358388489208633,0.1727527995242636
+2019,B42-p11,Boyd42_sil,"Boyd Farm, soybean plots",soy,no,2,11,200,0.32523741007194235,0.15677309621191804
+2019,B42-p11,Boyd42_sil,"Boyd Farm, soybean plots",soy,no,2,11,500,0.2990215827338128,0.1441363690265475
+2019,B42-p12,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,2,12,0,0.47896402877697825,0.2651079136690647
+2019,B42-p12,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,2,12,2.5,0.4675107913669063,0.2587685151086052
+2019,B42-p12,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,2,12,10,0.44270503597122285,0.24503846093997184
+2019,B42-p12,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,2,12,25,0.4073956834532373,0.22549463673473621
+2019,B42-p12,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,2,12,50,0.38155395683453225,0.2111911696309859
+2019,B42-p12,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,2,12,100,0.35922302158273367,0.19883093525179854
+2019,B42-p12,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,2,12,200,0.3388489208633092,0.18755381419449874
+2019,B42-p12,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,2,12,500,0.3326043165467625,0.18409740844671055
+2019,B42-p13,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,2,13,0,0.49392805755395697,0.28212949640287766
+2019,B42-p13,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,2,13,2.5,0.4723453237410073,0.2698015354204634
+2019,B42-p13,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,2,13,10,0.4568633093525181,0.2609582780757449
+2019,B42-p13,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,2,13,25,0.4197985611510792,0.23978705974861217
+2019,B42-p13,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,2,13,50,0.39113669064748213,0.22341552756396604
+2019,B42-p13,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,2,13,100,0.36115107913669076,0.20628788043906518
+2019,B42-p13,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,2,13,200,0.3314244604316548,0.18930816884595328
+2019,B42-p13,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,2,13,500,0.3246618705035973,0.18544540773813017
+2019,B42-p14,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,3,14,0,0.49387050359712215,0.3000719424460432
+2019,B42-p14,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,3,14,2.5,0.47703597122302144,0.2898434092721162
+2019,B42-p14,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,3,14,10,0.47335251798561134,0.2876053712443168
+2019,B42-p14,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,3,14,25,0.4218705035971222,0.25632529287140154
+2019,B42-p14,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,3,14,50,0.4010071942446042,0.24364890560456892
+2019,B42-p14,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,3,14,100,0.37096402877697826,0.22539490794032996
+2019,B42-p14,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,3,14,200,0.33784172661870493,0.20527005036222742
+2019,B42-p14,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,3,14,500,0.3289496402877697,0.1998672866857429
+2019,B42-p15,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,3,15,0,0.49928057553956817,0.31558273381294966
+2019,B42-p15,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,3,15,2.5,0.4889496402877696,0.30905280865797274
+2019,B42-p15,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,3,15,10,0.4732949640287768,0.2991578802894284
+2019,B42-p15,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,3,15,25,0.4238273381294962,0.2678906342130906
+2019,B42-p15,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,3,15,50,0.3905323741007192,0.246845722223374
+2019,B42-p15,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,3,15,100,0.3561726618705034,0.22512780959094392
+2019,B42-p15,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,3,15,200,0.32566906474820123,0.20584725063753026
+2019,B42-p15,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,3,15,500,0.32221582733812926,0.20366454585035135
+2019,B42-p16,Boyd42_sil,"Boyd Farm, soybean plots",soy,no,3,16,0,0.5019856115107916,0.30071942446043165
+2019,B42-p16,Boyd42_sil,"Boyd Farm, soybean plots",soy,no,3,16,2.5,0.47887769784172685,0.28687640119502655
+2019,B42-p16,Boyd42_sil,"Boyd Farm, soybean plots",soy,no,3,16,10,0.4702158273381298,0.2816874223620416
+2019,B42-p16,Boyd42_sil,"Boyd Farm, soybean plots",soy,no,3,16,25,0.44541007194244625,0.2668272902888421
+2019,B42-p16,Boyd42_sil,"Boyd Farm, soybean plots",soy,no,3,16,50,0.42558273381294986,0.2549495281096838
+2019,B42-p16,Boyd42_sil,"Boyd Farm, soybean plots",soy,no,3,16,100,0.41185611510791387,0.24672646198565112
+2019,B42-p16,Boyd42_sil,"Boyd Farm, soybean plots",soy,no,3,16,200,0.37680575539568373,0.22572919880101427
+2019,B42-p16,Boyd42_sil,"Boyd Farm, soybean plots",soy,no,3,16,500,0.3550215827338132,0.2126791756230421
+2019,B42-p18,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,3,18,0,0.5202302158273382,0.2802877697841727
+2019,B42-p18,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,3,18,2.5,0.5141007194244606,0.2769853416967721
+2019,B42-p18,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,3,18,10,0.5141007194244606,0.2769853416967721
+2019,B42-p18,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,3,18,25,0.48178417266187057,0.2595739485411339
+2019,B42-p18,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,3,18,50,0.4596834532374101,0.2476666021978302
+2019,B42-p18,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,3,18,100,0.44258992805755404,0.23845701401043126
+2019,B42-p18,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,3,18,200,0.4056402877697842,0.21854941934272035
+2019,B42-p18,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,3,18,500,0.38195683453237417,0.20578933335243524
+2019,B42-p2,Boyd42_sil,"Boyd Farm, soybean plots",soy,no,1,2,0,0.5280575539568348,0.30877697841726626
+2019,B42-p2,Boyd42_sil,"Boyd Farm, soybean plots",soy,no,1,2,2.5,0.4896115107913672,0.2862959951384942
+2019,B42-p2,Boyd42_sil,"Boyd Farm, soybean plots",soy,no,1,2,10,0.4813812949640291,0.2814834493168409
+2019,B42-p2,Boyd42_sil,"Boyd Farm, soybean plots",soy,no,1,2,25,0.4307050359712233,0.2518509556387588
+2019,B42-p2,Boyd42_sil,"Boyd Farm, soybean plots",soy,no,1,2,50,0.4023884892086334,0.23529310567894465
+2019,B42-p2,Boyd42_sil,"Boyd Farm, soybean plots",soy,no,1,2,100,0.38707913669064775,0.22634109736733782
+2019,B42-p2,Boyd42_sil,"Boyd Farm, soybean plots",soy,no,1,2,200,0.35421582733812973,0.20712456824730957
+2019,B42-p2,Boyd42_sil,"Boyd Farm, soybean plots",soy,no,1,2,500,0.35421582733812973,0.20712456824730957
+2019,B42-p20,Boyd42_sil,"Boyd Farm, soybean plots",soy,no,4,20,0,0.5012949640287772,0.2913669064748201
+2019,B42-p20,Boyd42_sil,"Boyd Farm, soybean plots",soy,no,4,20,2.5,0.48512230215827357,0.28196689491116633
+2019,B42-p20,Boyd42_sil,"Boyd Farm, soybean plots",soy,no,4,20,10,0.47669064748201456,0.27706617713865644
+2019,B42-p20,Boyd42_sil,"Boyd Farm, soybean plots",soy,no,4,20,25,0.4420143884892088,0.25691134807423865
+2019,B42-p20,Boyd42_sil,"Boyd Farm, soybean plots",soy,no,4,20,50,0.4057841726618707,0.23585331505174736
+2019,B42-p20,Boyd42_sil,"Boyd Farm, soybean plots",soy,no,4,20,100,0.38293525179856136,0.22257287166822226
+2019,B42-p20,Boyd42_sil,"Boyd Farm, soybean plots",soy,no,4,20,200,0.34825899280575556,0.20241804260380444
+2019,B42-p20,Boyd42_sil,"Boyd Farm, soybean plots",soy,no,4,20,500,0.3308489208633096,0.1922988130735366
+2019,B42-p21,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,4,21,0,0.5262446043165467,0.3034532374100719
+2019,B42-p21,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,4,21,2.5,0.5162877697841727,0.297711736882709
+2019,B42-p21,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,4,21,10,0.5073381294964028,0.29255102398094646
+2019,B42-p21,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,4,21,25,0.46342446043165464,0.26722868350477375
+2019,B42-p21,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,4,21,50,0.4347913669064748,0.2507177210055655
+2019,B42-p21,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,4,21,100,0.42155395683453234,0.24308451221196167
+2019,B42-p21,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,4,21,200,0.394388489208633,0.2274198402529138
+2019,B42-p21,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,4,21,500,0.38365467625899274,0.22123030355723072
+2019,B42-p22,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,4,22,0,0.5407482014388488,0.3293237410071942
+2019,B42-p22,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,4,22,2.5,0.5153093525179855,0.3138311016026729
+2019,B42-p22,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,4,22,10,0.49948201438848916,0.30419201600031237
+2019,B42-p22,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,4,22,25,0.4345899280575539,0.26467176503063417
+2019,B42-p22,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,4,22,50,0.3914532374100719,0.2384008753616552
+2019,B42-p22,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,4,22,100,0.35453237410071936,0.21591551749287596
+2019,B42-p22,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,4,22,200,0.32169784172661864,0.1959187962705244
+2019,B42-p22,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,4,22,500,0.32017266187050353,0.19498993893066055
+2019,B42-p26,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,5,26,0,0.5682302158273381,0.3609064748201438
+2019,B42-p26,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,5,26,2.5,0.5401438848920863,0.3430676862338752
+2019,B42-p26,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,5,26,10,0.5002014388489209,0.31769858935094397
+2019,B42-p26,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,5,26,25,0.45044604316546766,0.286096882931212
+2019,B42-p26,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,5,26,50,0.4172086330935251,0.26498643127430593
+2019,B42-p26,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,5,26,100,0.3822446043165467,0.24277933277808011
+2019,B42-p26,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,5,26,200,0.3426762589928057,0.21764784271033485
+2019,B42-p26,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,5,26,500,0.33899280575539564,0.2153083294531193
+2019,B42-p27,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,5,27,0,0.43997122302158304,0.23951079136690656
+2019,B42-p27,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,5,27,2.5,0.43306474820143914,0.23575105626794274
+2019,B42-p27,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,5,27,10,0.4317410071942449,0.23503044037397472
+2019,B42-p27,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,5,27,25,0.4138705035971226,0.22530212580540587
+2019,B42-p27,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,5,27,50,0.396834532374101,0.21602811256129514
+2019,B42-p27,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,5,27,100,0.36503597122302184,0.19871766554314932
+2019,B42-p27,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,5,27,200,0.3317697841726621,0.18060827481647368
+2019,B42-p27,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,5,27,500,0.31994244604316574,0.17416972845949816
+2019,B42-p31,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,5,31,0,0.4724892086330937,0.26690647482014385
+2019,B42-p31,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,5,31,2.5,0.4448920863309354,0.25131701691451513
+2019,B42-p31,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,5,31,10,0.43976978417266205,0.24842345747009187
+2019,B42-p31,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,5,31,25,0.412201438848921,0.23285025551639812
+2019,B42-p31,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,5,31,50,0.385928057553957,0.21800857139977767
+2019,B42-p31,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,5,31,100,0.3692374100719426,0.2085801192774996
+2019,B42-p31,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,5,31,200,0.335223021582734,0.18936558409037432
+2019,B42-p31,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,5,31,500,0.3079136690647484,0.17393868570409524
+2019,B42-p34,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,4,34,0,0.5082589928057553,0.2909496402877697
+2019,B42-p34,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,4,34,2.5,0.4818417266187049,0.2758272436291709
+2019,B42-p34,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,4,34,10,0.4654676258992805,0.2664539934126755
+2019,B42-p34,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,4,34,25,0.4173525179856114,0.23891080472729725
+2019,B42-p34,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,4,34,50,0.3827913669064747,0.2191264927589125
+2019,B42-p34,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,4,34,100,0.34768345323740996,0.19902919001001207
+2019,B42-p34,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,4,34,200,0.31433093525179845,0.1799367523985567
+2019,B42-p34,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,4,34,500,0.3119424460431654,0.1785694768836725
+2019,B42-p5,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,1,5,0,0.5116258992805754,0.3496546762589928
+2019,B42-p5,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,1,5,2.5,0.47956834532374093,0.3277459463330961
+2019,B42-p5,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,1,5,10,0.4551366906474819,0.3110488981220671
+2019,B42-p5,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,1,5,25,0.40837410071942437,0.2790904725120292
+2019,B42-p5,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,1,5,50,0.3763165467625898,0.2571817425861324
+2019,B42-p5,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,1,5,100,0.3524604316546762,0.24087802884415008
+2019,B42-p5,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,1,5,200,0.32779856115107897,0.22402364684550236
+2019,B42-p5,Boyd42_gr,"Boyd Farm, soybean plots",soy,cc,1,5,500,0.3230503597122301,0.22077863747586776
+2019,B42-p6,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,1,6,0,0.4800287769784171,0.2771654676258992
+2019,B42-p6,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,1,6,2.5,0.4657553956834531,0.26892411087615725
+2019,B42-p6,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,1,6,10,0.4505899280575538,0.2601676693295564
+2019,B42-p6,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,1,6,25,0.4214100719424459,0.2433194117806887
+2019,B42-p6,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,1,6,50,0.40135251798561133,0.2317383116706682
+2019,B42-p6,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,1,6,100,0.3704748201438847,0.21390973144390782
+2019,B42-p6,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,1,6,200,0.338618705035971,0.19551621950446346
+2019,B42-p6,Boyd42_gr,"Boyd Farm, soybean plots",soy,no,1,6,500,0.3324316546762588,0.19194385720366805
+2019,B42-p7,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,1,7,0,0.4868776978417268,0.26762589928057556
+2019,B42-p7,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,1,7,2.5,0.4657553956834534,0.2560154370740656
+2019,B42-p7,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,1,7,10,0.4642302158273383,0.25517707944879986
+2019,B42-p7,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,1,7,25,0.4295539568345326,0.236116307025306
+2019,B42-p7,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,1,7,50,0.40227338129496426,0.2211207781809307
+2019,B42-p7,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,1,7,100,0.38517985611510813,0.2117248455505943
+2019,B42-p7,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,1,7,200,0.3511366906474822,0.19301207063192763
+2019,B42-p7,Boyd42_sil,"Boyd Farm, soybean plots",soy,cc,1,7,500,0.32587050359712255,0.17912380657563914
+2019,F-1cc,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,cc,1,1,0,0.398158273381295,0.1569784172661871
+2019,F-1cc,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,cc,1,1,2.5,0.38247482014388495,0.150795037863898
+2019,F-1cc,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,cc,1,1,10,0.3754532374100719,0.14802669919571718
+2019,F-1cc,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,cc,1,1,25,0.37248920863309354,0.14685809721693596
+2019,F-1cc,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,cc,1,1,50,0.3564892086330935,0.14054991566157313
+2019,F-1cc,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,cc,1,1,100,0.3330071942446043,0.1312918650335586
+2019,F-1cc,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,cc,1,1,200,0.300546762589928,0.11849397151836208
+2019,F-1cc,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,cc,1,1,500,0.2815251798561151,0.11099449668365916
+2019,F-2no,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,no,1,2,0,0.3949640287769784,0.14684892086330925
+2019,F-2no,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,no,1,2,2.5,0.37815827338129493,0.14060048590635676
+2019,F-2no,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,no,1,2,10,0.3732086330935251,0.13876019341903514
+2019,F-2no,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,no,1,2,25,0.35412949640287766,0.1316665078429059
+2019,F-2no,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,no,1,2,50,0.3378129496402877,0.12559996225970033
+2019,F-2no,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,no,1,2,100,0.3128920863309352,0.11633430357353453
+2019,F-2no,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,no,1,2,200,0.2810359712230215,0.10449009553013318
+2019,F-2no,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,no,1,2,500,0.2782446043165467,0.1034522561622832
+2019,F-3cc,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,cc,2,3,0,0.4048920863309357,0.18319424460431666
+2019,F-3cc,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,cc,2,3,2.5,0.38713669064748246,0.17516077986225104
+2019,F-3cc,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,cc,2,3,10,0.3774388489208638,0.17077297172922656
+2019,F-3cc,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,cc,2,3,25,0.3567194244604321,0.16139842616312078
+2019,F-3cc,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,cc,2,3,50,0.33231654676259037,0.15035729471859624
+2019,F-3cc,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,cc,2,3,100,0.3077122302158278,0.13922502185884567
+2019,F-3cc,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,cc,2,3,200,0.2810647482014393,0.1271683146446597
+2019,F-3cc,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,cc,2,3,500,0.26043165467625945,0.11783282968507937
+2019,F-4no,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,no,2,4,0,0.4476258992805754,0.2187194244604317
+2019,F-4no,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,no,2,4,2.5,0.4305899280575538,0.21039529078762065
+2019,F-4no,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,no,2,4,10,0.4122877697841725,0.20145247150399256
+2019,F-4no,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,no,2,4,25,0.3796546762589926,0.1855072559888444
+2019,F-4no,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,no,2,4,50,0.35706474820143863,0.17446934225040409
+2019,F-4no,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,no,2,4,100,0.3318273381294962,0.1621378131438918
+2019,F-4no,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,no,2,4,200,0.30123741007194227,0.1471909312280166
+2019,F-4no,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,no,2,4,500,0.297755395683453,0.14548954579826973
+2019,F-5cc,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,cc,3,5,0,0.42512230215827346,0.19847482014388496
+2019,F-5cc,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,cc,3,5,2.5,0.40558273381294974,0.18935247513084102
+2019,F-5cc,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,cc,3,5,10,0.3979856115107915,0.18580564290191084
+2019,F-5cc,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,cc,3,5,25,0.38529496402877705,0.17988082088312973
+2019,F-5cc,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,cc,3,5,50,0.37689208633093535,0.17595780947840395
+2019,F-5cc,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,cc,3,5,100,0.3613812949640289,0.16871636034433815
+2019,F-5cc,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,cc,3,5,200,0.3317410071942447,0.15487834066328476
+2019,F-5cc,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,cc,3,5,500,0.3145611510791368,0.14685766323649949
+2019,F-6no,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,no,3,6,0,0.4982446043165467,0.3073812949640288
+2019,F-6no,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,no,3,6,2.5,0.47087769784172656,0.2904978704803282
+2019,F-6no,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,no,3,6,10,0.44420143884892077,0.27404052610978097
+2019,F-6no,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,no,3,6,25,0.40987050359712224,0.25286079381845106
+2019,F-6no,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,no,3,6,50,0.38492086330935243,0.23746864973078716
+2019,F-6no,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,no,3,6,100,0.35795683453237404,0.22083377197975934
+2019,F-6no,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,no,3,6,200,0.32428776978417256,0.2000623664635347
+2019,F-6no,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,no,3,6,500,0.31913669064748196,0.1968845189529328
+2019,F-7no,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,no,4,7,0,0.5794532374100719,0.3833093525179856
+2019,F-7no,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,no,4,7,2.5,0.5178417266187051,0.34255322797780846
+2019,F-7no,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,no,4,7,10,0.4811510791366907,0.3182822990713508
+2019,F-7no,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,no,4,7,25,0.42224460431654676,0.2793155606623164
+2019,F-7no,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,no,4,7,50,0.3919136690647482,0.2592515927663114
+2019,F-7no,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,no,4,7,100,0.36679136690647485,0.2426331449738898
+2019,F-7no,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,no,4,7,200,0.3336690647482015,0.22072268287872684
+2019,F-7no,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,no,4,7,500,0.3162014388489209,0.2091678171169858
+2019,F-8cc,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,cc,4,8,0,0.5117122302158275,0.3147338129496403
+2019,F-8cc,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,cc,4,8,2.5,0.5008057553956835,0.3080256746576645
+2019,F-8cc,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,cc,4,8,10,0.4756834532374102,0.2925739471407915
+2019,F-8cc,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,cc,4,8,25,0.43194244604316556,0.2656705956795693
+2019,F-8cc,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,cc,4,8,50,0.40978417266187056,0.25204192421566063
+2019,F-8cc,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,cc,4,8,100,0.3917985611510792,0.240979690884566
+2019,F-8cc,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,cc,4,8,200,0.3664460431654677,0.22538636678105498
+2019,F-8cc,Funcke_gr,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",corn,cc,4,8,500,0.3514244604316547,0.2161471895029247
+2019,St-1no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,1,1,0,0.4753093525179855,0.2431654676258993
+2019,St-1no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,1,1,2.5,0.454820143884892,0.23268330906504442
+2019,St-1no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,1,1,10,0.44805755395683444,0.2292236078546499
+2019,St-1no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,1,1,25,0.4261007194244603,0.21799062052047533
+2019,St-1no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,1,1,50,0.4172374100719423,0.21345620361493697
+2019,St-1no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,1,1,100,0.4054964028776977,0.20744957342837966
+2019,St-1no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,1,1,200,0.39202877697841715,0.200559615273211
+2019,St-1no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,1,1,500,0.38233093525179845,0.19559825651617715
+2019,St-2cc,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,cc,1,2,0,0.4843741007194246,0.2517985611510791
+2019,St-2cc,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,cc,1,2,2.5,0.46100719424460446,0.23965143474573952
+2019,St-2cc,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,cc,1,2,10,0.4446906474820145,0.2311693895833903
+2019,St-2cc,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,cc,1,2,25,0.41781294964028787,0.21719720231419426
+2019,St-2cc,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,cc,1,2,50,0.4098705035971224,0.213068376097601
+2019,St-2cc,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,cc,1,2,100,0.3991366906474821,0.20748847689908906
+2019,St-2cc,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,cc,1,2,200,0.3863021582733814,0.20081653308531877
+2019,St-2cc,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,cc,1,2,500,0.37850359712230225,0.1967625044451131
+2019,St-3no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,2,3,0,0.510935251798561,0.23453237410071948
+2019,St-3no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,2,3,2.5,0.4842589928057553,0.22228728760162814
+2019,St-3no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,2,3,10,0.46854676258992795,0.21507497128177497
+2019,St-3no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,2,3,25,0.4362014388489207,0.20022763878449482
+2019,St-3no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,2,3,50,0.4271366906474819,0.1960666870615026
+2019,St-3no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,2,3,100,0.4183021582733812,0.19201141030290386
+2019,St-3no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,2,3,200,0.40702158273381284,0.18683333704762467
+2019,St-3no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,2,3,500,0.4060431654676258,0.1863842184489525
+2019,St-4cc,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,cc,2,4,0,0.5642589928057555,0.30647482014388494
+2019,St-4cc,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,cc,2,4,2.5,0.49234532374100737,0.267415223268142
+2019,St-4cc,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,cc,2,4,10,0.46705035971223036,0.2536763734667102
+2019,St-4cc,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,cc,2,4,25,0.4184172661870505,0.22726152003733616
+2019,St-4cc,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,cc,2,4,50,0.40244604316546784,0.21858681965076662
+2019,St-4cc,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,cc,2,4,100,0.3920000000000002,0.2129130966952265
+2019,St-4cc,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,cc,2,4,200,0.3808057553956837,0.20683299137923453
+2019,St-4cc,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,cc,2,4,500,0.37424460431654694,0.20326933067988703
+2019,St-5no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,3,5,0,0.4764028776978416,0.2633093525179856
+2019,St-5no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,3,5,2.5,0.4551654676258992,0.2515713699049821
+2019,St-5no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,3,5,10,0.44212949640287763,0.24436634805716284
+2019,St-5no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,3,5,25,0.4111654676258992,0.22725243302790565
+2019,St-5no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,3,5,50,0.401093525179856,0.2216856391057495
+2019,St-5no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,3,5,100,0.39171223021582724,0.21650056819539837
+2019,St-5no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,3,5,200,0.3804316546762589,0.21026575900258349
+2019,St-5no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,3,5,500,0.3717410071942445,0.20546241110403732
+2019,St-6cc,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,cc,3,6,0,0.4991366906474822,0.2920863309352518
+2019,St-6cc,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,cc,3,6,2.5,0.4816115107913671,0.2818308927375252
+2019,St-6cc,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,cc,3,6,10,0.45971223021582747,0.269015804940366
+2019,St-6cc,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,cc,3,6,25,0.42477697841726636,0.2485722877448978
+2019,St-6cc,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,cc,3,6,50,0.4129208633093527,0.24163429014643578
+2019,St-6cc,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,cc,3,6,100,0.40241726618705054,0.23548776314779832
+2019,St-6cc,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,cc,3,6,200,0.3891510791366908,0.2277246153495192
+2019,St-6cc,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,cc,3,6,500,0.3795971223021584,0.22213380175075856
+2019,St-7no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,4,7,0,0.516546762589928,0.2834532374100719
+2019,St-7no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,4,7,2.5,0.4860719424460432,0.26673028596621307
+2019,St-7no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,4,7,10,0.4691223021582734,0.25742922987515277
+2019,St-7no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,4,7,25,0.43220143884892087,0.23716903468868356
+2019,St-7no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,4,7,50,0.4190503597122302,0.22995242580309005
+2019,St-7no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,4,7,100,0.40575539568345326,0.2226568605839562
+2019,St-7no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,4,7,200,0.39007194244604315,0.2140506202280515
+2019,St-7no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,4,7,500,0.3859568345323741,0.2117924690887958
+2019,St-8cc,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,cc,4,8,0,0.48627338129496406,0.27482014388489207
+2019,St-8cc,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,cc,4,8,2.5,0.4653812949640288,0.26301286346943276
+2019,St-8cc,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,cc,4,8,10,0.4536978417266188,0.2564098939808977
+2019,St-8cc,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,cc,4,8,25,0.42719424460431665,0.2414312365943439
+2019,St-8cc,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,cc,4,8,50,0.4173525179856116,0.23586912929119366
+2019,St-8cc,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,cc,4,8,100,0.4067338129496404,0.22986790825358416
+2019,St-8cc,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,cc,4,8,200,0.3926906474820145,0.22193133409002472
+2019,St-8cc,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,cc,4,8,500,0.38287769784172676,0.2163854902585211
+2019,St-9no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,5,9,0,0.4637122302158273,0.25467625899280577
+2019,St-9no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,5,9,2.5,0.44587050359712227,0.24487737103354426
+2019,St-9no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,5,9,10,0.4317697841726619,0.23713308861412796
+2019,St-9no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,5,9,25,0.40843165467625897,0.22431551097709396
+2019,St-9no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,5,9,50,0.40083453237410066,0.22014308126540844
+2019,St-9no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,5,9,100,0.3919424460431654,0.2152594419437765
+2019,St-9no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,5,9,200,0.37976978417266183,0.20857407161028035
+2019,St-9no,Stout_gr,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",soy,no,5,9,500,0.36981294964028777,0.2031056599426925
