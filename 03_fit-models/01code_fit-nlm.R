@@ -27,6 +27,10 @@ rd <- read_csv("02_data-calcs/dc_swrc.csv") %>%
   mutate(x = ifelse(press_cm == 0, 0.01, press_cm), 
          y = vtheta_poros1) 
 
+rd %>% 
+  select(code) %>% 
+  distinct()
+
 #--visual
 rd %>% 
   ggplot(aes(x, y, color = code)) + 
@@ -74,7 +78,7 @@ rdG <- groupedData(y ~ x | code, data = rd)
 #--use SSgard this time
 fmL <- nlme::nlsList(y ~ SSgard(x, Thr, Ths, alp, scal), data = rdG)
 
-#--Hmm Thr could stay constant
+#--Ths may vary by something.
 plot(intervals(fmL))
 
 #--residuals don't look terrible
