@@ -17,6 +17,7 @@
 
 rm(list = ls())
 library(dplyr)
+library(tidyr)
 library(readr)
 library(ggplot2)
 library(HydroMe) #--for SSgardner/SSgard
@@ -29,7 +30,8 @@ library(nlraa)
 rd <- read_csv("02_data-calcs/dc_swrc.csv") %>% 
   select(code, cc_trt, press_cm, vtheta_poros1) %>% 
   mutate(x = ifelse(press_cm == 0, 0.01, press_cm), 
-         y = vtheta_poros1) 
+         y = vtheta_poros1) %>% 
+  separate(code, into = c("site", "plot"), remove = F)
 
 #--I have 36 unique eus
 rd %>% 
@@ -180,7 +182,30 @@ plot(augPred(fmm3, level = 0:1))
 
 fxf2 <- fixef(fmm3)
 
-fmm4 <- update(fmm3, 
+fmm_cc <- update(fmm3, 
                fixed = list(Thr ~ cc_trt, Thr + alp + scal ~ 1),
                start = c(fxf2[1], 0)) #--Thr
 #--still not enough. 
+
+
+# try letting random effects vary by site instead of eu -------------------
+
+#--create new grouped data
+rdG2 <- groupedData(y ~ x | site, data = rd)
+
+fmL2 <- nlme::nlsList(y ~ SSgard(x, Thr, Ths, alp, scal), data = rdG2)
+
+#--Ths and Thr seem to vary by site
+plot(intervals(fmL2))
+
+#--residuals don't look terrible
+plot(fmL2)
+
+fmm5 <- nlme(fmL2, random = pdDiag(Ths + Thr ~ 1))
+fxf3 <- fixef(fmm5)
+
+fmm_cc <- update(fmm5, 
+                 fixed = list(Thr ~ cc_trt, Thr + alp + scal ~ 1),
+                 start = c(fxf2[1], 0)) #--Thr
+
+#bah!
