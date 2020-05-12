@@ -82,18 +82,24 @@ plot(fmL)
 plot(augPred(fmL, level = 0:1))
 
 #--this takes forever, doesn't work
-fmL2 <- nlme(fmL)
+#fmL2 <- nlme(fmL)
 
 #--simplify the variance-covariance structure
+#--nope this doesn't converge
+#fmm <- nlme(fmL, random = pdDiag(Ths + scal + alp ~ 1))
+
 #--remove Thr and alp
 fmm <- nlme(fmL, random = pdDiag(Ths + scal ~ 1))
+
+# works!
+summary(fmm)
+anova(fmm)
+
 plot(fmm)
 plot(augPred(fmm, level = 0:1))
 
-#--nope doesn't converge
-#fmm <- nlme(fmL, random = pdDiag(Ths + scal + alp ~ 1))
 
-## the random effect intervals seem to be well constrained
+## the random effect intervals seem to be well constrained (FEM wording)
 intervals(fmm)
 
 ## Some outliers from Stout 4cc
@@ -104,6 +110,7 @@ rd %>%
   mutate(mycolor = ifelse(code == "St-4cc", "y", "n")) %>% 
   ggplot(aes(x, y, group = code)) + 
   geom_line(aes(color = mycolor))
+
 
 
 #--let's try to incorporate cover crop treatment
@@ -117,21 +124,28 @@ fmm2 <- update(fmm,
                          fxf[3], 0, #--alp
                          fxf[4], 0)) #--scal
 
-#--not enough degrees of freedom. How can I simplify that?
+#--not enough degrees of freedom?!
 #--get rid of everything except Ths?
 
+fmm2 <- update(fmm, 
+               fixed = list(Ths ~ cc_trt),
+               start = c(fxf[2], 0)) #--Ths
+               
+#--hmm. Do I need to explicitly state the other parameters are not to vary by cc_trt?
 
 fmm2 <- update(fmm, 
-               fixed = list(Ths ~ cc_trt, alp + Thr + scal ~ 1),
-               start = c(fxf[2], 0, #--Ths
-                         fxf[3], 0)) #--alp
-
-#--hmm. I'm stuck. 
+               fixed = list(Ths ~ cc_trt, Thr + alp + scal ~ 1),
+               start = c(fxf[2], 0)) #--Ths
 
 #--what if I further simplify the random things
 #--do random factors eat up dfs?
 #--
 fmm3 <- nlme(fmL, random = pdDiag(Ths ~ 1))
+fmm3
+
+anova(fmm, fmm3)
+#--ok the first one fits better, remember this is just an experiment.
+
 plot(fmm3)
 plot(augPred(fmm3, level = 0:1))
 
@@ -140,3 +154,4 @@ fxf2 <- fixef(fmm3)
 fmm4 <- update(fmm3, 
                fixed = list(Thr ~ cc_trt, Thr + alp + scal ~ 1),
                start = c(fxf2[1], 0)) #--Thr
+#--still not enough. 
