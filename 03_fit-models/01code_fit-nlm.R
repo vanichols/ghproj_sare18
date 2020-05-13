@@ -209,3 +209,93 @@ fmm_cc <- update(fmm5,
                  start = c(fxf2[1], 0)) #--Thr
 
 #bah!
+
+########################### IGNORE, SCRATCH AREA
+
+# try nlme from scratch (not on lists) ------------------------------------
+
+#--fit overall model just to get coefficients for starting values
+g1 <- nls(y ~ SSgardner(x, thr, ths, alp, nscal),
+          data = rd)
+
+coef(g1)
+
+me_code <- 
+  nlme(y ~ SSgardner(x, thr, ths, alp, nscal),
+     data = rd, 
+     fixed = thr + ths + alp + nscal ~ 1,
+     groups = ~ code,
+     random = pdDiag(ths + nscal ~ 1),
+     start = coef(g1))
+
+#--this should be identical
+fmm1
+
+
+
+me_site <- 
+  nlme(y ~ SSgardner(x, thr, ths, alp, nscal),
+     data = rd, 
+     fixed = thr + ths + alp + nscal ~ 1,
+     groups = ~ site,
+     random = pdDiag(ths + nscal ~ 1),
+     start = coef(g1))
+
+#--including grouping on a code level is better
+anova(me_code, me_site)
+
+me_cc <- 
+  nlme(y ~ SSgardner(x, thr, ths, alp, nscal),
+       data = rd, 
+       fixed = list(ths ~ cc_trt, thr + alp + nscal ~ 1),
+       groups = ~ code,
+       random = nscal ~ 1,
+       start = c(coef(g1)[1], 0,
+                 coef(g1)[2], 0,
+                 coef(g1)[3], 0,
+                 coef(g1)[4], 0))
+
+# https://rpubs.com/aforren1/orange-nonlinear -----------------------------
+
+#--orange is already a grouped dataset. grouped by tree
+Orange
+
+f1 <- circumference ~ phi1 / (1 + exp(-(age - phi2)/phi3))
+n1 <- nls(f1,
+          data = Orange, 
+          start = list(phi1 = 200, phi2 = 700, phi3 = 350))
+coef(n1)
+
+#--is the groups argument redundant in this case?
+n2a <- nlme(f1,
+           data = Orange,
+           fixed = phi1 + phi2 + phi3 ~ 1,
+           random = phi1 ~ 1,
+           groups = ~ Tree,
+           start = coef(n1))
+
+#--yes it seems so
+n2b <- nlme(f1,
+           data = Orange,
+           fixed = phi1 + phi2 + phi3 ~ 1,
+           random = phi1 ~ 1,
+#           groups = ~ Tree,
+           start = coef(n1))
+
+# nlme help page ex -------------------------------------------------------
+
+Loblolly
+
+fm1 <- nlme(height ~ SSasymp(age, Asym, R0, lrc),
+            data = Loblolly,
+            fixed = Asym + R0 + lrc ~ 1,
+            random = Asym ~ 1,
+            start = c(Asym = 103, R0 = -8.5, lrc = -3.3))
+summary(fm1)
+fm2 <- update(fm1, random = pdDiag(Asym + lrc ~ 1))
+summary(fm2)
+
+
+pd1 <- pdDiag(diag(1:3), nam = c("A","B","C"))
+pd1
+
