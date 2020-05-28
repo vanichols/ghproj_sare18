@@ -169,3 +169,15 @@ ggplot(data = rdG, aes(x,y, color = cc_trt)) +
   ylab("Soil water content (0-1)") + 
   xlab("Pressure") +
   ggtitle("No visible effect of cover crops on \n water retention curves")
+
+rdG$prd1 <- predict(fmm_cc2, level = 1)
+
+## By site
+## Site has a large effect but cover crop does not
+ggplot(data = rdG, aes(x,y, color = cc_trt)) + 
+  geom_point() + facet_wrap(~ site) + 
+  geom_line(aes(y = prd1, group = site)) +
+  ylab("Soil water content (0-1)") + 
+  xlab("Pressure") +
+  ggtitle("No visible effect of cover crops on \n water retention curves")
+
