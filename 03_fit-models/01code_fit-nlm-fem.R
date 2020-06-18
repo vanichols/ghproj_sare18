@@ -160,6 +160,14 @@ intervals(fmm_cc2)
 ## There seems to be very weak evidence that the cover crops
 ## affect the parameters of a water retention curve
 
+library(emmeans)
+## Parameter values and contrast among groups
+contrast(emmeans(fmm_cc2, ~ cc_trt, param = "Thr"), "pairwise")
+contrast(emmeans(fmm_cc2, ~ cc_trt, param = "Ths"), "pairwise")
+contrast(emmeans(fmm_cc2, ~ cc_trt, param = "scal"), "pairwise")
+contrast(emmeans(fmm_cc2, ~ cc_trt, param = "alp"), "pairwise")
+
+
 ## Do we want a plot of cover crop treatment effect?
 rdG$prd0 <- predict(fmm_cc2, level = 0)
 
@@ -168,7 +176,8 @@ ggplot(data = rdG, aes(x,y, color = cc_trt)) +
   geom_line(aes(y = prd0)) +
   ylab("Soil water content (0-1)") + 
   xlab("Pressure") +
-  ggtitle("No visible effect of cover crops on \n water retention curves")
+  ggtitle("No visible effect of cover crops on \n water retention curves") + 
+  scale_x_log10()
 
 rdG$prd1 <- predict(fmm_cc2, level = 1)
 
