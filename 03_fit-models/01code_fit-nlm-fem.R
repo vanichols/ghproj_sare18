@@ -169,13 +169,14 @@ contrast(emmeans(fmm_cc2, ~ cc_trt, param = "alp"), "pairwise")
 
 
 ## Do we want a plot of cover crop treatment effect?
-rdG$prd0 <- predict(fmm_cc2, level = 0)
+rdG$prd0 <- predict(fmm_cc2, level = 1)
 
 ggplot(data = rdG, aes(x,y, color = cc_trt)) + 
-  geom_point() + 
-  geom_line(aes(y = prd0)) +
+  #geom_jitter(aes(shape = site), alpha = 0.5) + 
+  geom_line(aes(y = prd0), size = 2, alpha = 0.5) +
   ylab("Soil water content (0-1)") + 
   xlab("Pressure") +
+  facet_grid(.~site) +
   ggtitle("No visible effect of cover crops on \n water retention curves") + 
   scale_x_log10()
 
