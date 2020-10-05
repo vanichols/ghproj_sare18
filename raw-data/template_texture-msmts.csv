@@ -1,0 +1,37 @@
+site_name,site_desc,sys_trt,crop_trt,cc_trt,rep,plot,code,textsamp_id,labeled
+Boyd42,"Boyd Farm, soybean plots",sil,soy,no,1,2,B42-p2,1,x
+Boyd42,"Boyd Farm, soybean plots",sil,soy,no,2,11,B42-p11,2,x
+Boyd42,"Boyd Farm, soybean plots",sil,soy,no,3,16,B42-p16,3,x
+Boyd42,"Boyd Farm, soybean plots",sil,soy,no,4,20,B42-p20,4,x
+Boyd42,"Boyd Farm, soybean plots",sil,soy,no,5,28,B42-p28,5,x
+Boyd42,"Boyd Farm, soybean plots",sil,soy,cc,1,7,B42-p7,6,x
+Boyd42,"Boyd Farm, soybean plots",sil,soy,cc,2,10,B42-p10,7,x
+Boyd42,"Boyd Farm, soybean plots",sil,soy,cc,3,18,B42-p18,8,x
+Boyd42,"Boyd Farm, soybean plots",sil,soy,cc,4,21,B42-p21,9,x
+Boyd42,"Boyd Farm, soybean plots",sil,soy,cc,5,31,B42-p31,10,x
+Boyd42,"Boyd Farm, soybean plots",gr,soy,no,1,6,B42-p6,11,
+Boyd42,"Boyd Farm, soybean plots",gr,soy,no,2,13,B42-p13,12,
+Boyd42,"Boyd Farm, soybean plots",gr,soy,no,3,15,B42-p15,13,
+Boyd42,"Boyd Farm, soybean plots",gr,soy,no,4,22,B42-p22,14,
+Boyd42,"Boyd Farm, soybean plots",gr,soy,no,5,26,B42-p26,15,
+Boyd42,"Boyd Farm, soybean plots",gr,soy,cc,1,5,B42-p5,16,
+Boyd42,"Boyd Farm, soybean plots",gr,soy,cc,2,12,B42-p12,17,
+Boyd42,"Boyd Farm, soybean plots",gr,soy,cc,3,14,B42-p14,18,
+Boyd42,"Boyd Farm, soybean plots",gr,soy,cc,4,34,B42-p34,19,
+Boyd42,"Boyd Farm, soybean plots",gr,soy,cc,5,27,B42-p27,20,
+Stout,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",gr,soy,no,1,1,St-1no,21,
+Stout,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",gr,soy,no,2,3,St-3no,22,
+Stout,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",gr,soy,no,3,5,St-5no,23,
+Stout,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",gr,soy,no,4,7,St-7no,24,
+Stout,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",gr,soy,cc,1,2,St-2cc,25,
+Stout,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",gr,soy,cc,2,4,St-4cc,26,
+Stout,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",gr,soy,cc,3,6,St-6cc,27,
+Stout,"Rob Stout's farm in Washington Iowa, will be planted to soybean in 2019",gr,soy,cc,4,8,St-8cc,28,
+Funcke,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",gr,corn,no,1,2,F-2no,29,
+Funcke,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",gr,corn,no,2,4,F-4no,30,
+Funcke,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",gr,corn,no,3,6,F-6no,31,
+Funcke,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",gr,corn,no,4,7,F-7no,32,
+Funcke,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",gr,corn,cc,1,1,F-1cc,33,
+Funcke,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",gr,corn,cc,2,3,F-3cc,34,
+Funcke,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",gr,corn,cc,3,5,F-5cc,35,
+Funcke,"Jim Funcke's farm in Jefferson, IA, will be planted to corn in 2019",gr,corn,cc,4,8,F-8cc,36,
