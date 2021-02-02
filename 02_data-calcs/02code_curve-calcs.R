@@ -22,6 +22,7 @@ library(tidyverse)
 library(broom)
 library(readxl)
 
+cctrtpal <- c("#45AD45", "#69431D")
 
 # read in data -----------------------------------------------------
 
@@ -42,6 +43,22 @@ dat_soil <-
 
 
 myminden <- 2
+
+#--bulk density viz
+
+dat_soil %>% 
+  left_join(key) %>% 
+  unite(site_name, sys_trt, col = "site_trt") %>% 
+  ggplot(aes(cc_trt, bulkden_gcm3, color = cc_trt)) + 
+  geom_point(aes(color = cc_trt), pch = 17, size = 3, alpha = 0.5) + 
+  stat_summary(fun.data = "mean_se", size = 2) + 
+  scale_color_manual(values = cctrtpal) + 
+  facet_grid(.~site_trt) + 
+  theme_bw()
+
+ggsave("02_data-calcs/fig_bulk-dens.png")
+
+
 
 # water -------------------------------------------------------------------
 

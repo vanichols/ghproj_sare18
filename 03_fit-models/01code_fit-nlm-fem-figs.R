@@ -25,6 +25,11 @@ library(nlraa)
 
 #?SSgardner
 
+cctrtpal <- c("#45AD45", "#69431D")
+
+key <- read_csv("raw-data/rd_euIDs.csv") %>% 
+  unite(site_name, sys_trt, col = "site_sys") %>% 
+  select(code, site_sys, cc_trt) 
 
 #--data
 rd <- read_csv("02_data-calcs/dc_swrc.csv") %>% 
@@ -40,10 +45,12 @@ rd %>%
 
 #--visual
 rd %>% 
+  left_join(key, by = "code") %>% 
   ggplot(aes(x, y, color = code)) + 
   geom_point() + 
   geom_line() + 
-  guides(color = F)
+  guides(color = F) + 
+  facet_grid(.~site_desc + sys_trt)
 
 #--none look terrible funny
 rd %>% 
@@ -174,18 +181,58 @@ contrast(emmeans(fmm_cc2, ~ cc_trt, param = "alp"), "pairwise")
 
 # figures -----------------------------------------------------------------
 
-# un-smooth, no ribbons ---------------------------------------------------
 
-rdG$prd0 <- predict(fmm_cc2, level = 1)
 rdG %>%
   as_tibble() %>%
+  left_join(key) %>% 
   mutate(cc_trt = recode(cc_trt,
                          "no" = "None",
                          "cc" = "Rye Cover Crop")) %>%
   mutate(county = case_when(
-    grepl("B42", site) ~ "Boone County",
-    grepl("F", site) ~ "Greene County",
-    grepl("St", site) ~ "Washington County"
+    grepl("Boyd42_sil", site_sys) ~ "Boone County Silage",
+    grepl("Boyd42_gr", site_sys) ~ "Boone County Grain",
+    grepl("F", site_sys) ~ "Greene County Grain",
+    grepl("St", site_sys) ~ "Washington County Grain"
+  )) %>%
+  ggplot(aes(x, vtheta_poros1, color = cc_trt)) +
+  stat_summary(geom = "line", size = 3) +
+  scale_color_manual(values = rev(cctrtpal)) +
+  facet_grid(. ~ county, labeller = label_wrap_gen(10)) +
+  #  scale_y_continuous(label_percent()) +
+  #scale_x_log10(breaks = scales::log_breaks(n = 4)) +
+  coord_trans(x = 'log10') +
+  labs(y = "Soil water content (0-1)",
+       x = "Pressure (cm H20)",
+       color = NULL) +
+  theme(
+    legend.direction = "horizontal",
+    legend.position = "top",
+    #legend.justification = c(1, 1),
+    panel.background = element_rect(fill = "gray90"),
+    axis.title.y = element_text(angle = 90, vjust = 0.5),
+    strip.text = element_text(size = rel(1.5)),
+    legend.background = element_rect(color = "black"),
+    axis.text = element_text(size = rel(1.2)),
+    axis.text.x = element_text(angle = 45),
+    legend.text = element_text(size = rel(1.3)),
+    axis.title = element_text(size = rel(1.3))
+  )
+
+
+# un-smooth predictions, no ribbons ---------------------------------------------------
+
+rdG$prd0 <- predict(fmm_cc2, level = 1)
+
+rdG %>%
+  left_join(key) %>% 
+  mutate(cc_trt = recode(cc_trt,
+                         "no" = "None",
+                         "cc" = "Rye Cover Crop")) %>%
+  mutate(county = case_when(
+    grepl("Boyd42_sil", site_sys) ~ "Boone County Silage",
+    grepl("Boyd42_gr", site_sys) ~ "Boone County Grain",
+    grepl("F", site_sys) ~ "Greene County Grain",
+    grepl("St", site_sys) ~ "Washington County Grain"
   )) %>%
   ggplot(aes(x, y, color = cc_trt)) +
   geom_line(aes(y = prd0), size = 2) +
@@ -215,7 +262,7 @@ ggsave("03_fit-models/fig_log10.png")
 
 # ribbons -----------------------------------------------------------------
 
-fmm_cc2_sim <- simulate_nlme(fmm_cc2, nsim = 100, psim = 1, level = 1)
+fmm_cc2_sim <- simulate_nlme(fmm_cc2, nsim = 100, psim = 1, level = 2)
 
 rdG$mn.s <- apply(fmm_cc2_sim, 1, mean)
 rdG$mxn.s <- apply(fmm_cc2_sim, 1, max)
@@ -223,16 +270,17 @@ rdG$mnn.s <- apply(fmm_cc2_sim, 1, min)
 
 
 rdG %>%
-  as_tibble() %>%
+  left_join(key) %>% 
   mutate(cc_trt = recode(cc_trt,
                          "no" = "None",
                          "cc" = "Rye Cover Crop")) %>%
   mutate(county = case_when(
-    grepl("B42", site) ~ "Boone County",
-    grepl("F", site) ~ "Greene County",
-    grepl("St", site) ~ "Washington County"
+    grepl("Boyd42_sil", site_sys) ~ "Boone County Silage",
+    grepl("Boyd42_gr", site_sys) ~ "Boone County Grain",
+    grepl("F", site_sys) ~ "Greene County Grain",
+    grepl("St", site_sys) ~ "Washington County Grain"
   )) %>%
-  ggplot(aes(x, y, color = cc_trt)) +
+  ggplot() + #aes(x, y, color = cc_trt)) +
   geom_ribbon(aes(
     x = x,
     ymin = mxn.s,
@@ -240,13 +288,13 @@ rdG %>%
     fill = cc_trt
   ),
   alpha = 0.4) +
-  
-  geom_line(aes(y = prd0), size = 2) +
+  #coord_trans(x = 'log10') +
+  #geom_line(aes(x = x, y = prd0), size = 2) +
   scale_color_manual(values = cctrtpal) +
   scale_fill_manual(values = cctrtpal) +
   facet_grid(. ~ county) +
   #  scale_y_continuous(label_percent()) +
-    scale_x_log10() +
+  #  scale_x_log10() +
   guides(fill = F) +
   labs(y = "Soil water content (0-1)",
        x = "Log Pressure (cm H20)",
@@ -269,30 +317,65 @@ ggsave("03_fit-models/fig_90cis.png")
 
 
 
+# ribbons with smoothing-----------------------------------------------------------------
+
+rdG$prd0 <- predict(fmm_cc2, level = 1)
 
 #--make it smoother
-new_dat <- rdG %>% select(code, site, plot, cc_trt) %>% expand_grid(., x = seq(0, 500, 10))
+new_dat <- 
+  rdG %>% 
+  select(code, site, plot, cc_trt) %>% 
+  expand_grid(., x = seq(0, 500, 10)) 
+
+#new_dat$prd0 <- predict(fmm_cc2, level = 1, newdata = new_dat)
+
 fmm_cc2_sim_newdat <- simulate_nlme(fmm_cc2, nsim = 100, psim = 1, level = 1, newdata = new_dat)
 
 new_dat$mn.s <- apply(fmm_cc2_sim_newdat, 1, mean)
 new_dat$mxn.s <- apply(fmm_cc2_sim_newdat, 1, max)
 new_dat$mnn.s <- apply(fmm_cc2_sim_newdat, 1, min)
 
+new_dat %>%
+  as_tibble() %>%
+  mutate(cc_trt = recode(cc_trt,
+                         "no" = "None",
+                         "cc" = "Rye Cover Crop")) %>%
+  mutate(county = case_when(
+    grepl("B42", site) ~ "Boone County",
+    grepl("F", site) ~ "Greene County",
+    grepl("St", site) ~ "Washington County"
+  )) %>%
+  ggplot(aes(x, mn.s, color = cc_trt)) +
+  geom_ribbon(aes(
+    x = x,
+    ymin = mxn.s,
+    ymax = mnn.s,
+    fill = cc_trt
+  ),
+  alpha = 0.4) +
+  geom_line(size = 2) +
+  scale_color_manual(values = cctrtpal) +
+  scale_fill_manual(values = cctrtpal) +
+  facet_grid(. ~ county) +
+  #  scale_y_continuous(label_percent()) +
+  coord_trans(x = 'log10') +
+  #scale_x_log10() +
+  guides(fill = F) +
+  labs(y = "Soil water content (0-1)",
+       x = "Log Pressure (cm H20)",
+       color = NULL) +
+  theme_bw() +
+  theme(
+    legend.direction = "horizontal",
+    legend.position = "top",
+    #legend.justification = c(1, 1),
+    #panel.background = element_rect(fill = "gray90"),
+    axis.title.y = element_text(angle = 90, vjust = 0.5),
+    strip.text = element_text(size = rel(1.5)),
+    legend.background = element_rect(color = "black"),
+    axis.text = element_text(size = rel(1.2)),
+    legend.text = element_text(size = rel(1.3)),
+    axis.title = element_text(size = rel(1.3))
+  )
 
-cctrtpal <- rev(c("#69431D", "#45AD45"))
-
-library(scales)
-show_col(cctrtpal)
-
-
-
-
-## By site
-## Site has a large effect but cover crop does not
-ggplot(data = rdG, aes(x,y, color = cc_trt)) + 
-  geom_point() + facet_wrap(~ site) + 
-  geom_line(aes(y = prd1, group = site)) +
-  ylab("Soil water content (0-1)") + 
-  xlab("Pressure") +
-  ggtitle("No visible effect of cover crops on \n water retention curves")
-
+ggsave("03_fit-models/fig_90cis.png")
