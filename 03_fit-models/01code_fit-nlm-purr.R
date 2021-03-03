@@ -2,6 +2,7 @@
 # author: Gina (vnichols@iastate.edu)
 # created: may 8 2020
 # last modified: May 11 2020 (continue model fitting)
+#                March 2 2021 (update using package data)
 #
 # purpose: fit non-linear models
 # 
@@ -18,36 +19,30 @@ rm(list = ls())
 library(tidyverse)
 library(HydroMe)
 library(nlraa)
-?SSgardner
-
+dlibrary(PFIswhc)
+??SSgardner
+?SSgard
 
 #--data
-rd <- read_csv("02_data-calcs/dc_swrc.csv") %>% 
-  select(code, cc_trt, press_cm, vtheta_poros1) %>% 
-  mutate(x = ifelse(press_cm == 0, 0.01, press_cm), 
-         y = vtheta_poros1) %>% 
-  separate(code, into = c("site", "plot"), remove = F) 
+rd <- 
+  sare_pressure %>%
+  left_join(sare_plotkey) %>% 
+  select(plot_id, site_name, sys_trt, cc_trt, press_cm, vtheta_grav) %>% 
+  mutate(x = ifelse(press_cm == 0, 0.038, press_cm), 
+         y = vtheta_grav) %>% 
+  unite(site_name, sys_trt, col = "site_sys")
 
 
 rd %>% 
-  filter(site == "F") %>% 
-  filter(cc_trt == "cc")
-  
-
-
-rd %>% 
-  filter(site == "F") %>% 
-  ggplot(aes(x, y, color = code)) + 
+  ggplot(aes(x, y, color = plot_id)) + 
   geom_point() + 
   geom_line() + 
   guides(color = F) + 
-  facet_wrap(~code)
+  facet_wrap(~site_sys)
 
 eus <- 
   rd %>% 
-  select(code, cc_trt) %>% 
-  separate(code, into = c("site", "plot"), remove = F) %>% 
-  select(code, site, cc_trt)
+  select(plot_id, site_sys, cc_trt) 
 
 # 1 - thr - threshold moisture content at very high pressures
 # 2 - ths - saturated moisture content
@@ -63,31 +58,65 @@ eus <-
 #--in HydroMe example they don't supply starting vals
 
 
-nls_gardfit <- function(x){
+nls_gardnerfit <- function(x){
   
   nls(y ~ SSgardner(x, thr, ths, alp, nscal),
       data = x)
 }
 
-#--map function to data
-dat_parms <-
+
+nls_gardfit <- function(x){
+  
+  nls(y ~ SSgard(x, Thr, Ths, alp, scal),
+      data = x)
+}
+
+#--test on one group of data
+tst <- 
+  rd %>% 
+  filter(site_sys == "Central_silage", 
+         cc_trt == "no")
+
+
+nls(y ~ SSgard(x, Thr, Ths, alp, scal),
+    data = tst)
+
+#--map function to data, each eu
+dparms_eu <-
   rd %>%
-  select(code, x, y) %>% 
+  select(plot_id, x, y) %>% 
   nest(data = c(x,y)) %>%
   mutate(mod = data %>% map(possibly(nls_gardfit, NULL)),
          is_null = mod %>% map_lgl(is.null)) %>% 
   filter(is_null == 0) %>% 
   mutate(res = mod %>% map(possibly(~broom::tidy(.), NULL))) %>% 
   unnest(cols = c(res)) %>% 
-    select(code, term:p.value)
+    select(plot_id, term:p.value)
 
-  
-  #--is F-xcc never converging?
-  dat_parms %>%
-    left_join(eus) %>% 
-    ggplot(aes(code, estimate, color = site)) + 
-    geom_point() + 
-    geom_linerange(aes(ymin = estimate - std.error,
-                       ymax = estimate + std.error)) + 
-    facet_grid(cc_trt ~ term, scales = "free") + 
-    coord_flip()
+
+#--map function to data, each trt (pool reps)
+
+dparms_gr <-
+  rd %>%
+  ungroup() %>% 
+  select(site_sys, cc_trt, x, y) %>% 
+  nest(data = c(x,y)) %>%
+  mutate(mod = data %>% map(possibly(nls_gardfit, NULL)),
+         is_null = mod %>% map_lgl(is.null)) %>% 
+  filter(is_null == 0) %>% 
+  mutate(res = mod %>% map(possibly(~broom::tidy(.), NULL))) %>% 
+  unnest(cols = c(res)) %>% 
+  select(site_sys, cc_trt, term:p.value)
+
+
+dparms_gr %>% 
+  ggplot(aes(site_sys, estimate, color = cc_trt)) + 
+  geom_point() + 
+  geom_linerange(aes(ymin = estimate - std.error,
+                     ymax = estimate + std.error)) + 
+  facet_wrap(~term, scales = "free")
+
+# 1 - thr - threshold moisture content at very high pressures
+# 2 - ths - saturated moisture content
+# 3 - alp - inverse of air-entry potential
+# 4 - nscal - index for pore-size distribution
