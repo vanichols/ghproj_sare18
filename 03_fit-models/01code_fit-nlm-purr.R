@@ -19,7 +19,7 @@ rm(list = ls())
 library(tidyverse)
 library(HydroMe)
 library(nlraa)
-dlibrary(PFIswhc)
+library(PFIswhc)
 ??SSgardner
 ?SSgard
 
@@ -57,12 +57,52 @@ eus <-
 #--note: nlsLM is a modified version of nls
 #--in HydroMe example they don't supply starting vals
 
+#--test on one group of data
+tst <- 
+  rd %>% 
+  filter(site_sys == "Central_silage",
+         cc_trt == "no") %>% 
+  ungroup() 
 
-nls_gardnerfit <- function(x){
-  
-  nls(y ~ SSgardner(x, thr, ths, alp, nscal),
-      data = x)
-}
+tst2 <- 
+  rd %>% 
+  filter(site_sys == "Central_silage") %>% 
+  ungroup() %>% 
+  select(cc_trt, x,y) %>% 
+  mutate(cc_trt = as.factor(cc_trt))
+
+
+#--gard, works
+f1 <- nls(y ~ SSgard(x, Thr, Ths, alp, scal),
+    data = tst)
+
+#--van gen 5 parm, doesn't work
+nlsList(y ~ SSvgm(x, thr, ths, alp, nscal, mscal)|cc_trt,
+    data = tst)
+
+#--van gen 4 parm, doesn't work
+nlsList(y ~ SSvgm4(x, Thr, Ths, alp, nscal)|cc_trt,
+    data = tst,
+    control = nls.lm.control(maxiter=200,options(warn=-1)))
+
+#--try new library
+library(soilphysics)
+#--this give me starting values
+#fitsoilwater(tst$y, tst$x)
+
+f2 <- 
+  nls(y ~ soilwater(x, theta_R, theta_S, alpha, n), 
+           data = tst, 
+           start = list(theta_R = 0.239, 
+                        theta_S = 0.4224,
+                        alpha = 0.01,
+                        n = 2))
+
+
+AIC(f1, f2)
+
+
+# choose gardener ---------------------------------------------------------
 
 
 nls_gardfit <- function(x){
@@ -71,15 +111,7 @@ nls_gardfit <- function(x){
       data = x)
 }
 
-#--test on one group of data
-tst <- 
-  rd %>% 
-  filter(site_sys == "Central_silage", 
-         cc_trt == "no")
 
-
-nls(y ~ SSgard(x, Thr, Ths, alp, scal),
-    data = tst)
 
 #--map function to data, each eu
 dparms_eu <-
@@ -93,6 +125,7 @@ dparms_eu <-
   unnest(cols = c(res)) %>% 
     select(plot_id, term:p.value)
 
+dparms_eu %>% write_csv("03_fit-models/03dat_gard-parms-eu.csv")
 
 #--map function to data, each trt (pool reps)
 
@@ -108,7 +141,11 @@ dparms_gr <-
   unnest(cols = c(res)) %>% 
   select(site_sys, cc_trt, term:p.value)
 
+dparms_gr %>% write_csv("03_fit-models/03dat_gard-parms-trt.csv")
 
+
+#--look at it
+#--shoudl use 95%cis to emphasize no differences
 dparms_gr %>% 
   ggplot(aes(site_sys, estimate, color = cc_trt)) + 
   geom_point() + 
