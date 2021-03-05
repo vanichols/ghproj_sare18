@@ -109,27 +109,67 @@ dp <-
   read_csv("03_fit-models/03dat_gard-parms-eu.csv") %>%
   left_join(sare_plotkey) %>% 
   left_join(sare_texture) %>% 
-  select(plot_id, cc_trt, term, estimate, std.error, clay, site_name) %>% 
+  select(plot_id, cc_trt, term, estimate, std.error, clay, silt, sand, site_name) %>% 
   mutate(yi = estimate, 
-         vi = std.error^2)
+         vi = std.error^2) %>% 
+  mutate(cc_trt = recode(cc_trt, "cc" = "zcc"))
 
 dp
+
+#--clay as covariate? yes. 
+dp %>% 
+  ggplot(aes(clay, estimate)) + 
+  geom_point(aes(color = cc_trt)) + 
+  facet_grid(.~term)
+
+cleanrma <- function(a = a) {
+  tibble(
+    term = rownames(a$b),
+    estimate = a$b %>% as.vector(),
+    se = a$se,
+    pval = a$pval,
+    ci.lb = a$ci.lb,
+    ci.up = a$ci.ub
+  )
+}
+
 
 #--I don't know what I'm doing...
 
 #--residual water, reduced by not using a cover crop, regardless of clay amount. Huh. 
-rma.mv(yi, vi, mods = ~cc_trt + clay, random = ~1|site_name, data = dp %>% filter(term == "Thr"))
-rma.mv(yi, vi, mods = ~cc_trt, random = ~1|site_name, data = dp %>% filter(term == "Thr"))
+#--does order matter? No. whew. 
+m1a <- cleanrma(rma.mv(yi, vi, mods = ~cc_trt + clay, random = ~1|site_name, data = dp %>% filter(term == "Thr"))) %>% 
+  mutate(param = "Thr-clay")
+m1b <- cleanrma(rma.mv(yi, vi, mods = ~cc_trt, random = ~1|site_name, data = dp %>% filter(term == "Thr"))) %>% 
+  mutate(param = "Thr")
 
 
 #--Saturated value, cc_trt NOT sig if we include clay
-rma.mv(yi, vi, mods = ~cc_trt + clay, random = ~1|site_name, data = dp %>% filter(term == "Ths"))
-rma.mv(yi, vi, mods = ~cc_trt, random = ~1|site_name, data = dp %>% filter(term == "Ths"))
+m2a <- cleanrma(rma.mv(yi, vi, mods = ~cc_trt + clay, random = ~1|site_name, data = dp %>% filter(term == "Ths"))) %>% 
+  mutate(param = "Ths-clay")
+m2b <- cleanrma(rma.mv(yi, vi, mods = ~cc_trt, random = ~1|site_name, data = dp %>% filter(term == "Ths"))) %>% 
+  mutate(param = "Ths")
 
 #--alp, including clay makes it not sig
-rma.mv(yi, vi, mods = ~cc_trt + clay, random = ~1|site_name, data = dp %>% filter(term == "alp"))
-rma.mv(yi, vi, mods = ~cc_trt, random = ~1|site_name, data = dp %>% filter(term == "alp"))
+m3a <- cleanrma(rma.mv(yi, vi, mods = ~cc_trt + clay, random = ~1|site_name, data = dp %>% filter(term == "alp"))) %>% 
+  mutate(param = "alp-clay")
+m3b <- cleanrma(rma.mv(yi, vi, mods = ~cc_trt, random = ~1|site_name, data = dp %>% filter(term == "alp"))) %>% 
+  mutate(param = "alp")
 
 #--scal, never sig, doesn't matter
-rma.mv(yi, vi, mods = ~cc_trt + clay, random = ~1|site_name, data = dp %>% filter(term == "scal"))
-rma.mv(yi, vi, mods = ~cc_trt, random = ~1|site_name, data = dp %>% filter(term == "scal"))
+m4a <- cleanrma(rma.mv(yi, vi, mods = ~cc_trt + clay, random = ~1|site_name, data = dp %>% filter(term == "scal"))) %>% 
+  mutate(param = "scal-clay")
+m4b <- cleanrma(rma.mv(yi, vi, mods = ~cc_trt, random = ~1|site_name, data = dp %>% filter(term == "scal"))) %>% 
+  mutate(param = "scal")
+
+meta_res <- 
+  m1a %>% 
+  bind_rows(m1b) %>% 
+  bind_rows(m2a) %>% 
+  bind_rows(m2b) %>% 
+  bind_rows(m3a) %>% 
+  bind_rows(m3b) %>% 
+  bind_rows(m4a) %>% 
+  bind_rows(m4b)
+
+meta_res %>% write_csv("03_fit-models/03dat_meta-parms-eu.csv")
