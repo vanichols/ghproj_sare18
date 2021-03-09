@@ -11,6 +11,7 @@ library(lme4)
 library(lmerTest)
 library(emmeans)
 library(broom)
+library(metafor)
 
 # data --------------------------------------------------------------------
 
@@ -21,7 +22,7 @@ dat <-
   left_join(sare_plotkey) %>% 
   unite(site_name, sys_trt, col = "site_sys", sep = "-") %>% 
   mutate(repid = paste(site_sys, rep)) %>% 
-  select(repid, cc_trt, site_sys, om, clay, silt, bulkden_gcm3) %>% 
+  select(repid, cc_trt, site_sys, om, clay, silt, sand, bulkden_gcm3) %>% 
   pivot_longer(om:bulkden_gcm3)
 
 
@@ -82,6 +83,10 @@ ebd %>%
 # clay ----------------------------------------------------------------
 
 #--could use clay as a covariate?
+dat %>% 
+  filter(name == "clay") %>% 
+  pull(value) %>% 
+  summary()
 
 #--interactions
 fcl <- lmer(value ~ site_sys * cc_trt + (1|repid), data = dat %>% filter(name == "clay"))
@@ -89,6 +94,9 @@ anova(fcl)
 
 ecl <- emmeans(fcl,  ~cc_trt|site_sys) 
 pairs(ecl)
+
+ecl2 <- emmeans(fcl,  ~cc_trt) 
+pairs(ecl2)
 
 
 ecl %>% 
@@ -98,6 +106,45 @@ ecl %>%
   geom_point() + 
   geom_linerange(aes(ymin = estimate - std.error, ymax = estimate + std.error)) + 
   labs(title = "clay")
+
+# sand ----------------------------------------------------------------
+
+dat %>% 
+  filter(name == "sand") %>% 
+  pull(value) %>% 
+  summary()
+
+dat %>% 
+  filter(name == "sand") %>%
+  ggplot(aes(site_sys, value)) + 
+  geom_point(aes(color = cc_trt))
+
+#--are sand and clay related?
+
+dat %>% 
+  filter(name %in% c("sand", "clay")) %>%
+  pivot_wider(names_from = name, values_from = value) %>% 
+  ggplot(aes(sand, clay)) + 
+  geom_point(aes(color = cc_trt))
+
+#--no interactions
+fsa <- lmer(value ~ site_sys * cc_trt + (1|repid), data = dat %>% filter(name == "sand"))
+anova(fsa)
+
+esa <- emmeans(fsa,  ~cc_trt|site_sys) 
+pairs(esa)
+
+esa2 <- emmeans(fsa,  ~cc_trt) 
+pairs(esa2)
+
+
+esa %>% 
+  tidy() %>% 
+  mutate(var = "sa") %>% 
+  ggplot(aes(site_sys, estimate, fill = cc_trt, color = cc_trt)) + 
+  geom_point() + 
+  geom_linerange(aes(ymin = estimate - std.error, ymax = estimate + std.error)) + 
+  labs(title = "sand")
 
 
 # parameters --------------------------------------------------------------
@@ -136,6 +183,12 @@ cleanrma <- function(a = a) {
 
 #--I don't know what I'm doing...
 
+
+
+
+# use clay as covariate ---------------------------------------------------
+
+
 #--residual water, reduced by not using a cover crop, regardless of clay amount. Huh. 
 #--does order matter? No. whew. 
 m1a <- cleanrma(rma.mv(yi, vi, mods = ~cc_trt + clay, random = ~1|site_name, data = dp %>% filter(term == "Thr"))) %>% 
@@ -172,4 +225,47 @@ meta_res <-
   bind_rows(m4a) %>% 
   bind_rows(m4b)
 
-meta_res %>% write_csv("03_fit-models/03dat_meta-parms-eu.csv")
+meta_res %>% write_csv("03_fit-models/03dat_meta-parms-eu-claycov.csv")
+
+
+# use sand as covariate ---------------------------------------------------
+
+
+#--residual water, reduced by not using a cover crop, regardless of sand amount. Huh. 
+#--does order matter? No. whew. 
+m1a <- cleanrma(rma.mv(yi, vi, mods = ~cc_trt + sand, random = ~1|site_name, data = dp %>% filter(term == "Thr"))) %>% 
+  mutate(param = "Thr-sand")
+m1b <- cleanrma(rma.mv(yi, vi, mods = ~cc_trt, random = ~1|site_name, data = dp %>% filter(term == "Thr"))) %>% 
+  mutate(param = "Thr")
+
+
+#--Saturated value, cc_trt NOT sig if we include sand
+m2a <- cleanrma(rma.mv(yi, vi, mods = ~cc_trt + sand, random = ~1|site_name, data = dp %>% filter(term == "Ths"))) %>% 
+  mutate(param = "Ths-sand")
+m2b <- cleanrma(rma.mv(yi, vi, mods = ~cc_trt, random = ~1|site_name, data = dp %>% filter(term == "Ths"))) %>% 
+  mutate(param = "Ths")
+
+#--alp, including sand makes it not sig
+m3a <- cleanrma(rma.mv(yi, vi, mods = ~cc_trt + sand, random = ~1|site_name, data = dp %>% filter(term == "alp"))) %>% 
+  mutate(param = "alp-sand")
+m3b <- cleanrma(rma.mv(yi, vi, mods = ~cc_trt, random = ~1|site_name, data = dp %>% filter(term == "alp"))) %>% 
+  mutate(param = "alp")
+
+#--scal, never sig, doesn't matter
+m4a <- cleanrma(rma.mv(yi, vi, mods = ~cc_trt + sand, random = ~1|site_name, data = dp %>% filter(term == "scal"))) %>% 
+  mutate(param = "scal-sand")
+m4b <- cleanrma(rma.mv(yi, vi, mods = ~cc_trt, random = ~1|site_name, data = dp %>% filter(term == "scal"))) %>% 
+  mutate(param = "scal")
+
+meta_res <- 
+  m1a %>% 
+  bind_rows(m1b) %>% 
+  bind_rows(m2a) %>% 
+  bind_rows(m2b) %>% 
+  bind_rows(m3a) %>% 
+  bind_rows(m3b) %>% 
+  bind_rows(m4a) %>% 
+  bind_rows(m4b)
+
+meta_res %>% write_csv("03_fit-models/03dat_meta-parms-eu-sandcov.csv")
+

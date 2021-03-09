@@ -27,7 +27,6 @@ show_col(pfi_red)
 # data --------------------------------------------------------------------
 
 
-
 dat <- read_csv("03_fit-models/03dat_gard-parms-trt.csv") %>% 
   mutate(cc_trt = case_when(
     grepl("cc", cc_trt) ~ "Rye Cover Crop",
@@ -46,7 +45,9 @@ dat <- read_csv("03_fit-models/03dat_gard-parms-trt.csv") %>%
 
 dat
 
-mdat <- read_csv("03_fit-models/03dat_meta-parms-eu.csv") 
+mdatcl <- read_csv("03_fit-models/03dat_meta-parms-eu-claycov.csv") 
+
+mdatsa <- read_csv("03_fit-models/03dat_meta-parms-eu-sandcov.csv") 
 
 # figures ------------------------------------------------------------------
 
@@ -93,26 +94,64 @@ dat %>%
 ggsave("06_figs/fig_manu-curves.png")  
 
 
-# meta-analysis -----------------------------------------------------------
+# meta-analysis clay -----------------------------------------------------------
 
-mdat %>% 
+mdatcl %>% 
   #filter(grepl("clay", param)) %>% 
   mutate(thing = ifelse(grepl("clay", param), "Clay as a co-variate", "No covariates"),
          param_clean = str_remove_all(param, "-clay")) %>% 
   filter(term == "cc_trtzcc") %>% 
   mutate(
   param2 = case_when(
-    grepl("alp", param_clean) ~ "Inverse of Air-entry Potential",
-    grepl("scal", param_clean) ~ "Pore-size distribution index",
-    grepl("Thr", param_clean) ~ "SWC at Plant Wilting",
-    grepl("Ths", param_clean) ~ "SWC at Saturation"
+    grepl("alp", param_clean) ~ "Inverse of Air-entry Potential (units?)",
+    grepl("scal", param_clean) ~ "Pore-size distribution index (unitless)",
+    grepl("Thr", param_clean) ~ "SWC at Plant Wilting (vol. frac)",
+    grepl("Ths", param_clean) ~ "SWC at Saturation (vol. frac)"
   )) %>%  
   ggplot(aes(reorder(param2, estimate), estimate, color = thing)) + 
   geom_point(position = position_dodge(width = 0.1)) + 
   geom_linerange(aes(ymin = ci.lb, ymax = ci.up), position = position_dodge(width = 0.1)) +
   geom_hline(yintercept = 0, linetype = "dashed") +
   coord_flip() + 
-  labs(y = "Change due to cover cropping (units specific to paramater)") +
+  labs(y = "Change due to cover cropping (units specific to paramater)",
+        x = NULL,
+       color = NULL) +
   scale_color_manual(values = c("black", "gray70"))
 
-ggsave("06_figs/fig_manu-params.png")
+ggsave("06_figs/fig_manu-params-clay.png")
+
+
+
+# meta-analysis sand ------------------------------------------------------
+
+mdatsa %>% 
+  #filter(grepl("sand", param)) %>% 
+  mutate(thing = ifelse(grepl("sand", param), "Sand as a co-variate", "No covariates"),
+         param_clean = str_remove_all(param, "-sand")) %>% 
+  filter(term == "cc_trtzcc") %>% 
+  mutate(
+    param2 = case_when(
+      grepl("alp", param_clean) ~ "Inverse of Air-entry Potential (units?)",
+      grepl("scal", param_clean) ~ "Pore-size distribution index (unitess)",
+      grepl("Thr", param_clean) ~ "SWC at Plant Wilting (vol. frac.)",
+      grepl("Ths", param_clean) ~ "SWC at Saturation (vol. frac)"
+    )) %>%  
+  ggplot(aes(reorder(param2, estimate), estimate, color = thing)) + 
+  geom_point(position = position_dodge(width = 0.1)) + 
+  geom_linerange(aes(ymin = ci.lb, ymax = ci.up), position = position_dodge(width = 0.1)) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  coord_flip() + 
+  labs(y = "Change due to cover cropping (units specific to paramater)",
+       x = NULL,
+       color = NULL) +
+  scale_color_manual(values = c("gray70", "black"))
+
+ggsave("06_figs/fig_manu-params-sand.png")
+
+
+
+# previous year's biomass? ------------------------------------------------
+
+library(PFIweeds2020)
+pfi_ccbio %>% 
+  filter(year == 2019)
