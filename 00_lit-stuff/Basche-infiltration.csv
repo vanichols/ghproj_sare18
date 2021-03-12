@@ -1,0 +1,392 @@
+StudyID,Study,Trt,Con_Inf,Trt_Inf,Yrs,Reps,No. cr,Avg precip,Irrigation,Pasture,Graze_detail,%Sand,%Silt,%Clay,>50Sand,>30Clay,Aridity,Tillage,Residue,CoverCrop,State/Country,Reference,DOI,units,LAT,LONG,AvgCont
+1a,1,cr,47.4,47.6,2,4,2,748,No,No,.,82,6,12,Y,N,0.4773,RT,.,no,Zambia,Thierfelder and Wall 2010,doi:10.1017/S001447971000030X,mm/hr,-16.24,27.44,no
+1b,1,cr,47.4,71.3,2,4,3,748,No,No,.,82,6,12,Y,N,0.4773,RT,.,no,Zambia,Thierfelder and Wall 2010,doi:10.1017/S001447971000030X,mm/hr,-16.24,27.44,no
+1c,1,cr,33.5,31.1,3,4,2,748,No,No,.,82,6,12,Y,N,0.4773,RT,.,no,Zambia,Thierfelder and Wall 2010,doi:10.1017/S001447971000030X,mm/hr,-16.24,27.44,no
+1d,1,cr,33.5,40.7,3,4,3,748,No,No,.,82,6,12,Y,N,0.4773,RT,.,no,Zambia,Thierfelder and Wall 2010,doi:10.1017/S001447971000030X,mm/hr,-16.24,27.44,no
+1e,1,cr,9.6,28.4,3,4,2,748,No,No,.,82,6,12,Y,N,0.4773,CT,.,no,Zambia,Thierfelder and Wall 2010,doi:10.1017/S001447971000030X,mm/hr,-16.24,27.44,no
+1f,1,cr,46.5,48.7,4,4,2,748,No,No,.,82,6,12,Y,N,0.4773,RT,.,no,Zambia,Thierfelder and Wall 2010,doi:10.1017/S001447971000030X,mm/hr,-16.24,27.44,no
+1g,1,cr,46.5,61.7,4,4,3,748,No,No,.,82,6,12,Y,N,0.4773,RT,.,no,Zambia,Thierfelder and Wall 2010,doi:10.1017/S001447971000030X,mm/hr,-16.24,27.44,no
+1h,1,cr,9.6,48.4,4,4,2,748,No,No,.,82,6,12,Y,N,0.4773,CT,.,no,Zambia,Thierfelder and Wall 2010,doi:10.1017/S001447971000030X,mm/hr,-16.24,27.44,no
+2a,2,cr,788,799,12,2,2,481,No,No,.,42.3,28.9,28.8,N,N,0.4393,NT,with,no,Mexico,Govaerts et al. 2006,doi:10.1016/j.still.2006.07.013,mm/hr (converted),19.318001,-98.508,yes for cr - avg corn/wheat
+2b,2,cr,650.5,90,12,2,2,481,No,No,.,42.3,28.9,28.8,N,N,0.4393,NT,without,no,Mexico,Govaerts et al. 2006,doi:10.1016/j.still.2006.07.013,mm/hr (converted),19.318001,-98.508,yes for cr - avg corn/wheat
+2c,2,cr,1152,1922,12,2,2,481,No,No,.,42.3,28.9,28.8,N,N,0.4393,CT,with,no,Mexico,Govaerts et al. 2006,doi:10.1016/j.still.2006.07.013,mm/hr (converted),19.318001,-98.508,yes for cr - avg corn/wheat
+2d,2,cr,1213.5,1095,12,2,2,481,No,No,.,42.3,28.9,28.8,N,N,0.4393,CT,without,no,Mexico,Govaerts et al. 2006,doi:10.1016/j.still.2006.07.013,mm/hr (converted),19.318001,-98.508,yes for cr - avg corn/wheat
+2e,2,till,1185,469,12,2,1,481,No,No,.,42.3,28.9,28.8,N,N,0.4393,CT,with,no,Mexico,Govaerts et al. 2006,doi:10.1016/j.still.2006.07.013,mm/hr (converted),19.318001,-98.508,no
+2f,2,till,1119,1107,12,2,1,481,No,No,.,42.3,28.9,28.8,N,N,0.4393,CT,with,no,Mexico,Govaerts et al. 2006,doi:10.1016/j.still.2006.07.013,mm/hr (converted),19.318001,-98.508,no
+2g,2,till,1922,799,12,2,2,481,No,No,.,42.3,28.9,28.8,N,N,0.4393,CT,with,no,Mexico,Govaerts et al. 2006,doi:10.1016/j.still.2006.07.013,mm/hr (converted),19.318001,-98.508,no
+2h,2,till,835,88,12,2,1,481,No,No,.,42.3,28.9,28.8,N,N,0.4393,CT,without,no,Mexico,Govaerts et al. 2006,doi:10.1016/j.still.2006.07.013,mm/hr (converted),19.318001,-98.508,no
+2i,2,till,1592,1213,12,2,1,481,No,No,.,42.3,28.9,28.8,N,N,0.4393,CT,without,no,Mexico,Govaerts et al. 2006,doi:10.1016/j.still.2006.07.013,mm/hr (converted),19.318001,-98.508,no
+2j,2,till,1095,90,12,2,2,481,No,No,.,42.3,28.9,28.8,N,N,0.4393,CT,without,no,Mexico,Govaerts et al. 2006,doi:10.1016/j.still.2006.07.013,mm/hr (converted),19.318001,-98.508,no
+3a,3,cr,85,55,3,1,3,1450,No,No,.,89,3,8,Y,N,0.8634,NT,.,no,"Nkhotakota, Malawi",TerAvest et al. 2015,http://dx.doi.org/10.1016/j.agee.2015.07.011,mm/hr,-13.059999,34.299998,no
+3b,3,till,32,55,3,1,3,1450,No,No,.,89,3,8,Y,N,0.8634,CT,.,no,"Nkhotakota, Malawi",TerAvest et al. 2015,http://dx.doi.org/10.1016/j.agee.2015.07.011,mm/hr,-13.059999,34.299998,no
+3c,3,cr,46,32,3,1,3,834,No,No,.,80,4,16,Y,N,0.5633,NT,.,no,"Dowa, Malawi",TerAvest et al. 2015,http://dx.doi.org/10.1016/j.agee.2015.07.011,mm/hr,-13.470001,33.71,no
+3d,3,till,21,32,3,1,3,834,No,No,.,80,4,16,Y,N,0.5633,CT,.,no,"Dowa, Malawi",TerAvest et al. 2015,http://dx.doi.org/10.1016/j.agee.2015.07.011,mm/hr,-13.470001,33.71,no
+4a,4,cr,13.4,27.6,47,3,2,905,No,No,.,37,44,19,N,N,0.8762,.,.,.,Ohio (Wooster),Kumar et al. 2012,doi:10.2136/sssaj2012.0098,mm/hr,40.416668,-83.25,no
+4b,4,till,8.21,34.7,47,3,2,905,No,No,.,37,44,19,N,N,0.8762,CT,.,no,Ohio (Wooster),Kumar et al. 2012,doi:10.2136/sssaj2012.0098,mm/hr,40.416668,-83.25,no
+4c,4,till,18.6,34.7,47,3,2,905,No,No,.,37,44,19,N,N,0.8762,RT,.,no,Ohio (Wooster),Kumar et al. 2013,doi:10.2136/sssaj2012.0099,mm/hr,40.416668,-83.25,no
+4d,4,cr,171.2,234.6,47,3,2,845,No,No,.,21.3,38,41,N,Y,0.8555,.,.,.,Ohio (Hoytville),Kumar et al. 2012,doi:10.2136/sssaj2012.0098,mm/hr,41.483334,-84.15,no
+4e,4,till,84.7,353,47,3,2,845,No,No,.,21.3,38,41,N,Y,0.8555,CT,.,no,Ohio (Hoytville),Kumar et al. 2012,doi:10.2136/sssaj2012.0098,mm/hr,41.483334,-84.15,no
+4f,4,till,171,353,47,3,2,845,No,No,.,21.3,38,41,N,Y,0.8555,RT,.,no,Ohio (Hoytville),Kumar et al. 2013,doi:10.2136/sssaj2012.0099,mm/hr,41.483334,-84.15,no
+5a,5,cr,22.2,15.8,24,3,2,517,No,No,.,12,48.2,40,N,Y,0.3411,NT,without,no,Texas (Bushland),Baumhardt et al. 2011,doi:10.2136/sssaj2011.0331,mm/hr,35.110002,-102.499999,no
+5b,5,cr,54.6,26.1,24,3,2,517,No,No,.,12,48.2,40,N,Y,0.3411,NT,with,no,Texas (Bushland),Baumhardt et al. 2011,doi:10.2136/sssaj2011.0332,mm/hr,35.110002,-102.499999,no
+5c,5,cr,27.6,12.9,24,3,2,517,No,No,.,12,48.2,40,N,Y,0.3411,RT,without,no,Texas (Bushland),Baumhardt et al. 2011,doi:10.2136/sssaj2011.0333,mm/hr,35.110002,-102.499999,no
+5d,5,cr,67.7,70.7,24,3,2,517,No,No,.,12,48.2,40,N,Y,0.3411,RT,with,no,Texas (Bushland),Baumhardt et al. 2011,doi:10.2136/sssaj2011.0334,mm/hr,35.110002,-102.499999,no
+6a,6,per,2.1,9.5,4,3,1,850,No,No,ungrz,44,6,50,N,Y,0.6346,.,.,.,Zambia,Chirwa et al. 2003,10.1023/B:AGFO.0000005225.12629.61,cm/hr,-14.15,32,no
+6b,6,per,2.1,4.4,4,3,1,850,No,No,ungrz,44,6,50,N,Y,0.6346,.,.,.,Zambia,Chirwa et al. 2003,10.1023/B:AGFO.0000005225.12629.61,cm/hr,-14.15,32,no
+6c,6,per,2.1,3.7,4,3,1,850,No,No,ungrz,44,6,50,N,Y,0.6346,.,.,.,Zambia,Chirwa et al. 2003,10.1023/B:AGFO.0000005225.12629.61,cm/hr,-14.15,32,no
+6d,6,per,2.1,5.5,4,3,1,850,No,No,ungrz,44,6,50,N,Y,0.6346,.,.,.,Zambia,Chirwa et al. 2003,10.1023/B:AGFO.0000005225.12629.61,cm/hr,-14.15,32,no
+6e,6,per,2.1,7.1,4,3,1,850,No,No,ungrz,44,6,50,N,Y,0.6346,.,.,.,Zambia,Chirwa et al. 2003,10.1023/B:AGFO.0000005225.12629.61,cm/hr,-14.15,32,no
+6f,6,per,2.1,11.9,4,3,1,850,No,No,ungrz,44,6,50,N,Y,0.6346,.,.,.,Zambia,Chirwa et al. 2003,10.1023/B:AGFO.0000005225.12629.61,cm/hr,-14.15,32,no
+6g,6,per,2.1,9.4,4,3,1,850,No,No,ungrz,44,6,50,N,Y,0.6346,.,.,.,Zambia,Chirwa et al. 2003,10.1023/B:AGFO.0000005225.12629.61,cm/hr,-14.15,32,no
+7a,7,res,0.397,0.8968,13,4,1,1033,No,No,.,42.2,42,15.6,N,N,1.0109,NT,.,.,Maryland,Steele et al. 2012,doi:10.2136/sssaj2012.0008,mm/sec,38.59,-76.09,no
+7b,7,res,0.6373,1.9643,13,4,1,1033,No,No,.,81.5,10.4,8.1,Y,N,0.9926,NT,.,.,Maryland,Steele et al. 2012,doi:10.2136/sssaj2012.0008,mm/sec,38.37,-76.44,no
+7c,7,res,1.595,3.405,13,4,1,1033,No,No,.,43.4,37.2,19,N,N,0.9704,NT,.,.,Maryland,Steele et al. 2012,doi:10.2136/sssaj2012.0008,mm/sec,39.140001,-76.55,no
+8a,8,till,79,79,5,4,2,650,Yes,No,.,.,.,.,.,.,0.3229,CT,.,no,India,Ram et al. 2013,10.1017/S0014479713000264,cm (cumuluative),30.56,75.52,no
+8b,8,till,78,79,2,4,2,650,Yes,No,.,.,.,.,.,.,0.3229,CT,.,no,India,Ram et al. 2013,10.1017/S0014479713000264,cm (cumuluative),30.56,75.52,no
+9a,9,till,20.36,58.67,14,3,2,863,No,No,.,.,.,.,N,N,0.8914,CT,without,no,Iowa,Logsdon et al. 1993,doi:10.1016/0167-1987(93)90025-K,micrometers/second,42.952201,-92.5386,no
+9b,9,till,14.31,58.67,14,3,2,863,No,No,.,.,.,.,N,N,0.8914,RT,without,no,Iowa,Logsdon et al. 1993,doi:10.1016/0167-1987(93)90025-K,micrometers/second,42.952201,-92.5386,no
+9c,9,till,31.04,58.67,14,3,2,863,No,No,.,.,.,.,N,N,0.8914,RT,without,no,Iowa,Logsdon et al. 1993,doi:10.1016/0167-1987(93)90025-K,micrometers/second,42.952201,-92.5386,no
+10a,10,cr,38.7,32,12,3,2,475,No,No,.,12,48.2,39.8,N,Y,0.3411,NT,.,no,Texas (Bushland),Alemu et al. 1997,DOI:10.1080/00103629709369772,mm/1.5 hrs,35.110002,-102.499999,no
+10b,10,cr,36.2,30.8,12,3,2,475,No,No,.,12,48.2,39.8,N,Y,0.3411,RT,.,no,Texas (Bushland),Alemu et al. 1997,DOI:10.1080/00103629709369773,mm/1.5 hrs,35.110002,-102.499999,no
+10c,10,till,36.2,38.7,12,3,2,475,No,No,.,12,48.2,39.8,N,Y,0.3411,RT,.,no,Texas (Bushland),Alemu et al. 1997,DOI:10.1080/00103629709369774,mm/1.5 hrs,35.110002,-102.499999,no
+10d,10,till,30.8,32,12,3,2,475,No,No,.,12,48.2,39.8,N,Y,0.3411,RT,.,no,Texas (Bushland),Alemu et al. 1997,DOI:10.1080/00103629709369775,mm/1.5 hrs,35.110002,-102.499999,no
+11a,11,cr,6.24,21.8,5,2,2,1101,No,No,.,80,11,9,Y,N,0.9023,NT,.,no,Mozambique,Rusinamhodzi et al. 2012,DOI: 10.1016/j.fcr.2012.07.014,mm/hr,-18.5,33.11,no
+11b,11,cr,6.24,10.5,3,2,2,1101,No,No,.,80,11,9,Y,N,0.9023,NT,.,no,Mozambique,Rusinamhodzi et al. 2012,DOI: 10.1016/j.fcr.2012.07.014,mm/hr,-18.5,33.11,no
+11c,11,cr,6.24,8.2,1,2,2,1101,No,No,.,80,11,9,Y,N,0.9023,NT,.,no,Mozambique,Rusinamhodzi et al. 2012,DOI: 10.1016/j.fcr.2012.07.014,mm/hr,-18.5,33.11,no
+12a,12,till,20.7,26.05,11,3,2,1651,No,No,.,7,18,75,N,Y,0.8173,.,.,no,Brazil,Moraes et al 2016,DOI: 10.1016/j.still.2015.07.015,mm/hr,-23.11,-51.11,no
+12b,12,till,20.7,34.2,24,3,2,1651,No,No,.,7,18,75,N,Y,0.8173,.,.,no,Brazil,Moraes et al 2016,DOI: 10.1016/j.still.2015.07.015,mm/hr,-23.11,-51.11,no
+13a,13,cr,4.3,17.25,9,1,2,750,No,No,.,71,7,22,Y,N,0.5147,NT,.,no,Zimbabwe,Nyamadzawo et al. 2003,10.1023/B:AGFO.0000005221.67367.fd,mm/hr,-19.35,31.14,no
+13b,13,cr,35,71.25,9,1,2,750,No,No,.,71,7,22,Y,N,0.5147,NT,.,no,Zimbabwe,Nyamadzawo et al. 2008,,cm/hr,-19.35,31.14,no
+13b,13,till,5.1,3.8,10,1,1,750,No,No,.,71,7,22,Y,N,0.5147,CT,.,no,Zimbabwe,Nyamadzawo et al. 2003,10.1023/B:AGFO.0000005221.67367.fd,mm/hr,-19.35,31.14,no
+13c,13,till,23.2,18.9,10,1,1,750,No,No,.,71,7,22,Y,N,0.5147,CT,.,no,Zimbabwe,Nyamadzawo et al. 2003,10.1023/B:AGFO.0000005221.67367.fd,mm/hr,-19.35,31.14,no
+14a,14,cr,15.83,12.5,10,3,4,616,No,No,.,69.3,10.9,19.8,Y,N,0.6201,RT,.,no,"Brookings, SD",Pikul et al. 2006,DOI: 10.1079/RAF2005122,cm/hr,44.300001,-96.783333,no
+14b,14,till,88.43,26.57,10,4,2,574,No,No,.,4.8,46.4,48.8,N,Y,0.569,CT,.,no,"Fargo, ND",Pikul et al. 2006,DOI: 10.1079/RAF2005123,cm/hr,47.466668,-97.316667,no
+14c,14,cr,29.3,52.7,10,5,4,646,No,No,.,14.8,59.4,25.8,N,N,0.7073,RT,.,no,"Mead, NE",Pikul et al. 2006,DOI: 10.1079/RAF2005124,cm/hr,41.383333,-96.816667,no
+14d,14,cr,7.5,4.25,10,3,2,392,No,No,.,.,.,.,.,.,0.4257,RT,.,no,"Swift Current, SK",Pikul et al. 2006,DOI: 10.1079/RAF2005125,cm/hr,50.283334,-107.783334,no
+15a,15,till,13.7,15.7,2,3,1,1316,No,No,.,74,10,16,Y,N,0.7935,RT,without,no,"Ibadan, Nigeria",Franzen et al. 1994,doi:10.1016/0167-1987(94)90139-2,cm/hr,7.23,3.55,no
+15b,15,till,13.7,44.2,2,3,1,1316,No,No,.,74,10,16,Y,N,0.7935,RT,without,no,"Ibadan, Nigeria",Franzen et al. 1994,doi:10.1016/0167-1987(94)90139-3,cm/hr,7.23,3.55,no
+15c,15,till,13.7,11.3,2,3,1,1316,No,No,.,74,10,16,Y,N,0.7935,RT,without,no,"Ibadan, Nigeria",Franzen et al. 1994,doi:10.1016/0167-1987(94)90139-4,cm/hr,7.23,3.55,no
+15d,15,till,21.6,35.3,2,3,1,1316,No,No,.,74,10,16,Y,N,0.7935,RT,with,no,"Ibadan, Nigeria",Franzen et al. 1994,doi:10.1016/0167-1987(94)90139-5,cm/hr,7.23,3.55,no
+15e,15,till,21.6,38.2,2,3,1,1316,No,No,.,74,10,16,Y,N,0.7935,RT,with ,no,"Ibadan, Nigeria",Franzen et al. 1994,doi:10.1016/0167-1987(94)90139-6,cm/hr,7.23,3.55,no
+15f,15,till,21.6,19.6,2,3,1,1316,No,No,.,74,10,16,Y,N,0.7935,RT,with ,no,"Ibadan, Nigeria",Franzen et al. 1994,doi:10.1016/0167-1987(94)90139-7,cm/hr,7.23,3.55,no
+15g,15,till,11.7,4.7,4,3,1,1316,No,No,.,74,10,16,Y,N,0.7935,RT,without,no,"Ibadan, Nigeria",Franzen et al. 1994,doi:10.1016/0167-1987(94)90139-8,cm/hr,7.23,3.55,no
+15h,15,till,11.7,9.5,4,3,1,1316,No,No,.,74,10,16,Y,N,0.7935,RT,without,no,"Ibadan, Nigeria",Franzen et al. 1994,doi:10.1016/0167-1987(94)90139-9,cm/hr,7.23,3.55,no
+15i,15,till,11.7,3.4,4,3,1,1316,No,No,.,74,10,16,Y,N,0.7935,RT,without,no,"Ibadan, Nigeria",Franzen et al. 1994,doi:10.1016/0167-1987(94)90139-10,cm/hr,7.23,3.55,no
+15j,15,till,11.5,18.3,4,3,1,1316,No,No,.,74,10,16,Y,N,0.7935,RT,with,no,"Ibadan, Nigeria",Franzen et al. 1994,doi:10.1016/0167-1987(94)90139-11,cm/hr,7.23,3.55,no
+15k,15,till,11.5,20.7,4,3,1,1316,No,No,.,74,10,16,Y,N,0.7935,RT,with,no,"Ibadan, Nigeria",Franzen et al. 1994,doi:10.1016/0167-1987(94)90139-12,cm/hr,7.23,3.55,no
+15l,15,till,11.5,14,4,3,1,1316,No,No,.,74,10,16,Y,N,0.7935,RT,with,no,"Ibadan, Nigeria",Franzen et al. 1994,doi:10.1016/0167-1987(94)90139-13,cm/hr,7.23,3.55,no
+16a,16,till,0.41,0.91,6,4,3,869,No,No,.,80.1,6.1,13.8,Y,N,0.4048,CT,.,no,Spain,Gomez-Paccard et al. 2016,http://dx.doi.org/10.1016/j.still.2014.09.012,cm/min,39.38,-5.39,no
+17a,17,res,1332,1432,3,5,1,1100,No,No,.,49,33,18,N,N,0.7479,CT,.,.,Mexico,Astier et al 2006,DOI: 10.1016/j.still.2005.05.003,mm/hr (converted),19.250003,-101.359999,no
+17b,17,res,1332,1736,3,5,1,1100,No,No,.,49,33,18,N,N,0.7479,CT,.,.,Mexico,Astier et al 2007,DOI: 10.1016/j.still.2005.05.004,mm/hr (converted),19.250003,-101.359999,no
+17c,17,till,1432,2122,3,5,1,1100,No,No,.,49,33,18,N,N,0.7479,CT,with,yes,Mexico,Astier et al 2008,DOI: 10.1016/j.still.2005.05.005,mm/hr (converted),19.250003,-101.359999,no
+17d,17,till,1736,3370,3,5,1,1100,No,No,.,49,33,18,N,N,0.7479,CT,with,yes,Mexico,Astier et al 2009,DOI: 10.1016/j.still.2005.05.006,mm/hr (converted),19.250003,-101.359999,no
+18a,18,res,2.8,4.2,3,4,2,1286,No,No,.,54,13,33,Y,Y,0.7797,NT,.,.,Uganda,Fischler et al. 1999,10.1016/S0378-4290(98)00150-6,mm/min,0.24,32.31,no
+18b,18,res,2.8,4.2,3,4,2,1286,No,No,.,54,13,33,Y,Y,0.7797,NT,.,.,Uganda,Fischler et al. 1999,10.1016/S0378-4290(98)00150-6,mm/min,0.24,32.31,no
+19a,19,res,1.2,1.3,1,4,2,246,Yes,No,.,40,36,24,N,N,0.1119,CT,.,.,Pakistan,Kahlown and Azam 2003,10.1016/S0378-3774(03)00096-9,cm/hr,30,73.25,no
+19b,19,res,1.3,1.7,2,4,2,246,Yes,No,.,40,36,24,N,N,0.1119,CT,.,.,Pakistan,Kahlown and Azam 2003,10.1016/S0378-3774(03)00096-9,cm/hr,30,73.25,no
+19c,19,res,1.6,1.9,3,4,2,246,Yes,No,.,40,36,24,N,N,0.1119,CT,.,.,Pakistan,Kahlown and Azam 2003,10.1016/S0378-3774(03)00096-9,cm/hr,30,73.25,no
+20a,20,res,0.6,1,3,3,2,453,Yes,No,.,.,.,.,N,Y,0.1224,.,.,.,Pakistan,Ghafoor et al. 2012,DOI: 10.1002/ldr.1033,cm/hr,31.45,70.45,no
+20b,20,res,0.9,1.2,3,3,2,453,Yes,No,.,.,.,.,N,Y,0.1224,.,.,.,Pakistan,Ghafoor et al. 2012,DOI: 10.1002/ldr.1033,cm/hr,31.45,70.45,no
+21a,21,res,0.75,0.81,5,4,2,269,No,No,.,15,56,29,N,N,0.0774,.,without,.,Pakistan,Mahmood-ul-Hassan et al 2013,Doi: 10.4025/actasciagron.v35i1.14683,cm/hr,29.56,71.23,no
+21b,21,res,1.32,1.36,5,4,2,269,No,No,.,15,56,29,N,N,0.0774,.,with,.,Pakistan,Mahmood-ul-Hassan et al 2013,Doi: 10.4025/actasciagron.v35i1.14683,cm/hr,29.56,71.23,no
+21c,21,res,0.87,0.92,5,4,2,269,No,No,.,15,56,29,N,N,0.0774,.,without,.,Pakistan,Mahmood-ul-Hassan et al 2013,Doi: 10.4025/actasciagron.v35i1.14683,cm/hr,29.56,71.23,no
+21d,21,res,1.41,1.51,5,4,2,269,No,No,.,15,56,29,N,N,0.0774,.,with,.,Pakistan,Mahmood-ul-Hassan et al 2013,Doi: 10.4025/actasciagron.v35i1.14683,cm/hr,29.56,71.23,no
+22a,22,res,0.0132,0.02965,13,3,2,650,Yes,No,.,78.5,8.9,12.6,Y,N,0.3229,CT,without,.,India,Singh et al 2007,doi:10.1016/j.still.2006.07.020,cm/min,30.56,75.52,no
+22b,22,res,0.022225,0.03287,13,3,2,650,Yes,No,.,78.5,8.9,12.6,Y,N,0.3229,CT,without,.,India,Singh et al 2007,doi:10.1016/j.still.2006.07.021,cm/min,30.56,75.52,no
+22c,22,res,0.0471,0.025645,13,3,2,650,Yes,No,.,78.5,8.9,12.6,Y,N,0.3229,CT,with,.,India,Singh et al 2007,doi:10.1016/j.still.2006.07.022,cm/min,30.56,75.52,no
+22d,22,res,0.1045,0.0559,13,3,2,650,Yes,No,.,78.5,8.9,12.6,Y,N,0.3229,CT,with,.,India,Singh et al 2007,doi:10.1016/j.still.2006.07.023,cm/min,30.56,75.52,no
+23a,23,res,2.98,4.24,23,3,2,650,Yes,No,.,78.5,8.9,12.6,Y,N,0.3229,RT,.,.,India,Walia et al 2010,DOI: 10.1080/10440046.2010.507519,cm/hr,30.56,75.52,no
+23b,23,res,3,4.08,23,3,2,650,Yes,No,.,78.5,8.9,12.6,Y,N,0.3229,RT,.,.,India,Walia et al 2010,DOI: 10.1080/10440046.2010.507519,cm/hr,30.56,75.52,no
+24a,24,res,6.33,7.36,4,4,2,1072,No,No,.,64.4,17,18.6,Y,N,0.3322,NT,.,.,"New Delhi, India",Sharma et al 2010,DOI 10.1007/s10705-009-9327-y,mm/hr,30.34,75.868667,no
+24b,24,res,6.33,7.67,4,4,2,1072,No,No,.,64.4,17,18.6,Y,N,0.3322,NT,.,.,"New Delhi, India",Sharma et al 2010,DOI 10.1007/s10705-009-9327-y,mm/hr,30.34,75.868667,no
+24c,24,res,6.33,8.34,4,4,2,1072,No,No,.,64.4,17,18.6,Y,N,0.3322,NT,.,.,"New Delhi, India",Sharma et al 2010,DOI 10.1007/s10705-009-9327-y,mm/hr,30.34,75.868667,no
+25a,25,res,69,106,1,3,1,291,Yes,No,.,45,45,10,N,N,0.1914,RT,.,.,"Fresno, CA",Guilick et al 1994,doi:10.2136/sssaj1994.03615995005800050038x,mm/8hrs,36.400001,-119.32,no
+25b,25,res,69,116,1,3,1,291,Yes,No,.,45,45,10,N,N,0.1914,RT,.,.,"Fresno, CA",Guilick et al 1994,doi:10.2136/sssaj1994.03615995005800050038x,mm/8hrs,36.400001,-119.32,no
+25c,25,res,74,122,2,3,1,291,Yes,No,.,45,45,10,N,N,0.1914,RT,.,.,"Fresno, CA",Guilick et al 1994,doi:10.2136/sssaj1994.03615995005800050038x,mm/8hrs,36.400001,-119.32,no
+25d,25,res,74,182,2,3,1,291,Yes,No,.,45,45,10,N,N,0.1914,RT,.,.,"Fresno, CA",Guilick et al 1994,doi:10.2136/sssaj1994.03615995005800050038x,mm/8hrs,36.400001,-119.32,no
+26a,26,till,5.2,7,1,4,1,1250,No,No,.,45,22.5,32.5,N,Y,0.8817,CT,with,yes,Georgia,Franzluebbers 2008,doi:10.1016/j.still.2008.05.011,mm/min,33.620002,-83.25,no
+26b,26,till,3.9,3.2,1,4,1,1250,No,No,.,45,22.5,32.5,N,Y,0.8817,CT,without,yes,Georgia,Franzluebbers 2008,doi:10.1016/j.still.2008.05.012,mm/min,33.620002,-83.25,no
+26c,26,till,9.55,7,2,4,1,1250,No,No,.,45,22.5,32.5,N,Y,0.8817,CT,with,yes,Georgia,Franzluebbers 2008,doi:10.1016/j.still.2008.05.013,mm/min,33.620002,-83.25,no
+26d,26,till,6.7,6.15,2,4,1,1250,No,No,.,45,22.5,32.5,N,Y,0.8817,CT,without,yes,Georgia,Franzluebbers 2008,doi:10.1016/j.still.2008.05.014,mm/min,33.620002,-83.25,no
+26e,26,till,6.9,5.6,3,4,1,1250,No,No,.,45,22.5,32.5,N,Y,0.8817,CT,with,yes,Georgia,Franzluebbers 2008,doi:10.1016/j.still.2008.05.015,mm/min,33.620002,-83.25,no
+26f,26,till,6.2,3.9,3,4,1,1250,No,No,.,45,22.5,32.5,N,Y,0.8817,CT,without,yes,Georgia,Franzluebbers 2008,doi:10.1016/j.still.2008.05.016,mm/min,33.620002,-83.25,no
+26g,26,till,4,4.2,4,4,1,1250,No,No,.,45,22.5,32.5,N,Y,0.8817,CT,with,yes,Georgia,Franzluebbers 2008,doi:10.1016/j.still.2008.05.017,mm/min,33.620002,-83.25,no
+26h,26,till,6.2,5.6,4,4,1,1250,No,No,.,45,22.5,32.5,N,Y,0.8817,CT,without,yes,Georgia,Franzluebbers 2008,doi:10.1016/j.still.2008.05.018,mm/min,33.620002,-83.25,no
+26i,26,till,10.2,8,2,4,1,1250,No,No,.,45,22.5,32.5,N,Y,0.8817,CT,with,yes,Georgia,Franzluebbers 2008,doi:10.1016/j.still.2008.05.019,mm/min,33.620002,-83.25,no
+26j,26,till,7,5.6,2,4,1,1250,No,No,.,45,22.5,32.5,N,Y,0.8817,CT,without,yes,Georgia,Franzluebbers 2008,doi:10.1016/j.still.2008.05.020,mm/min,33.620002,-83.25,no
+26k,26,till,4.8,7,4,4,1,1250,No,No,.,45,22.5,32.5,N,Y,0.8817,CT,with,yes,Georgia,Franzluebbers 2008,doi:10.1016/j.still.2008.05.021,mm/min,33.620002,-83.25,no
+26l,26,till,6,5.2,4,4,1,1250,No,No,.,45,22.5,32.5,N,Y,0.8817,CT,without,yes,Georgia,Franzluebbers 2008,doi:10.1016/j.still.2008.05.022,mm/min,33.620002,-83.25,no
+27a,27,res,6.3,8.9,1,4,1,1143,No,No,.,.,.,37.5,N,Y,0.6233,.,.,.,Ghana,Nyalemegbe et al 2011,doi:10.1080/14735903.2011.583480,.,6.05,0.1,no
+27b,27,res,6.3,8.3,1,4,1,1143,No,No,.,.,.,37.5,N,Y,0.6233,.,.,.,Ghana,Nyalemegbe et al 2011,doi:10.1080/14735903.2011.583480,.,6.05,0.1,no
+27c,27,res,6.3,7.5,1,4,1,1143,No,No,.,.,.,37.5,N,Y,0.6233,.,.,.,Ghana,Nyalemegbe et al 2011,doi:10.1080/14735903.2011.583480,.,6.05,0.1,no
+28a,28,res,110,104,2,3,1,411,No,No,.,.,.,.,N,N,0.4616,CT,.,.,Greece,Terzoudi et al. 2007,doi:10.1016/j.still.2006.03.002,mm/3hrs,39.38,22.23,no
+28b,28,res,121,133,2,3,1,411,No,No,.,.,.,.,N,N,0.4616,CT,.,.,Greece,Terzoudi et al. 2007,doi:10.1016/j.still.2006.03.002,mm/3hrs,39.38,22.23,no
+28c,28,res,138,148,2,3,1,411,No,No,.,.,.,.,N,N,0.4616,RT,.,.,Greece,Terzoudi et al. 2007,doi:10.1016/j.still.2006.03.002,mm/3hrs,39.38,22.23,no
+29a,29,res,1.7,4.8,8,4,2,874,No,No,.,.,.,.,N,N,0.6875,NT,.,.,Kansas,Blanco Canqui et al 2011,doi:10.2136/sssaj2010.0430,cm/hr,38.080002,-97.27,no
+29b,29,res,1.7,3.5,8,4,2,874,No,No,.,.,.,.,N,N,0.6875,NT,.,.,Kansas,Blanco Canqui et al 2011,doi:10.2136/sssaj2010.0431,cm/hr,38.080002,-97.27,no
+30a,30,res,171,170,3,3,1,626,No,No,.,75,13,9,Y,N,1.3209,.,.,.,Denmark,Abdollahi et al. 2014,doi:10.2136/sssaj2013.07.0302,cm/day,56.3,9.35,no
+30b,30,till,122,156,3,3,1,626,No,No,.,75,13,9,Y,N,1.3209,RT,.,no,Denmark,Abdollahi et al. 2014,doi:10.2136/sssaj2013.07.0302,cm/day,56.3,9.35,no
+30c,30,till,260,156,3,3,1,626,No,No,.,75,13,9,Y,N,1.3209,CT,.,no,Denmark,Abdollahi et al. 2014,doi:10.2136/sssaj2013.07.0302,cm/day,56.3,9.35,no
+31a,31,res,7.6,14.5,5,4,1,470,No,No,.,74.3,17.2,8.5,Y,N,0.2098,.,.,.,California (Ceres),Folorunso et al 1992,10.1016/0933-3630(92)90021-R,mm/hr,37.36,-120.57,no
+31b,31,res,7.6,18.8,5,4,1,470,No,No,.,74.3,17.2,8.5,Y,N,0.2098,.,.,.,California (Ceres),Folorunso et al 1992,10.1016/0933-3630(92)90021-R,mm/hr,37.36,-120.57,no
+31c,31,res,40.3,45,3,4,1,470,Yes,No,.,27,50.6,22.4,N,N,0.2098,.,.,.,California (Davis),Folorunso et al 1992,10.1016/0933-3630(92)90021-R,mm/hr,37.36,-120.57,no
+31d,31,res,40.3,35.8,3,4,1,470,Yes,No,.,27,50.6,22.4,N,N,0.2098,.,.,.,California (Davis),Folorunso et al 1992,10.1016/0933-3630(92)90021-R,mm/hr,37.36,-120.57,no
+32a,32,res,2.1,1.9,3,3,1,750,No,No,.,6,81,13,N,N,1.0659,CT,.,.,Netherlands,Kwaad and Van Milligan 1991,10.1016/0933-3630(91)90007-A,cm/min,51,5.8,no
+32b,32,res,2.1,0.5,3,3,1,750,No,No,.,6,81,13,N,N,1.0659,CT,.,.,Netherlands,Kwaad and Van Milligan 1991,10.1016/0933-3630(91)90007-A,cm/min,51,5.8,no
+33a,33,till,2.25,2.45,5,5,2,1362,No,No,.,.,.,.,N,N,1.173,CT,.,no,New Zealand,Springetti et al. 1992,10.1016/0038-0717(92)90159-U,.,-39.400001,176.53,no
+33b,33,till,2.35,2.85,5,5,2,1362,No,No,.,.,.,.,N,N,1.173,CT,.,no,New Zealand,Springetti et al. 1992,10.1016/0038-0717(92)90159-U,.,-39.400001,176.53,no
+33c,33,res,2.25,2.35,5,5,2,1362,No,No,.,.,.,.,N,N,1.173,CT,.,.,New Zealand,Springetti et al. 1992,10.1016/0038-0717(92)90159-U,.,-39.400001,176.53,no
+33d,33,res,2.45,2.85,5,5,2,1362,No,No,.,.,.,.,N,N,1.173,NT,.,.,New Zealand,Springetti et al. 1992,10.1016/0038-0717(92)90159-U,.,-39.400001,176.53,no
+34a,34,till,146.5,178,3,4,2,526,No,No,.,64.4,17,18.6,Y,N,0.7393,CT,with,no,"Jammu, India",Sharma et al. 2011,doi:10.1016/j.eja.2010.10.003,.,32.65,74.883333,no
+34b,34,till,156,184,3,4,2,526,No,No,.,64.4,17,18.6,Y,N,0.7393,CT,with,no,"Jammu, India",Sharma et al. 2011,doi:10.1016/j.eja.2010.10.003,.,32.65,74.883333,no
+34c,34,till,140,169,3,4,2,526,No,No,.,64.4,17,18.6,Y,N,0.7393,CT,with,no,"Jammu, India",Sharma et al. 2011,doi:10.1016/j.eja.2010.10.003,.,32.65,74.883333,no
+34d,34,till,119.5,160,3,4,2,526,No,No,.,64.4,17,18.6,Y,N,0.7393,CT,without,no,"Jammu, India",Sharma et al. 2011,doi:10.1016/j.eja.2010.10.003,.,32.65,74.883333,no
+34e,34,till,153,178,3,4,2,526,No,No,.,64.4,17,18.6,Y,N,0.7393,RT,with,no,"Jammu, India",Sharma et al. 2011,doi:10.1016/j.eja.2010.10.003,.,32.65,74.883333,no
+34f,34,till,171,184,3,4,2,526,No,No,.,64.4,17,18.6,Y,N,0.7393,RT,with,no,"Jammu, India",Sharma et al. 2011,doi:10.1016/j.eja.2010.10.003,.,32.65,74.883333,no
+34g,34,till,178.5,169,3,4,2,526,No,No,.,64.4,17,18.6,Y,N,0.7393,RT,with,no,"Jammu, India",Sharma et al. 2011,doi:10.1016/j.eja.2010.10.003,.,32.65,74.883333,no
+34h,34,till,161.5,160,3,4,2,526,No,No,.,64.4,17,18.6,Y,N,0.7393,RT,without,no,"Jammu, India",Sharma et al. 2011,doi:10.1016/j.eja.2010.10.003,.,32.65,74.883333,no
+35a,35,till,10.2,10.9,2,3,2,2439,No,No,.,.,.,.,N,Y,7.3196,CT,with,no,"Meghalaya, India",Kuotsu et al 2014,http://dx.doi.org/10.1016/j.still.2014.04.008,mm/hr,25.41,91.54,no
+35b,35,till,10.8,11.2,2,3,2,2439,No,No,.,.,.,.,N,Y,7.3196,CT,with,no,"Meghalaya, India",Kuotsu et al 2014,http://dx.doi.org/10.1016/j.still.2014.04.008,mm/hr,25.41,91.54,no
+36a,36,till,19.9,42.4,13,3,2,452,No,No,.,43.3,32.7,24,N,N,0.4693,CT,.,no,"Erzurum, Turkey",Gozubuyuk et al. 2014,DOI: 10.1016/j.catena.2014.01.006,cm/hr,39.99,41.57,no
+36b,36,till,53.36,42.4,13,3,2,452,No,No,.,43.3,32.7,24,N,N,0.4693,RT,.,no,"Erzurum, Turkey",Gozubuyuk et al. 2014,DOI: 10.1016/j.catena.2014.01.006,cm/hr,39.99,41.57,no
+36c,36,till,29,42.4,13,3,2,452,No,No,.,43.3,32.7,24,N,N,0.4693,RT,.,no,"Erzurum, Turkey",Gozubuyuk et al. 2014,DOI: 10.1016/j.catena.2014.01.006,cm/hr,39.99,41.57,no
+37a,37,till,55.9,77.8,3,3,1,765,Yes,No,.,64.2,18.5,17.3,Y,N,0.4916,CT,.,no,"Meerut, India",Naresh et al. 2014,DOI: 10.1016/S1672-6308(13)60185-7,mm/hr,29.01,77.45,no
+37b,37,till,70,77.8,3,3,1,765,Yes,No,.,64.2,18.5,17.3,Y,N,0.4916,RT,.,no,"Meerut, India",Naresh et al. 2014,DOI: 10.1016/S1672-6308(13)60185-7,mm/hr,29.01,77.45,no
+38a,38,till,6.7,6.9,5,4,2,831,Yes,No,.,65.7,18.5,15.8,Y,N,0.4916,CT,.,no,"Meerut, India",Singh et al. 2016,DOI: 10.1016/j.still.2015.08.001,mm/hr,29.01,77.45,no
+39a,39,till,0.031,0.036,4,4,2,1058,Yes,No,.,.,.,.,Y,N,1.5449,CT,.,no,"Almora, Uttaranchal, India",Bhattacharyya et al 2008,DOI: 10.1016/j.agwat.2008.03.007,cm/min,29.36,79.4,no
+40a,40,till,0.29,1.42,3,3,2,863,Yes,No,.,65.7,18.5,15.8,Y,N,0.4934,CT,with,no,"Uttar Pradesh, india",Jat et al. 2013,DOI:10.1016/j.fcr.2013.04.024,cm/hr,29.04,77.46,no
+41a,41,till,19.7,18,1,4,2,645,No,No,.,.,.,.,N,Y,0.3586,CT,.,no,"Pantnagar, India",Tripathi et al. 2007,DOI:10.1016/j.still.2006.03.008,mm/day,28.26,77.29,no
+41b,41,till,18.5,16.9,2,4,2,645,No,No,.,.,.,.,N,Y,0.3586,CT,.,no,"Pantnagar, India",Tripathi et al. 2008,DOI:10.1016/j.still.2006.03.008,mm/day,28.26,77.29,no
+41c,41,till,17,15.9,3,4,2,645,No,No,.,.,.,.,N,Y,0.3586,CT,.,no,"Pantnagar, India",Tripathi et al. 2009,DOI:10.1016/j.still.2006.03.008,mm/day,28.26,77.29,no
+41d,41,till,15.7,14.5,4,4,2,645,No,No,.,.,.,.,N,Y,0.3586,CT,.,no,"Pantnagar, India",Tripathi et al. 2010,DOI:10.1016/j.still.2006.03.008,mm/day,28.26,77.29,no
+42a,42,till,1.42,1,1,3,2,863,Yes,No,.,64.2,18.5,17.3,Y,N,0.3586,CT,.,no,"Meerut, India",Gangwar et al. 2006,doi:10.1016/j.still.2005.06.015,cm/hr,28.26,77.29,no
+42b,42,till,1.37,0.95,2,3,2,863,Yes,No,.,64.2,18.5,17.3,Y,N,0.3586,CT,.,no,"Meerut, India",Gangwar et al. 2006,doi:10.1016/j.still.2005.06.015,cm/hr,28.26,77.29,no
+42c,42,till,1.34,0.75,3,3,2,863,Yes,No,.,64.2,18.5,17.3,Y,N,0.3586,CT,.,no,"Meerut, India",Gangwar et al. 2006,doi:10.1016/j.still.2005.06.015,cm/hr,28.26,77.29,no
+42d,42,till,1.37,1,1,3,2,863,Yes,No,.,64.2,18.5,17.3,Y,N,0.3586,RT,.,no,"Meerut, India",Gangwar et al. 2006,doi:10.1016/j.still.2005.06.015,cm/hr,28.26,77.29,no
+42e,42,till,1.28,0.95,2,3,2,863,Yes,No,.,64.2,18.5,17.3,Y,N,0.3586,RT,.,no,"Meerut, India",Gangwar et al. 2006,doi:10.1016/j.still.2005.06.015,cm/hr,28.26,77.29,no
+42f,42,till,1.25,0.75,3,3,2,863,Yes,No,.,64.2,18.5,17.3,Y,N,0.3586,RT,.,no,"Meerut, India",Gangwar et al. 2006,doi:10.1016/j.still.2005.06.015,cm/hr,28.26,77.29,no
+43a,43,till,0.666,0.706,3,4,2,624,Yes,No,.,52.4,25.1,22.5,Y,N,0.3152,CT,.,no,"Karnal, India",Yaduvanshi and Sharma 2008,DOI:10.1016/j.still.2007.09.010,.,29.79,76.45,no
+43b,43,till,0.752,0.775,3,4,2,624,Yes,No,.,52.4,25.1,22.5,Y,N,0.3152,CT,.,no,"Karnal, India",Yaduvanshi and Sharma 2009,DOI:10.1016/j.still.2007.09.010,.,29.79,76.45,no
+43c,43,till,0.775,0.866,3,4,2,624,Yes,No,.,52.4,25.1,22.5,Y,N,0.3152,CT,.,no,"Karnal, India",Yaduvanshi and Sharma 2010,DOI:10.1016/j.still.2007.09.010,.,29.79,76.45,no
+43d,43,till,1.213,1.43,3,4,2,624,Yes,No,.,52.4,25.1,22.5,Y,N,0.3152,CT,.,no,"Karnal, India",Yaduvanshi and Sharma 2011,DOI:10.1016/j.still.2007.09.010,.,29.79,76.45,no
+43e,43,till,1.266,1.419,3,4,2,624,Yes,No,.,52.4,25.1,22.5,Y,N,0.3152,CT,.,no,"Karnal, India",Yaduvanshi and Sharma 2012,DOI:10.1016/j.still.2007.09.010,.,29.79,76.45,no
+43f,43,till,1.226,1.363,3,4,2,624,Yes,No,.,52.4,25.1,22.5,Y,N,0.3152,CT,.,no,"Karnal, India",Yaduvanshi and Sharma 2013,DOI:10.1016/j.still.2007.09.010,.,29.79,76.45,no
+43g,43,till,1.477,1.625,3,4,2,624,Yes,.,.,52.4,25.1,22.5,Y,N,0.3152,CT,.,no,"Karnal, India",Yaduvanshi and Sharma 2014,DOI:10.1016/j.still.2007.09.010,.,29.79,76.45,no
+43h,43,till,1.455,1.66,3,4,2,624,Yes,.,.,52.4,25.1,22.5,Y,N,0.3152,CT,.,no,"Karnal, India",Yaduvanshi and Sharma 2015,DOI:10.1016/j.still.2007.09.010,.,29.79,76.45,no
+43i,43,till,1.393,1.581,3,4,2,624,Yes,.,.,52.4,25.1,22.5,Y,N,0.3152,CT,.,no,"Karnal, India",Yaduvanshi and Sharma 2016,DOI:10.1016/j.still.2007.09.010,.,29.79,76.45,no
+44a,44,per,7.05,38.37,5,8,2,851,No,.,ungrz,36.8,43.2,20,N,N,0.8746,.,.,.,Iowa,Bharati et al. 2002,10.1023/A:1021344807285,cm/hr,42.109999,-93.3,Y- c/s rotation was annual crop
+44b,44,per,7.05,24.87,5,8,2,851,No,.,ungrz,36.8,43.2,20,N,N,0.8746,.,.,.,Iowa,Bharati et al. 2002,10.1023/A:1021344807285,cm/hr,42.109999,-93.3,Y- c/s rotation was annual crop
+44c,44,per,7.05,20.03,5,8,2,851,No,.,ungrz,36.8,43.2,20,N,N,0.8746,.,.,.,Iowa,Bharati et al. 2002,10.1023/A:1021344807285,cm/hr,42.109999,-93.3,Y- c/s rotation was annual crop
+44d,44,per,7.05,4.07,5,8,2,851,No,.,grz,36.8,43.2,20,N,N,0.8746,.,.,.,Iowa,Bharati et al. 2002,10.1023/A:1021344807285,cm/hr,42.109999,-93.3,Y- c/s rotation was annual crop
+45a,45,till,117.7,62,1,3,2,2000,No,.,.,80,3,17,Y,N,1.3832,CT,.,no,Nigeria,Ghuman and Lal 1992,doi:10.1016/0167-1987(92)90018-7,cm/hr,6.24,5.12,no
+45b,45,till,2.2,12.4,1,3,2,2000,No,.,.,80,3,17,Y,N,1.3832,CT,.,no,Nigeria,Ghuman and Lal 1992,doi:10.1016/0167-1987(92)90018-7,cm/hr,6.24,5.12,no
+45c,45,till,3.3,5,1,3,2,2000,No,.,.,80,3,17,Y,N,1.3832,CT,.,no,Nigeria,Ghuman and Lal 1992,doi:10.1016/0167-1987(92)90018-7,cm/hr,6.24,5.12,no
+45d,45,till,139,89.3,2,3,2,2000,No,.,.,80,3,17,Y,N,1.3832,CT,.,no,Nigeria,Ghuman and Lal 1992,doi:10.1016/0167-1987(92)90018-7,cm/hr,6.24,5.12,no
+45e,45,till,45.8,21.3,2,3,2,2000,No,.,.,80,3,17,Y,N,1.3832,CT,.,no,Nigeria,Ghuman and Lal 1992,doi:10.1016/0167-1987(92)90018-7,cm/hr,6.24,5.12,no
+45f,45,till,53.4,36.6,2,3,2,2000,No,.,.,80,3,17,Y,N,1.3832,CT,.,no,Nigeria,Ghuman and Lal 1992,doi:10.1016/0167-1987(92)90018-7,cm/hr,6.24,5.12,no
+46a,46,per,13.9,42.5,30,3,2,1486,No,.,ungrz,.,.,20,Y,N,0.886,CT,.,no,Georgia,Levi et al. 2010,doi:10.2136/sssaj2009.0015,cm/hr,30.841702,-83.8473,no
+46b,46,per,13.9,3.8,30,3,2,1486,No,.,ungrz,.,.,20,Y,N,0.886,CT,.,no,Georgia,Levi et al. 2010,doi:10.2136/sssaj2009.0015,cm/hr,30.841702,-83.8473,no
+47a,47,int,23,19,1,4,1,510,No,No ,Cont,.,.,.,N,Y,0.4692,.,.,.,"NSW, Australia",Bell et al. 2011,doi:10.1016/j.still.2011.02.003,mm/hr,-33.995001,148.403,no
+47b,47,int,14,12,1,4,1,510,No,No ,Cont,.,.,.,N,N,0.6011,.,.,.,"NSW, Australia",Bell et al. 2011,doi:10.1016/j.still.2011.02.003,mm/hr,-35.188001,148.974001,no
+47c,47,int,45,23.25,1,3,1,510,No,No ,Cont,.,.,.,N,Y,0.4989,.,.,.,"NSW, Australia",Bell et al. 2011,doi:10.1016/j.still.2011.02.003,mm/hr,-34.314,148.298,no
+48a,48,till,3.08,3.18,20,2,3,1000,No,.,.,13,64,23,N,N,0.6712,RT,.,no,Argentina,Sasal et al. 206,doi:10.1016/j.still.2005.02.025,cm/hr,-33.51,-60.4,no
+48b,48,till,3.03,2.3,13,2,3,1000,No,.,.,13,64,23,N,N,0.6712,RT,.,no,Argentina,Sasal et al. 206,doi:10.1016/j.still.2005.02.025,cm/hr,-33.51,-60.4,no
+48c,48,till,3.21,2.5,8,2,3,1000,No,.,.,13,64,23,N,N,0.6712,RT,.,no,Argentina,Sasal et al. 206,doi:10.1016/j.still.2005.02.025,cm/hr,-33.51,-60.4,no
+49a,49,till,65,9.3,1,3,1,589,No,.,.,.,.,.,Y,N,0.3538,CT,.,no,Tanzania,Guzha et al. 2004,doi:10.1016/j.still.2003.09.002,mm/2 hrs,-5.530001,35.549999,no
+49b,49,till,80.3,9.3,1,3,1,589,No,.,.,.,.,.,Y,N,0.3538,CT,.,no,Tanzania,Guzha et al. 2004,doi:10.1016/j.still.2003.09.002,mm/2 hrs,-5.530001,35.549999,no
+49c,49,till,56.9,9.3,1,3,1,589,No,.,.,.,.,.,Y,N,0.3538,RT,.,no,Tanzania,Guzha et al. 2005,doi:10.1016/j.still.2003.09.002,mm/2 hrs,-5.530001,35.549999,no
+50a,50,till,11,9.33,1,3,1,863,Yes,.,.,51,39,14,Y,N,0.5513,RT,.,no,"Uttar Pradesh, India",Bazaya et al. 2009,doi:10.1016/j.still.2009.05.006,mm/hr,25.18,83.31,no
+50b,50,till,11.67,9.33,1,3,1,863,Yes,.,.,51,39,14,Y,N,0.5513,CT,.,no,"Uttar Pradesh, India",Bazaya et al. 2009,doi:10.1016/j.still.2009.05.006,mm/hr,25.18,83.31,no
+50c,50,till,10.84,9.58,2,3,1,863,Yes,.,.,51,39,14,Y,N,0.5513,RT,.,no,"Uttar Pradesh, India",Bazaya et al. 2009,doi:10.1016/j.still.2009.05.006,mm/hr,25.18,83.31,no
+50d,50,till,11.4,9.58,2,3,1,863,Yes,.,.,51,39,14,Y,N,0.5513,CT,.,no,"Uttar Pradesh, India",Bazaya et al. 2009,doi:10.1016/j.still.2009.05.006,mm/hr,25.18,83.31,no
+51a,51,till,12.2,10.2,3,3,2,517,No,.,.,12,48.2,40,N,N,0.3411,RT,.,no,Texas (Bushland),Baumhardt and Jones 2002,doi:10.1016/S0167-1987(01)00273-2,mm/hr,35.110002,-102.499999,no
+51b,51,till,11.7,10.7,3,3,2,517,No,.,.,12,48.2,40,N,N,0.3411,RT,.,no,Texas (Bushland),Baumhardt and Jones 2002,doi:10.1016/S0167-1987(01)00273-2,mm/hr,35.110002,-102.499999,no
+52a,52,int,139.89,62.47,1,3,2,1044,No,No,Complex,10.1,68.1,21.8,N,N,0.6775,.,.,.,Argentina,Fernandez et al. 2015,http://dx.doi.org/10.1016/j.still.2015.05.008,mm/hr,-35.18,-61.58,no
+52b,52,int,126.21,134.81,2,3,2,1044,No,No,Complex,10.1,68.1,21.8,N,N,0.6775,.,.,.,Argentina,Fernandez et al. 2015,http://dx.doi.org/10.1016/j.still.2015.05.008,mm/hr,-35.18,-61.58,no
+52c,52,int,40.47,20.04,3,3,2,1044,No,No,Complex,10.1,68.1,21.8,N,N,0.6775,.,.,.,Argentina,Fernandez et al. 2015,http://dx.doi.org/10.1016/j.still.2015.05.008,mm/hr,-35.18,-61.58,no
+52d,52,int,38.1,45.625,4,3,2,1044,No,No,Complex,10.1,68.1,21.8,N,N,0.6775,.,.,.,Argentina,Fernandez et al. 2015,http://dx.doi.org/10.1016/j.still.2015.05.008,mm/hr,-35.18,-61.58,no
+52e,52,int,46.81,51.06,1,3,2,1044,No,No,Complex,48.8,39.5,11.7,N,N,0.5823,.,.,.,Argentina,Fernandez et al. 2015,http://dx.doi.org/10.1016/j.still.2015.05.008,mm/hr,-34.03,-62.25,no
+52f,52,int,85.64,77.125,2,3,2,1044,No,No,Complex,48.8,39.5,11.7,N,N,0.5823,.,.,.,Argentina,Fernandez et al. 2015,http://dx.doi.org/10.1016/j.still.2015.05.008,mm/hr,-34.03,-62.25,no
+52g,52,int,37.54,27.86,3,3,2,1044,No,No,Complex,48.8,39.5,11.7,N,N,0.5823,.,.,.,Argentina,Fernandez et al. 2015,http://dx.doi.org/10.1016/j.still.2015.05.008,mm/hr,-34.03,-62.25,no
+52h,52,int,52.59,56.38,4,3,2,1044,No,No,Complex,48.8,39.5,11.7,N,N,0.5823,.,.,.,Argentina,Fernandez et al. 2015,http://dx.doi.org/10.1016/j.still.2015.05.008,mm/hr,-34.03,-62.25,no
+53a,53,int,2.9,3.55,12,4,.,1250,No,Yes,Cont,35.1,23.6,41.3,N,N,0.8095,.,.,.,Georgia,Franzluebbers et al. 2011,doi:10.1017/S1742170511000378,mm/min,32.22,-83.24,no
+53b,53,int,2.9,2.8,12,4,.,1250,No,Yes,Cont,35.1,23.6,41.3,N,N,0.8095,.,.,.,Georgia,Franzluebbers et al. 2011,doi:10.1017/S1742170511000378,mm/min,32.22,-83.24,no
+54a,54,int,18.73,5.16,3,3,3,291,No,No,Complex,39.9,38.5,21.6,N,N,0.4273,NT,without,.,North Dakota,Liebig et al. 2011,doi:10.1155/2011/464827,cm/hr,46.460001,-100.54,yes (hayed+res removed for control)
+54b,54,int,15.395,7.53,6,3,3,291,No,No,Complex,39.9,38.5,21.6,N,N,0.4273,NT,without,.,North Dakota,Liebig et al. 2011,doi:10.1155/2011/464827,cm/hr,46.460001,-100.54,yes (hayed+res removed for control)
+54c,54,int,20.545,7.96,9,3,3,291,No,No,Complex,39.9,38.5,21.6,N,N,0.4273,NT,without,.,North Dakota,Liebig et al. 2011,doi:10.1155/2011/464827,cm/hr,46.460001,-100.54,yes (hayed+res removed for control)
+54d,54,per,13,7.1,3,3,3,291,No,No,grz,39.9,38.5,21.6,N,N,0.4273,NT,.,.,North Dakota,Liebig et al. 2011,doi:10.1155/2011/464827,cm/hr,46.460001,-100.54,no
+54e,54,per,10.9,21.1,6,3,3,291,No,No,grz,39.9,38.5,21.6,N,N,0.4273,NT,.,.,North Dakota,Liebig et al. 2011,doi:10.1155/2011/464827,cm/hr,46.460001,-100.54,no
+54f,54,per,14,5.1,9,3,3,291,No,No,grz,39.9,38.5,21.6,N,N,0.4273,NT,.,.,North Dakota,Liebig et al. 2011,doi:10.1155/2011/464827,cm/hr,46.460001,-100.54,no
+55a,55,int,0.02,0.075,1,3,.,2100,No,Yes,Complex,44,29,27,N,N,1.2776,NT,.,.,Peru,Arevalo et al. 1998,10.1023/A:1006075114659,.,-6.279998,-76.19,no
+55b,55,int,0.327,0.125,2,3,.,2100,No,Yes,Complex,44,29,27,N,N,1.2776,NT,.,.,Peru,Arevalo et al. 1998,10.1023/A:1006075114659,.,-6.279998,-76.19,no
+55c,55,int,0.229,0.116,3,3,.,2100,No,Yes,Complex,44,29,27,N,N,1.2776,NT,.,.,Peru,Arevalo et al. 1998,10.1023/A:1006075114659,.,-6.279998,-76.19,no
+55d,55,int,0.126,0.097,4,3,.,2100,No,Yes,Complex,44,29,27,N,N,1.2776,NT,.,.,Peru,Arevalo et al. 1998,10.1023/A:1006075114659,.,-6.279998,-76.19,no
+55e,55,int,0.049,0.07,5,3,.,2100,No,Yes,Complex,44,29,27,N,N,1.2776,NT,.,.,Peru,Arevalo et al. 1998,10.1023/A:1006075114659,.,-6.279998,-76.19,no
+56a,56,till,6,1.26,2,3,2,500,No,No,.,64.8,8.5,27.7,Y,N,0.462,RT,.,no,Spain,Pelegrin et al. 1990,doi:10.1016/0167-1987(90)90070-T,mm/hr,37.22,-5.57,no
+56b,56,till,5.42,1.26,2,3,2,500,No,No,.,64.8,8.5,27.7,Y,N,0.462,CT,.,no,Spain,Pelegrin et al. 1990,doi:10.1016/0167-1987(90)90070-T,mm/hr,37.22,-5.57,no
+56c,56,till,3.19,1.26,2,3,2,500,No,No,.,64.8,8.5,27.7,Y,N,0.462,RT,.,no,Spain,Pelegrin et al. 1990,doi:10.1016/0167-1987(90)90070-T,mm/hr,37.22,-5.57,no
+56d,56,till,2.81,1.26,2,3,2,500,No,No,.,64.8,8.5,27.7,Y,N,0.462,RT,.,no,Spain,Pelegrin et al. 1990,doi:10.1016/0167-1987(90)90070-T,mm/hr,37.22,-5.57,no
+56e,56,till,4.17,0.28,3,3,2,500,No,No,.,64.8,8.5,27.7,Y,N,0.462,RT,.,no,Spain,Pelegrin et al. 1990,doi:10.1016/0167-1987(90)90070-T,mm/hr,37.22,-5.57,no
+56f,56,till,3,0.28,3,3,2,500,No,No,.,64.8,8.5,27.7,Y,N,0.462,CT,.,no,Spain,Pelegrin et al. 1990,doi:10.1016/0167-1987(90)90070-T,mm/hr,37.22,-5.57,no
+56g,56,till,1.59,0.28,3,3,2,500,No,No,.,64.8,8.5,27.7,Y,N,0.462,RT,.,no,Spain,Pelegrin et al. 1990,doi:10.1016/0167-1987(90)90070-T,mm/hr,37.22,-5.57,no
+56h,56,till,0.48,0.28,3,3,2,500,No,No,.,64.8,8.5,27.7,Y,N,0.462,RT,.,no,Spain,Pelegrin et al. 1990,doi:10.1016/0167-1987(90)90070-T,mm/hr,37.22,-5.57,no
+57a,57,till,2.91,4.56,2,4,2,1283,No,No,.,66,14,20,Y,N,0.7169,CT,.,no,Bolivia,Barber et al. 1996,doi:10.1016/0167-1987(96)01012-4,cm/hr,-17.25,-63.17,no
+57b,57,till,0.95,1.17,6,4,4,1283,No,No,.,66,14,20,Y,N,0.7169,CT,.,no,Bolivia,Barber et al. 1996,doi:10.1016/0167-1987(96)01012-4,cm/hr,-17.25,-63.17,no
+57c,57,till,3.02,4.56,2,4,2,1283,No,No,.,66,14,20,Y,N,0.7169,RT,.,no,Bolivia,Barber et al. 1996,doi:10.1016/0167-1987(96)01012-4,cm/hr,-17.25,-63.17,no
+57d,57,till,0.77,1.17,6,4,4,1283,No,No,.,66,14,20,Y,N,0.7169,RT,.,no,Bolivia,Barber et al. 1996,doi:10.1016/0167-1987(96)01012-4,cm/hr,-17.25,-63.17,no
+57e,57,till,3.93,4.56,2,4,2,1283,No,No,.,66,14,20,Y,N,0.7169,RT,.,no,Bolivia,Barber et al. 1996,doi:10.1016/0167-1987(96)01012-4,cm/hr,-17.25,-63.17,no
+57f,57,till,0.46,1.17,6,4,4,1283,No,No,.,66,14,20,Y,N,0.7169,RT,.,no,Bolivia,Barber et al. 1996,doi:10.1016/0167-1987(96)01012-4,cm/hr,-17.25,-63.17,no
+58a,58,till,24.1,14.5,8,4,1,700,No,No,.,47,12,41,N,Y,0.4111,RT,.,no,Australia,Thorburn 1992,doi:10.1016/0167-1987(92)90080-U,mm/hr,-24.29,150.49,no
+58b,58,till,20.6,14.5,8,4,1,700,No,No,.,47,12,41,N,Y,0.4111,CT,.,no,Australia,Thorburn 1992,doi:10.1016/0167-1987(92)90080-U,mm/hr,-24.29,150.49,no
+59a,59,till,0.481,0.515,2,3,2,863,Yes,No,.,62,20.5,16.5,Y,N,0.4934,CT,with,no,"Uttar Pradesh, India",Jat et al. 2009,doi:10.1016/j.still.2009.06.003,cm/hr,29.04,77.46,no
+60a,60,till,9.9,8.4,2,4,2,637,No,No,.,60.3,22.3,17.4,Y,N,0.424,CT,.,no,"Bhilwhara, India",Laddha and Totawat 1997,doi:10.1016/S0167-1987(97)00027-5,cm/hr,24.2,74.4,no
+60b,60,till,15.1,8.4,2,4,2,637,No,No,.,60.3,22.3,17.4,Y,N,0.424,RT,.,no,"Bhilwhara, India",Laddha and Totawat 1997,doi:10.1016/S0167-1987(97)00027-5,cm/hr,24.2,74.4,no
+60c,60,till,13.7,8.4,2,4,2,637,No,No,.,60.3,22.3,17.4,Y,N,0.424,RT,.,no,"Bhilwhara, India",Laddha and Totawat 1997,doi:10.1016/S0167-1987(97)00027-5,cm/hr,24.2,74.4,no
+61a,61,till,32,33,1,3,1,1200,No,No,.,71,11.7,17.3,Y,N,0.7935,CT,with,no,Nigeria,Lal 1997,doi:10.1016/S0167-1987(97)00006-8,cm/hr,7.23,3.549997,no
+61b,61,till,27,34,1,3,1,1200,No,No,.,71,11.7,17.3,Y,N,0.7935,CT,without,no,Nigeria,Lal 1997,doi:10.1016/S0167-1987(97)00006-8,cm/hr,7.23,3.549997,no
+61c,61,till,21,34,1,3,1,1200,No,No,.,71,11.7,17.3,Y,N,0.7935,RT,without,no,Nigeria,Lal 1997,doi:10.1016/S0167-1987(97)00006-8,cm/hr,7.23,3.549997,no
+61d,61,till,24,34,1,3,1,1200,No,No,.,71,11.7,17.3,Y,N,0.7935,RT,without,no,Nigeria,Lal 1997,doi:10.1016/S0167-1987(97)00006-8,cm/hr,7.23,3.549997,no
+61e,61,till,9,34,1,3,1,1200,No,No,.,71,11.7,17.3,Y,N,0.7935,RT,without,no,Nigeria,Lal 1997,doi:10.1016/S0167-1987(97)00006-8,cm/hr,7.23,3.549997,no
+61f,61,till,23,30,2,3,1,1200,No,No,.,71,11.7,17.3,Y,N,0.7935,CT,with,no,Nigeria,Lal 1997,doi:10.1016/S0167-1987(97)00006-8,cm/hr,7.23,3.549997,no
+61g,61,till,34,39,2,3,1,1200,No,No,.,71,11.7,17.3,Y,N,0.7935,CT,without,no,Nigeria,Lal 1997,doi:10.1016/S0167-1987(97)00006-8,cm/hr,7.23,3.549997,no
+61h,61,till,19,39,2,3,1,1200,No,No,.,71,11.7,17.3,Y,N,0.7935,RT,without,no,Nigeria,Lal 1997,doi:10.1016/S0167-1987(97)00006-8,cm/hr,7.23,3.549997,no
+61i,61,till,26,39,2,3,1,1200,No,No,.,71,11.7,17.3,Y,N,0.7935,RT,without,no,Nigeria,Lal 1997,doi:10.1016/S0167-1987(97)00006-8,cm/hr,7.23,3.549997,no
+61j,61,till,10,39,2,3,1,1200,No,No,.,71,11.7,17.3,Y,N,0.7935,RT,without,no,Nigeria,Lal 1997,doi:10.1016/S0167-1987(97)00006-8,cm/hr,7.23,3.549997,no
+61k,61,till,17,23,3,3,1,1200,No,No,.,71,11.7,17.3,Y,N,0.7935,CT,with,no,Nigeria,Lal 1997,doi:10.1016/S0167-1987(97)00006-8,cm/hr,7.23,3.549997,no
+61l,61,till,15,21,3,3,1,1200,No,No,.,71,11.7,17.3,Y,N,0.7935,CT,without,no,Nigeria,Lal 1997,doi:10.1016/S0167-1987(97)00006-8,cm/hr,7.23,3.549997,no
+61m,61,till,15,21,3,3,1,1200,No,No,.,71,11.7,17.3,Y,N,0.7935,RT,without,no,Nigeria,Lal 1997,doi:10.1016/S0167-1987(97)00006-8,cm/hr,7.23,3.549997,no
+61n,61,till,17,21,3,3,1,1200,No,No,.,71,11.7,17.3,Y,N,0.7935,RT,without,no,Nigeria,Lal 1997,doi:10.1016/S0167-1987(97)00006-8,cm/hr,7.23,3.549997,no
+61o,61,till,11,21,3,3,1,1200,No,No,.,71,11.7,17.3,Y,N,0.7935,RT,without,no,Nigeria,Lal 1997,doi:10.1016/S0167-1987(97)00006-8,cm/hr,7.23,3.549997,no
+61p,61,till,20,34,4,3,1,1200,No,No,.,71,11.7,17.3,Y,N,0.7935,CT,with,no,Nigeria,Lal 1997,doi:10.1016/S0167-1987(97)00006-8,cm/hr,7.23,3.549997,no
+61q,61,till,19,31,4,3,1,1200,No,No,.,71,11.7,17.3,Y,N,0.7935,CT,without,no,Nigeria,Lal 1997,doi:10.1016/S0167-1987(97)00006-8,cm/hr,7.23,3.549997,no
+61r,61,till,25,31,4,3,1,1200,No,No,.,71,11.7,17.3,Y,N,0.7935,RT,without,no,Nigeria,Lal 1997,doi:10.1016/S0167-1987(97)00006-8,cm/hr,7.23,3.549997,no
+61s,61,till,19,31,4,3,1,1200,No,No,.,71,11.7,17.3,Y,N,0.7935,RT,without,no,Nigeria,Lal 1997,doi:10.1016/S0167-1987(97)00006-8,cm/hr,7.23,3.549997,no
+61t,61,till,19,31,4,3,1,1200,No,No,.,71,11.7,17.3,Y,N,0.7935,RT,without,no,Nigeria,Lal 1997,doi:10.1016/S0167-1987(97)00006-8,cm/hr,7.23,3.549997,no
+61u,61,till,35,57,5,3,1,1200,No,No,.,71,11.7,17.3,Y,N,0.7935,CT,with,no,Nigeria,Lal 1997,doi:10.1016/S0167-1987(97)00006-8,cm/hr,7.23,3.549997,no
+61v,61,till,28,26,5,3,1,1200,No,No,.,71,11.7,17.3,Y,N,0.7935,CT,without,no,Nigeria,Lal 1997,doi:10.1016/S0167-1987(97)00006-8,cm/hr,7.23,3.549997,no
+61w,61,till,34,26,5,3,1,1200,No,No,.,71,11.7,17.3,Y,N,0.7935,RT,without,no,Nigeria,Lal 1997,doi:10.1016/S0167-1987(97)00006-8,cm/hr,7.23,3.549997,no
+61x,61,till,25,26,5,3,1,1200,No,No,.,71,11.7,17.3,Y,N,0.7935,RT,without,no,Nigeria,Lal 1997,doi:10.1016/S0167-1987(97)00006-8,cm/hr,7.23,3.549997,no
+61y,61,till,13,26,5,3,1,1200,No,No,.,71,11.7,17.3,Y,N,0.7935,RT,without,no,Nigeria,Lal 1997,doi:10.1016/S0167-1987(97)00006-8,cm/hr,7.23,3.549997,no
+61z,61,till,33,65,6,3,1,1200,No,No,.,71,11.7,17.3,Y,N,0.7935,CT,with,no,Nigeria,Lal 1997,doi:10.1016/S0167-1987(97)00006-8,cm/hr,7.23,3.549997,no
+61aa,61,till,10,43,6,3,1,1200,No,No,.,71,11.7,17.3,Y,N,0.7935,CT,without,no,Nigeria,Lal 1997,doi:10.1016/S0167-1987(97)00006-8,cm/hr,7.23,3.549997,no
+61ab,61,till,36,43,6,3,1,1200,No,No,.,71,11.7,17.3,Y,N,0.7935,RT,without,no,Nigeria,Lal 1997,doi:10.1016/S0167-1987(97)00006-8,cm/hr,7.23,3.549997,no
+61ac,61,till,32,43,6,3,1,1200,No,No,.,71,11.7,17.3,Y,N,0.7935,RT,without,no,Nigeria,Lal 1997,doi:10.1016/S0167-1987(97)00006-8,cm/hr,7.23,3.549997,no
+61ad,61,till,33,43,6,3,1,1200,No,No,.,71,11.7,17.3,Y,N,0.7935,RT,without,no,Nigeria,Lal 1997,doi:10.1016/S0167-1987(97)00006-8,cm/hr,7.23,3.549997,no
+62a,62,till,13.2,9.6,12,2,2,833,No,No,.,18.7,42.4,38.9,N,Y,0.8555,RT,.,no,"Hoytville, Ohio",Lal et al. 1989,doi:10.1016/0167-1987(89)90055-X,cm/hr,41.483334,-84.15,no
+63a,63,till,22.9,27.5,1,4,2,1615,Yes,No,.,42.5,40,17.5,N,N,0.8191,RT,.,no,"Pantangar, India",Sharma et al. 2005,doi:10.1016/j.eja.2005.01.003,mm/day,29,79.29,no
+63b,63,till,15.78,27.53,1,4,2,1615,Yes,No,.,42.5,40,17.5,N,N,0.8191,CT,.,no,"Pantangar, India",Sharma et al. 2005,doi:10.1016/j.eja.2005.01.003,mm/day,29,79.29,no
+63c,63,till,15.6,27.5,1,4,2,1615,Yes,No,.,42.5,40,17.5,N,N,0.8191,RT,.,no,"Pantangar, India",Sharma et al. 2005,doi:10.1016/j.eja.2005.01.003,mm/day,29,79.29,no
+63d,63,till,21.1,27.7,2,4,2,1615,Yes,No,.,42.5,40,17.5,N,N,0.8191,RT,.,no,"Pantangar, India",Sharma et al. 2005,doi:10.1016/j.eja.2005.01.003,mm/day,29,79.29,no
+63e,63,till,14.2,27.7,2,4,2,1615,Yes,No,.,42.5,40,17.5,N,N,0.8191,CT,.,no,"Pantangar, India",Sharma et al. 2005,doi:10.1016/j.eja.2005.01.003,mm/day,29,79.29,no
+63f,63,till,13.3,27.7,2,4,2,1615,Yes,No,.,42.5,40,17.5,N,N,0.8191,RT,.,no,"Pantangar, India",Sharma et al. 2005,doi:10.1016/j.eja.2005.01.003,mm/day,29,79.29,no
+63g,63,till,17.9,21.9,3,4,2,1615,Yes,No,.,42.5,40,17.5,N,N,0.8191,RT,.,no,"Pantangar, India",Sharma et al. 2005,doi:10.1016/j.eja.2005.01.003,mm/day,29,79.29,no
+63h,63,till,12.7,21.9,3,4,2,1615,Yes,No,.,42.5,40,17.5,N,N,0.8191,CT,.,no,"Pantangar, India",Sharma et al. 2005,doi:10.1016/j.eja.2005.01.003,mm/day,29,79.29,no
+63i,63,till,11.9,21.9,3,4,2,1615,Yes,No,.,42.5,40,17.5,N,N,0.8191,RT,.,no,"Pantangar, India",Sharma et al. 2005,doi:10.1016/j.eja.2005.01.003,mm/day,29,79.29,no
+63j,63,till,20.2,20.4,1,4,2,1615,Yes,No,.,42.5,40,17.5,N,N,0.8191,CT,.,no,"Pantangar, India",Sharma et al. 2005,doi:10.1016/j.eja.2005.01.003,mm/day,29,79.29,yes for the different wheat tillage
+63k,63,till,19.4,19.1,2,4,2,1615,Yes,No,.,42.5,40,17.5,N,N,0.8191,CT,.,no,"Pantangar, India",Sharma et al. 2005,doi:10.1016/j.eja.2005.01.003,mm/day,29,79.29,yes for the different wheat tillage
+63l,63,till,16,16.1,3,4,2,1615,Yes,No,.,42.5,40,17.5,N,N,0.8191,CT,.,no,"Pantangar, India",Sharma et al. 2005,doi:10.1016/j.eja.2005.01.003,mm/day,29,79.29,yes for the different wheat tillage
+64a,64,per,20.3,29.1,17,3,.,290,No,Yes,grz,39.9,38.5,21.6,N,N,0.4273,CT,.,no,"Mandan, ND",Liebig et al. 2004,doi:10.1016/j.still.2004.02.002,cm/hr,46.460001,-100.54,no
+64b,64,till,20.3,75.9,17,3,2,290,No,Yes,.,39.9,38.5,21.6,N,N,0.4273,CT,.,no,"Mandan, ND",Liebig et al. 2004,doi:10.1016/j.still.2004.02.002,cm/hr,46.460001,-100.54,no
+65a,65,till,0.715,1.195,1,4,2,1364,Yes,No ,.,15,53,32,N,Y,0.8191,CT,.,no,"Pantangar, India",Bajpai and Tripathi 2000,doi:10.1016/S0167-1987(00)00111-2,mm/hr,29,79.29,no
+65b,65,till,0.685,1.25,2,4,2,1364,Yes,No ,.,15,53,32,N,Y,0.8191,CT,.,no,"Pantangar, India",Bajpai and Tripathi 2000,doi:10.1016/S0167-1987(00)00111-2,mm/hr,29,79.29,no
+66a,66,till,2.4,1.9,1,3,1,1350,Yes,No,.,65,17,18,Y,N,0.89,RT,.,no,"Karagpur, India",Khan et al. 1984,doi:10.1016/0167-1987(84)90022-9,cm/hr,22.35,87.23,no
+66b,66,till,2.1,1.9,1,3,1,1350,Yes,No,.,65,17,18,Y,N,0.89,RT,.,no,"Karagpur, India",Khan et al. 1984,doi:10.1016/0167-1987(84)90022-9,cm/hr,22.35,87.23,no
+66c,66,till,2.3,1.9,1,3,1,1350,Yes,No,.,65,17,18,Y,N,0.89,RT,.,no,"Karagpur, India",Khan et al. 1984,doi:10.1016/0167-1987(84)90022-9,cm/hr,22.35,87.23,no
+66d,66,till,2.6,1.9,1,3,1,1350,Yes,No,.,65,17,18,Y,N,0.89,CT,.,no,"Karagpur, India",Khan et al. 1984,doi:10.1016/0167-1987(84)90022-9,cm/hr,22.35,87.23,no
+66g,66,till,2.2,1.7,2,3,1,1350,Yes,No,.,65,17,18,Y,N,0.89,RT,.,no,"Karagpur, India",Khan et al. 1984,doi:10.1016/0167-1987(84)90022-9,cm/hr,22.35,87.23,no
+66h,66,till,1.9,1.7,2,3,1,1350,Yes,No,.,65,17,18,Y,N,0.89,RT,.,no,"Karagpur, India",Khan et al. 1984,doi:10.1016/0167-1987(84)90022-9,cm/hr,22.35,87.23,no
+66i,66,till,2.1,1.7,2,3,1,1350,Yes,No,.,65,17,18,Y,N,0.89,RT,.,no,"Karagpur, India",Khan et al. 1984,doi:10.1016/0167-1987(84)90022-9,cm/hr,22.35,87.23,no
+66j,66,till,2.4,1.7,2,3,1,1350,Yes,No,.,65,17,18,Y,N,0.89,CT,.,no,"Karagpur, India",Khan et al. 1984,doi:10.1016/0167-1987(84)90022-9,cm/hr,22.35,87.23,no
+67a,67,till,140,85,1,3,1,1316,No,No,.,74,10,16,Y,N,0.7935,RT,.,no,"Ibadan, Nigeria",Kayombo et al. 1991,doi:10.1016/0167-1987(91)90029-W,cm/3hr,7.23,3.549997,no
+67b,67,till,96,53,1,3,1,1316,No,No,.,74,10,16,Y,N,0.7935,RT,.,no,"Ibadan, Nigeria",Kayombo et al. 1991,doi:10.1016/0167-1987(91)90029-W,cm/3hr,7.23,3.549997,no
+67c,67,till,46,39,1,3,1,1316,No,No,.,74,10,16,Y,N,0.7935,RT,.,no,"Ibadan, Nigeria",Kayombo et al. 1991,doi:10.1016/0167-1987(91)90029-W,cm/3hr,7.23,3.549997,no
+67d,67,till,162,159,2,3,1,1316,No,No,.,74,10,16,Y,N,0.7935,RT,.,no,"Ibadan, Nigeria",Kayombo et al. 1991,doi:10.1016/0167-1987(91)90029-W,cm/3hr,7.23,3.549997,no
+67e,67,till,26,48,2,3,1,1316,No,No,.,74,10,16,Y,N,0.7935,RT,.,no,"Ibadan, Nigeria",Kayombo et al. 1991,doi:10.1016/0167-1987(91)90029-W,cm/3hr,7.23,3.549997,no
+67f,67,till,11,38,2,3,1,1316,No,No,.,74,10,16,Y,N,0.7935,RT,.,no,"Ibadan, Nigeria",Kayombo et al. 1991,doi:10.1016/0167-1987(91)90029-W,cm/3hr,7.23,3.549997,no
+68a,68,res,121,332,3,2,5,1316,No,No,.,74,10,16,Y,N,0.7935,NT,.,.,"Ibadan, Nigeria",Lal et al 1978,doi:10.1016/0378-4290(78)90008-4,cm/3hr,7.23,3.549997,no
+68b,68,res,121,302,3,2,5,1316,No,No,.,74,10,16,Y,N,0.7935,NT,.,.,"Ibadan, Nigeria",Lal et al 1978,doi:10.1016/0378-4290(78)90008-4,cm/3hr,7.23,3.549997,no
+68c,68,res,121,491,3,2,5,1316,No,No,.,74,10,16,Y,N,0.7935,NT,.,.,"Ibadan, Nigeria",Lal et al 1978,doi:10.1016/0378-4290(78)90008-4,cm/3hr,7.23,3.549997,no
+68d,68,res,121,291,3,2,5,1316,No,No,.,74,10,16,Y,N,0.7935,NT,.,.,"Ibadan, Nigeria",Lal et al 1978,doi:10.1016/0378-4290(78)90008-4,cm/3hr,7.23,3.549997,no
+68e,68,res,121,232,3,2,5,1316,No,No,.,74,10,16,Y,N,0.7935,NT,.,.,"Ibadan, Nigeria",Lal et al 1978,doi:10.1016/0378-4290(78)90008-4,cm/3hr,7.23,3.549997,no
+68f,68,res,121,281,3,2,5,1316,No,No,.,74,10,16,Y,N,0.7935,NT,.,.,"Ibadan, Nigeria",Lal et al 1978,doi:10.1016/0378-4290(78)90008-4,cm/3hr,7.23,3.549997,no
+68g,68,res,121,414,3,2,5,1316,No,No,.,74,10,16,Y,N,0.7935,NT,.,.,"Ibadan, Nigeria",Lal et al 1978,doi:10.1016/0378-4290(78)90008-4,cm/3hr,7.23,3.549997,no
+68h,68,res,121,393,3,2,5,1316,No,No,.,74,10,16,Y,N,0.7935,NT,.,.,"Ibadan, Nigeria",Lal et al 1978,doi:10.1016/0378-4290(78)90008-4,cm/3hr,7.23,3.549997,no
+69a,69,per,1.36,1.33,1,3,.,672,No,No,ungrz,.,.,.,N,Y,0.7194,CT,.,.,"Shaanxi Province, China",Wang et al. 2015,DOI:10.1371/journal.pone.0124767,mm/min,34.21,107.43,no  
+69b,69,per,1.29,1.22,3,3,.,672,No,No,ungrz,.,.,.,N,Y,0.7194,CT,.,.,"Shaanxi Province, China",Wang et al. 2015,DOI:10.1371/journal.pone.0124767,mm/min,34.21,107.43,no  
+69c,69,per,1.4,1.48,5,3,.,672,No,No,ungrz,.,.,.,N,Y,0.7194,CT,.,.,"Shaanxi Province, China",Wang et al. 2015,DOI:10.1371/journal.pone.0124767,mm/min,34.21,107.43,no  
+69d,69,per,1.4,1.4,7,3,.,672,No,No,ungrz,.,.,.,N,Y,0.7194,CT,.,.,"Shaanxi Province, China",Wang et al. 2015,DOI:10.1371/journal.pone.0124767,mm/min,34.21,107.43,no  
+69e,69,per,1.2,2.1,9,3,.,672,No,No,ungrz,.,.,.,N,Y,0.7194,CT,.,.,"Shaanxi Province, China",Wang et al. 2015,DOI:10.1371/journal.pone.0124767,mm/min,34.21,107.43,no  
+69f,69,per,1.3,2.4,11,3,.,672,No,No,ungrz,.,.,.,N,Y,0.7194,CT,.,.,"Shaanxi Province, China",Wang et al. 2015,DOI:10.1371/journal.pone.0124767,mm/min,34.21,107.43,no  
+69g,69,per,1.36,1.37,1,3,.,672,No,No,ungrz,.,.,.,N,Y,0.7194,CT,.,.,"Shaanxi Province, China",Wang et al. 2015,DOI:10.1371/journal.pone.0124767,mm/min,34.21,107.43,no  
+69h,69,per,1.29,1,3,3,.,672,No,No,ungrz,.,.,.,N,Y,0.7194,CT,.,.,"Shaanxi Province, China",Wang et al. 2015,DOI:10.1371/journal.pone.0124767,mm/min,34.21,107.43,no  
+69i,69,per,1.4,1.4,5,3,.,672,No,No,ungrz,.,.,.,N,Y,0.7194,CT,.,.,"Shaanxi Province, China",Wang et al. 2015,DOI:10.1371/journal.pone.0124767,mm/min,34.21,107.43,no  
+69j,69,per,1.4,1,7,3,.,672,No,No,ungrz,.,.,.,N,Y,0.7194,CT,.,.,"Shaanxi Province, China",Wang et al. 2015,DOI:10.1371/journal.pone.0124767,mm/min,34.21,107.43,no  
+69k,69,per,1.2,1.1,9,3,.,672,No,No,ungrz,.,.,.,N,Y,0.7194,CT,.,.,"Shaanxi Province, China",Wang et al. 2015,DOI:10.1371/journal.pone.0124767,mm/min,34.21,107.43,no  
+69l,69,per,1.3,1.2,11,3,.,672,No,No,ungrz,.,.,.,N,Y,0.7194,CT,.,.,"Shaanxi Province, China",Wang et al. 2015,DOI:10.1371/journal.pone.0124767,mm/min,34.21,107.43,no  
+70a,70,per,0.86,0.93,5,4,.,,No,No,grz ,28.2,23.5,48.3,N,Y,1.0537,.,.,.,Ethiopia,Ketema et al. 2014,http://dx.doi.org/10.1016/j.still.2014.03.011,cm/hr,6.22,38.2,no
+70b,70,per,0.59,1.74,10,4,.,,No,No,grz ,28.2,23.5,48.3,N,Y,1.0537,.,.,.,Ethiopia,Ketema et al. 2014,http://dx.doi.org/10.1016/j.still.2014.03.011,cm/hr,6.22,38.2,no
+70c,70,per,0.56,1.81,15,4,.,,No,No,grz ,28.2,23.5,48.3,N,Y,1.0537,.,.,.,Ethiopia,Ketema et al. 2014,http://dx.doi.org/10.1016/j.still.2014.03.011,cm/hr,6.22,38.2,no
+71a,71,int,22.4,15.9,1,1,.,307,No,Yes,Complex,55,17,28,Y,N,0.2091,.,.,.,Western Australia,Proffitt et al. 1995,doi:10.1016/0167-1987(95)00486-6,mm/hr,-31.3,118.23,no
+71b,71,int,22.4,18.7,1,1,.,307,No,Yes,Complex,55,17,28,Y,N,0.2091,.,.,.,Western Australia,Proffitt et al. 1995,doi:10.1016/0167-1987(95)00486-6,mm/hr,-31.3,118.23,no
+72a,72,per,11.33,14.42,15,3,.,2439,No,Yes,ungrz,.,.,.,.,.,7.3196,.,.,.,"Central Meghalaya, India",Ghosh et al. 2009,DOI: 10.1071/SR08169,cm/hr,25.409998,91.55,no
+72b,72,per,11.33,22.6,15,3,.,2439,No,Yes,ungrz,.,.,.,.,.,7.3196,.,.,.,"Central Meghalaya, India",Ghosh et al. 2009,DOI: 10.1071/SR08169,cm/hr,25.409998,91.55,no
+72c,72,per,11.33,19.36,15,3,.,2439,No,Yes,ungrz,.,.,.,.,.,7.3196,.,.,.,"Central Meghalaya, India",Ghosh et al. 2009,DOI: 10.1071/SR08169,cm/hr,25.409998,91.55,no
+72d,72,per,11.33,20.1,15,3,.,2439,No,Yes,ungrz,.,.,.,.,.,7.3196,.,.,.,"Central Meghalaya, India",Ghosh et al. 2009,DOI: 10.1071/SR08169,cm/hr,25.409998,91.55,no
+72e,72,per,11.33,18.5,15,3,.,2439,No,Yes,ungrz,.,.,.,.,.,7.3196,.,.,.,"Central Meghalaya, India",Ghosh et al. 2009,DOI: 10.1071/SR08169,cm/hr,25.409998,91.55,no
+72f,72,per,11.33,17.3,15,3,.,2439,No,Yes,ungrz,.,.,.,.,.,7.3196,.,.,.,"Central Meghalaya, India",Ghosh et al. 2009,DOI: 10.1071/SR08169,cm/hr,25.409998,91.55,no
+72g,72,per,11.33,18.8,15,3,.,2439,No,Yes,ungrz,.,.,.,.,.,7.3196,.,.,.,"Central Meghalaya, India",Ghosh et al. 2009,DOI: 10.1071/SR08169,cm/hr,25.409998,91.55,no
+72h,72,per,11.33,17.4,15,3,.,2439,No,Yes,ungrz,.,.,.,.,.,7.3196,.,.,.,"Central Meghalaya, India",Ghosh et al. 2009,DOI: 10.1071/SR08169,cm/hr,25.409998,91.55,no
+73a,73,int,15.53,18.44,3,3,7,340,No,No,Cont,.,.,.,.,.,0.2704,RT,.,.,Syria,Masri et al. 2005,doi:10.1016/j.still.2005.03.003,cm/hr,36.399999,37.200002,no
+74a,74,res,19,18.5,2,5,2,815,No,No,.,34.3,38.8,26.925,N,N,0.821,NT,.,.,Iowa,Kaspar et al. 2001,No DOI,g/m^2*s,42.030801,-93.6319,no
+74b,74,res,19,20.3,2,5,2,815,No,No,.,34.3,38.8,26.925,N,N,0.821,NT,.,.,Iowa,Kaspar et al. 2001,No DOI,g/m^2*s,42.030801,-93.6319,no
+74c,74,res,15.6,16.9,3,5,2,815,No,No,.,34.3,38.8,26.925,N,N,0.821,NT,.,.,Iowa,Kaspar et al. 2001,No DOI,g/m^2*s,42.030801,-93.6319,no
+74d,74,res,15.6,14.8,3,5,2,815,No,No,.,34.3,38.8,26.925,N,N,0.821,NT,.,.,Iowa,Kaspar et al. 2001,No DOI,g/m^2*s,42.030801,-93.6319,no
+74e,74,res,10.9,11.8,4,5,2,815,No,No,.,34.3,38.8,26.925,N,N,0.821,NT,.,.,Iowa,Kaspar et al. 2001,No DOI,g/m^2*s,42.030801,-93.6319,no
+74f,74,res,10.9,13,4,5,2,815,No,No,.,34.3,38.8,26.925,N,N,0.821,NT,.,.,Iowa,Kaspar et al. 2001,No DOI,g/m^2*s,42.030801,-93.6319,no
+75a,75,res,68.2,60.5,3,3,3,1250,No,No,.,69.3,9.5,21.2,Y,N,0.7935,RT,.,.,Nigeria,Wilson et al. 1982,doi:10.1016/0167-1987(82)90013-7,cm/3hrs,7.23,3.549997,no
+75b,75,res,68.2,64.2,3,3,3,1250,No,No,.,69.3,9.5,21.2,Y,N,0.7935,RT,.,.,Nigeria,Wilson et al. 1982,doi:10.1016/0167-1987(82)90013-7,cm/3hrs,7.23,3.549997,no
+75c,75,res,68.2,55.8,3,3,3,1250,No,No,.,69.3,9.5,21.2,Y,N,0.7935,RT,.,.,Nigeria,Wilson et al. 1982,doi:10.1016/0167-1987(82)90013-7,cm/3hrs,7.23,3.549997,no
+75d,75,res,68.2,78.2,3,3,3,1250,No,No,.,69.3,9.5,21.2,Y,N,0.7935,RT,.,.,Nigeria,Wilson et al. 1982,doi:10.1016/0167-1987(82)90013-7,cm/3hrs,7.23,3.549997,no
+75e,75,res,68.2,72.9,3,3,3,1250,No,No,.,69.3,9.5,21.2,Y,N,0.7935,RT,.,.,Nigeria,Wilson et al. 1982,doi:10.1016/0167-1987(82)90013-7,cm/3hrs,7.23,3.549997,no
+75f,75,res,68.2,76.9,3,3,3,1250,No,No,.,69.3,9.5,21.2,Y,N,0.7935,RT,.,.,Nigeria,Wilson et al. 1982,doi:10.1016/0167-1987(82)90013-7,cm/3hrs,7.23,3.549997,no
+75f,75,res,68.2,123.6,3,3,3,1250,No,No,.,69.3,9.5,21.2,Y,N,0.7935,RT,.,.,Nigeria,Wilson et al. 1982,doi:10.1016/0167-1987(82)90013-7,cm/3hrs,7.23,3.549997,no
+75h,75,res,68.2,101.8,3,3,3,1250,No,No,.,69.3,9.5,21.2,Y,N,0.7935,RT,.,.,Nigeria,Wilson et al. 1982,doi:10.1016/0167-1987(82)90013-7,cm/3hrs,7.23,3.549997,no
+76a,76,cr,39.5,48.9,8,4,3,874,No,No,.,6.5,50.7,42.9,N,Y,0.6647,NT,.,no,Kansas,Blanco Canqui et al. 2010,doi:10.2136/sssaj2010.0061,mm/3hrs,38.140001,-97.43,no
+76b,76,cr,39.5,99.5,8,4,3,874,No,No,.,6.5,50.7,42.9,N,Y,0.6647,NT,.,no,Kansas,Blanco Canqui et al. 2010,doi:10.2136/sssaj2010.0061,mm/3hrs,38.140001,-97.43,no
+76c,76,cr,39.5,41.5,8,4,3,874,No,No,.,6.5,50.7,42.9,N,Y,0.6647,NT,.,no,Kansas,Blanco Canqui et al. 2010,doi:10.2136/sssaj2010.0061,mm/3hrs,38.140001,-97.43,no
+77a,77,res,23.4,38.8,3,4,1,1360,No,No,.,57,17.9,25.1,Y,N,1.0172,NT,.,.,Georgia (Rome),McVay 1989,doi:10.2136/sssaj1989.03615995005300060040x,mm/hr,34.250001,-85.17,no
+77b,77,res,37.8,58.4,3,4,1,1271,No,No,.,31.9,31,37.1,N,Y,0.9513,NT,.,.,Georgia (Greenville),McVay 1989,doi:10.2136/sssaj1989.03615995005300060040x,mm/hr,33.030001,-84.71,no
+77c,77,res,37.8,42.3,3,4,1,1271,No,No,.,31.9,31,37.1,N,Y,0.9513,NT,.,.,Georgia (Greenville),McVay 1989,doi:10.2136/sssaj1989.03615995005300060040x,mm/hr,33.030001,-84.71,no
+78a,78,till,3,4.8,12,1,1,504,No,No,.,.,.,26,N,N,0.8104,CT,.,no,"BC, Can",Arshad et al. 1999,http://dx.doi.org/10.1016/S0167-1987(99)00075-6,cm/hr,55.46,-120.21,no
+79a,79,till,44,40,8,3,2,1219,No,No,.,70.2,21,8.8,Y,N,0.839,RT,.,no,Georgia,Bruce et al. 1990,doi:10.2136/sssaj1990.03615995005400060039x,mm,33.540001,-82.24,no
+79b,79,till,40.6,40,8,3,2,1219,No,No,.,70.2,21,8.8,Y,N,0.839,CT,.,no,Georgia,Bruce et al. 1990,doi:10.2136/sssaj1990.03615995005400060039x,mm,33.540001,-82.24,no
+80a,80,till,0.34,0.51,8,6,1,822,No,No,.,13.7,52.2,34.1,N,Y,0.651,CT,.,no,Oklahoma,Dao 1993,doi:10.2136/sssaj1993.03615995005700060032x,cm/hr,35.3,-97.6,no
+81a,81,till,5.1038,4.8549,30,4,1,899,No,No,.,21,68.2,10.8,N,N,0.9255,CT,with,no,New York,Moebius Clune 2008,doi:10.2136/sssaj2007.0248,cm/hr,44.883334,-73.466667,no
+81b,81,till,4.0149,2.2933,30,4,1,899,No,No,.,21,68.2,10.8,N,N,0.9255,CT,without,no,New York,Moebius Clune 2008,doi:10.2136/sssaj2007.0248,cm/hr,44.883334,-73.466667,no
+82a,82,till,31.4,12.6,18,4,6,588,No,No,.,13,62,25,N,N,0.7219,CT,.,no,Poland,Lipiec et al 2006,doi:10.1016/j.still.2005.07.012,cm/hr,51.25,21.58,no
+82b,82,till,12.56,12.6,18,4,6,588,No,No,.,13,62,25,N,N,0.7219,CT,.,no,Poland,Lipiec et al 2006,doi:10.1016/j.still.2005.07.012,cm/hr,51.25,21.58,no
+82c,82,till,19.56,12.6,18,4,6,588,No,No,.,13,62,25,N,N,0.7219,RT,.,no,Poland,Lipiec et al 2006,doi:10.1016/j.still.2005.07.012,cm/hr,51.25,21.58,no
+83a,83,till,265,326.5,9,4,1,455,No,No,.,20,41,39,N,Y,0.6473,CT,.,no,"Edmonton, Canada",Singh et al. 1996,10.4141/cjss96-010,mm/hr,53.250001,-113.330002,no
+83b,83,till,212,244.5,10,4,1,455,No,No,.,20,41,39,N,Y,0.6473,CT,.,no,"Edmonton, Canada",Singh et al. 1996,10.4141/cjss96-010,mm/hr,53.250001,-113.330002,no
+84a,84,till,41,70,20,3,1,282,No,No,.,77.6,18.9,3.5,Y,N,0.5019,CT,.,no,Alaska,Sharratt 2006,10.1016/j.still.2005.11.006.,mm/hr,63.000001,-145,no
+84b,84,till,82,70,20,3,1,282,No,No,.,77.6,18.9,3.5,Y,N,0.5019,RT,.,no,Alaska,Sharratt 2006,10.1016/j.still.2005.11.006.,mm/hr,63.000001,-145,no
+84c,84,till,60,70,20,3,1,282,No,No,.,77.6,18.9,3.5,Y,N,0.5019,RT,.,no,Alaska,Sharratt 2006,10.1016/j.still.2005.11.006.,mm/hr,63.000001,-145,no
+85a,85,till,5,25,14,3,2,850,No,No,.,.,.,.,N,N,0.7851,CT,.,no,"NSW, Australia",So et al. 2009,doi:10.1016/j.still.2008.10.017,mm/hr,-29.68,152.94,no
+86a,86,cr,35,23,2,3,3,517,No,Yes,grz,.,.,53.5,N,Y,0.3213,NT,without,no,"Southwest Queensland, Australia",Thomas et al. 2009,10.1071/EA07170,mm/hr,-28.5,148.75,no
+86b,86,cr,42,28,2,3,3,517,No,Yes,grz,.,.,53.5,N,Y,0.3213,NT,with  ,no,"Southwest Queensland, Australia",Thomas et al. 2009,10.1071/EA07170,mm/hr,-28.5,148.75,no
+86c,86,cr,47,71,2,3,3,517,No,Yes,grz,.,.,53.5,N,Y,0.3213,NT,with  ,no,"Southwest Queensland, Australia",Thomas et al. 2009,10.1071/EA07170,mm/hr,-28.5,148.75,no
+86d,86,cr,35,64,3,3,3,517,No,Yes,grz,.,.,53.5,N,Y,0.3213,NT,without,no,"Southwest Queensland, Australia",Thomas et al. 2009,10.1071/EA07170,mm/hr,-28.5,148.75,no
+86e,86,cr,42,82,3,3,3,517,No,Yes,grz,.,.,53.5,N,Y,0.3213,NT,with  ,no,"Southwest Queensland, Australia",Thomas et al. 2009,10.1071/EA07170,mm/hr,-28.5,148.75,no
+86f,86,cr,47,85,3,3,3,517,No,Yes,grz,.,.,53.5,N,Y,0.3213,NT,with  ,no,"Southwest Queensland, Australia",Thomas et al. 2009,10.1071/EA07170,mm/hr,-28.5,148.75,no
+87a,87,till,38.6,16.7,6,4,2,1333,No,No,.,23.1,56,19.7,N,N,1.003,RT,.,.,"Mississippi, USA",Locke et al. 2012,10.2136/sssaj2012.0325,mm/hr,33.423127,-90.910878,no
+87b,87,res,8.28,32.2,5,4,2,1333,No,No,.,23.1,56,19.7,N,N,1.003,.,.,.,"Mississippi, USA",Locke et al. 2012,10.2136/sssaj2012.0325,mm/hr,33.423127,-90.910878,no
+87c,87,res,8.28,13.73,5,4,2,1333,No,No,.,23.1,56,19.7,N,N,1.003,.,.,.,"Mississippi, USA",Locke et al. 2012,10.2136/sssaj2012.0325,mm/hr,33.423127,-90.910878,no
+87d,87,res,27.73,34.9,6,4,2,1333,No,No,.,23.1,56,19.7,N,N,1.003,.,.,.,"Mississippi, USA",Locke et al. 2012,10.2136/sssaj2012.0325,mm/hr,33.423127,-90.910878,no
+87e,87,res,27.73,20.26,6,4,2,1333,No,No,.,23.1,56,19.7,N,N,1.003,.,.,.,"Mississippi, USA",Locke et al. 2012,10.2136/sssaj2012.0325,mm/hr,33.423127,-90.910878,no
+88a,88,res,33,51.3,5,2,3,1219,Yes,No,.,70.2,21,8.8,Y,N,0.839,NT,with,yes,"Georgia, USA",Bruce et al. 1992,10.2136/sssaj1992.03615995005600050046x,mm/hr,33.540001,-82.24,no
+88b,88,res,38.6,51.8,5,2,3,1219,Yes,No,.,70.2,21,8.8,Y,N,0.839,NT,with,yes,"Georgia, USA",Bruce et al. 1992,10.2136/sssaj1992.03615995005600050046x,mm/hr,33.540001,-82.24,no
+88c,88,res,34.5,46,5,2,3,1219,Yes,No,.,70.2,21,8.8,Y,N,0.839,NT,with,yes,"Georgia, USA",Bruce et al. 1992,10.2136/sssaj1992.03615995005600050046x,mm/hr,33.540001,-82.24,no
+88d,88,res,25.7,50.7,5,2,3,1219,Yes,No,.,70.2,21,8.8,Y,N,0.839,NT,without,yes,"Georgia, USA",Bruce et al. 1992,10.2136/sssaj1992.03615995005600050046x,mm/hr,33.540001,-82.24,no
+88e,88,res,20.1,46.4,5,2,3,1219,Yes,No,.,70.2,21,8.8,Y,N,0.839,NT,without,yes,"Georgia, USA",Bruce et al. 1992,10.2136/sssaj1992.03615995005600050046x,mm/hr,33.540001,-82.24,no
+88f,88,res,21,41.6,5,2,3,1219,Yes,No,.,70.2,21,8.8,Y,N,0.839,NT,without,yes,"Georgia, USA",Bruce et al. 1992,10.2136/sssaj1992.03615995005600050046x,mm/hr,33.540001,-82.24,no
+89a,89,till,4.25,17,16,3,1,555,No ,No,.,23.1,43.3,33.6,N,Y,0.4056,.,with,.,"Shanxi province, China",He et al. 2009,http://dx.doi.org/10.1080/01140670909510261,mm/120mins,38.1,113,no  

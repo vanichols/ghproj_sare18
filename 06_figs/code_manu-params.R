@@ -49,6 +49,28 @@ mdatcl <- read_csv("03_fit-models/03dat_meta-parms-eu-claycov.csv")
 
 mdatsa <- read_csv("03_fit-models/03dat_meta-parms-eu-sandcov.csv") 
 
+
+#--field capacity and saturation
+fc <- read_csv("03_fit-models/03dat_fc-emmeans.csv") %>% 
+  mutate(cc_trt = case_when(
+    grepl("cc", cc_trt) ~ "Rye Cover Crop",
+    grepl("no", cc_trt) ~ "No Cover",
+    TRUE ~ cc_trt),
+    site_sys = str_replace_all(site_sys, "_", "-"),
+    site_sys = factor(site_sys, levels = c("West-grain", "Central-silage", "Central-grain", "East-grain"))
+    ) 
+
+sat <- read_csv("03_fit-models/03dat_sat-emmeans.csv") %>% 
+  mutate(cc_trt = case_when(
+    grepl("cc", cc_trt) ~ "Rye Cover Crop",
+    grepl("no", cc_trt) ~ "No Cover",
+    TRUE ~ cc_trt),
+    site_sys = str_replace_all(site_sys, "_", "-"),
+    site_sys = factor(site_sys, levels = c("West-grain", "Central-silage", "Central-grain", "East-grain"))
+    ) 
+
+
+
 # figures ------------------------------------------------------------------
 
 
@@ -92,6 +114,8 @@ dat %>%
   )
 
 ggsave("06_figs/fig_manu-curves.png")  
+
+
 
 
 # meta-analysis clay -----------------------------------------------------------
@@ -155,3 +179,148 @@ ggsave("06_figs/fig_manu-params-sand.png")
 library(PFIweeds2020)
 pfi_ccbio %>% 
   filter(year == 2019)
+
+
+# field cap and sat figs --------------------------------------------------
+
+fc %>% 
+  mutate(estimate = round(estimate, 2)) %>% 
+  mutate(thing = ifelse(cov == "sand", "Sand as a co-variate", "No covariates"),
+         site_sys = factor(site_sys, levels = c("West-grain", "Central-silage", "Central-grain", "East-grain"))
+         ) %>% 
+  ggplot(aes(cc_trt, estimate, alpha = thing, color = cc_trt)) + 
+  geom_point(position = position_dodge(width = 0.2)) + 
+  geom_linerange(aes(ymin = conf.low, ymax = conf.high), position = position_dodge(width = 0.2)) +
+  labs(y = "Volumetric water content \nat field capacity (%)",
+       x = NULL,
+       color = NULL, 
+       alpha = NULL) +
+  scale_y_continuous(labels = label_percent(accuracy = 2)) +
+  scale_color_manual(values = c(pfi_brn, pfi_green)) + 
+  scale_alpha_manual(values = c(0.3, 1)) +
+  facet_grid(.~site_sys) + 
+  theme(strip.background = element_blank(),
+        strip.text = element_text(size = rel(1.2))) 
+
+ggsave("06_figs/fig_manu-field-cap.png")  
+
+
+# field cap and sat figs --------------------------------------------------
+
+sat %>% 
+  mutate(estimate = round(estimate, 2)) %>% 
+  mutate(thing = ifelse(cov == "sand", "Sand as a co-variate", "No covariates"),
+         site_sys = factor(site_sys, levels = c("West-grain", "Central-silage", "Central-grain", "East-grain"))
+  ) %>% 
+  ggplot(aes(cc_trt, estimate, alpha = thing, color = cc_trt)) + 
+  geom_point(position = position_dodge(width = 0.2)) + 
+  geom_linerange(aes(ymin = conf.low, ymax = conf.high), position = position_dodge(width = 0.2)) +
+  labs(y = "Volumetric water content \nat saturation (%)",
+       x = NULL,
+       color = NULL, 
+       alpha = NULL) +
+  scale_y_continuous(labels = label_percent(accuracy = 2)) +
+  scale_color_manual(values = c(pfi_brn, pfi_green)) + 
+  scale_alpha_manual(values = c(0.3, 1)) +
+  facet_grid(.~site_sys) + 
+  theme(strip.background = element_blank(),
+        strip.text = element_text(size = rel(1.2))) 
+
+ggsave("06_figs/fig_manu-sat-cap.png")  
+
+#--but both together
+
+sat %>% 
+  bind_rows(fc) %>% 
+  mutate(estimate = round(estimate, 2),
+         param = ifelse(param == "saturation", "Saturation", "Field capacity"), 
+         thing = ifelse(cov == "sand", "Sand as a co-variate", "No covariates"),
+         site_sys = factor(site_sys, levels = c("West-grain", "Central-silage", "Central-grain", "East-grain")),
+         param = factor(param, levels = c("Saturation", "Field capacity"))
+         ) %>% 
+  ggplot(aes(cc_trt, estimate, alpha = thing, color = cc_trt)) + 
+  geom_point(position = position_dodge(width = 0.2)) + 
+  geom_linerange(aes(ymin = conf.low, ymax = conf.high), position = position_dodge(width = 0.2)) +
+  labs(y = "Volumetric water content (%)",
+       x = NULL,
+       color = NULL, 
+       alpha = NULL) +
+  scale_y_continuous(labels = label_percent(accuracy = 2)) +
+  scale_color_manual(values = c(pfi_brn, pfi_green)) + 
+  scale_alpha_manual(values = c(0.3, 1)) +
+  facet_grid(param ~ site_sys) + 
+  theme(strip.background = element_blank(),
+        strip.text = element_text(size = rel(1.2))) 
+
+#--don't include the covariate thing
+sat %>% 
+  bind_rows(fc) %>% 
+  mutate(estimate = round(estimate, 2),
+         param = ifelse(param == "saturation", "Saturation", "Field capacity"), 
+         thing = ifelse(cov == "sand", "Sand as a co-variate", "No covariates"),
+         site_sys = factor(site_sys, levels = c("West-grain", "Central-silage", "Central-grain", "East-grain")),
+         param = factor(param, levels = c("Saturation", "Field capacity"))
+  ) %>% 
+  filter(thing == "Sand as a co-variate") %>% 
+  ggplot(aes(cc_trt, estimate, color = cc_trt)) + 
+  geom_point(size = 2) + 
+  geom_linerange(aes(ymin = conf.low, ymax = conf.high), size = 1.1) +
+  guides(color = F) +
+  labs(y = "Volumetric water content (%)",
+       x = NULL,
+       color = NULL, 
+       alpha = NULL) +
+  scale_y_continuous(labels = label_percent(accuracy = 2)) +
+  scale_color_manual(values = c(pfi_brn, pfi_green)) + 
+  facet_grid(param ~ site_sys, scales = "free") + 
+  theme(strip.background = element_blank(),
+        strip.text = element_text(size = rel(1.2))) 
+
+#--site on x-axis
+
+#--get sig ones
+fc_sig <- read_csv("03_fit-models/03dat_fc-emmeans-sig.csv")
+sat_sig <- read_csv("03_fit-models/03dat_sat-emmeans-sig.csv")
+
+sigs <- 
+  fc_sig %>% 
+  bind_rows(sat_sig) %>% 
+  mutate(estimate = round(estimate, 2),
+         param = ifelse(param == "saturation", "Saturation", "Field capacity"), 
+         thing = ifelse(cov == "sand", "Sand as a co-variate", "No covariates"),
+         site_sys = str_replace_all(site_sys, "_", "-"),
+         site_sys = factor(site_sys, levels = c("West-grain", "Central-silage", "Central-grain", "East-grain")),
+         param = factor(param, levels = c("Saturation", "Field capacity"))
+  ) %>% 
+  filter(adj.p.value < 0.1)
+
+sat %>% 
+  bind_rows(fc) %>% 
+  mutate(estimate = round(estimate, 2),
+         param = ifelse(param == "saturation", "Saturation", "Field capacity"), 
+         thing = ifelse(cov == "sand", "Sand as a co-variate", "No covariates"),
+         site_sys = factor(site_sys, levels = c("West-grain", "Central-silage", "Central-grain", "East-grain")),
+         param = factor(param, levels = c("Saturation", "Field capacity"))
+  ) %>% 
+  filter(thing == "Sand as a co-variate") %>% 
+  ggplot(aes(site_sys, estimate)) + 
+  geom_point(aes(color = cc_trt), size = 2, position = position_dodge2(width = 0.2)) + 
+  geom_linerange(aes(ymin = estimate - std.error, 
+                     ymax = estimate + std.error,
+                     color = cc_trt), 
+                 size = 1.1, position = position_dodge2(width = 0.2)) +
+  guides(color = F) +
+  labs(y = "Volumetric water content (%)",
+       x = NULL,
+       color = NULL, 
+       alpha = NULL) +
+  geom_text(data = sigs, aes(x = site_sys, y = 0.3, label = "*"), size = 10) +
+  scale_y_continuous(labels = label_percent(accuracy = 2)) +
+  scale_color_manual(values = c(pfi_brn, pfi_green)) + 
+  facet_grid(. ~ param, scales = "free") + 
+  theme(strip.background = element_blank(),
+        strip.text = element_text(size = rel(1.2))) 
+
+
+ggsave("06_figs/fig_manu-sat-fc.png")  
+
