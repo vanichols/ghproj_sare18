@@ -22,78 +22,35 @@ dat <-
   left_join(sare_plotkey) %>% 
   unite(site_name, sys_trt, col = "site_sys", sep = "-") %>% 
   mutate(repid = paste(site_sys, rep)) %>% 
+  filter(!is.na(sand)) %>% #--eliminate stout 5th no cover plot (if it's in there)
   select(repid, cc_trt, site_sys, om, clay, silt, sand, bulkden_gcm3) %>% 
   pivot_longer(om:bulkden_gcm3)
 
 
 
-# organic matter ----------------------------------------------------------
-
-#--ranges in om values
-dat %>% 
-  filter(name == "om") %>% 
-  pull(value) %>% 
-  summary()
-
-#--sig interaction
-fom <- lmer(value ~ site_sys * cc_trt + (1|repid), data = dat %>% filter(name == "om"))
-anova(fom)
-
-#--diff at rob's
-emmeans(fom,  ~site_sys) 
-eom <- emmeans(fom,  ~cc_trt|site_sys) 
-pairs(eom)
-
-
-eom %>% 
-  tidy() %>% 
-  mutate(var = "om") %>% 
-  ggplot(aes(cc_trt, estimate, color = cc_trt)) + 
-  geom_point(size = 2) + 
-  facet_grid(~site_sys) + 
-  labs(title = "org matt")
-
-
-# bulk den ----------------------------------------------------------------
-
-#--ranges in om values
-dat %>% 
-  filter(name == "bulkden_gcm3") %>% 
-  pull(value) %>% 
-  summary()
-
-#--no interactions, nothing is different
-fbd <- lmer(value ~ site_sys * cc_trt + (1|repid), data = dat %>% filter(name == "bulkden_gcm3"))
-anova(fbd)
-
-#--ignore the west-grain diff, not sig and am doing a lot of comparisons
-ebd <- emmeans(fbd,  ~cc_trt|site_sys) 
-pairs(ebd)
-
-
-ebd %>% 
-  tidy() %>% 
-  mutate(var = "bd") %>% 
-  ggplot(aes(cc_trt, estimate, color = cc_trt)) + 
-  geom_point(size = 2) + 
-  facet_grid(~site_sys) + 
-  labs(title = "bulk den")
-
-
 # clay ----------------------------------------------------------------
 
-#--could use clay as a covariate?
+#--does clay vary by cover crop treatment?
 dat %>% 
   filter(name == "clay") %>% 
   pull(value) %>% 
   summary()
 
-#--interactions
 fcl <- lmer(value ~ site_sys * cc_trt + (1|repid), data = dat %>% filter(name == "clay"))
+
+#--yes, interaction site x cc trt
 anova(fcl)
 
+#--both east and west have higher in cc trt
 ecl <- emmeans(fcl,  ~cc_trt|site_sys) 
 pairs(ecl)
+
+dat %>% 
+  filter(name == "clay") %>% 
+  ggplot(aes(cc_trt, value, color = cc_trt)) + 
+  geom_point() +
+  facet_grid(.~site_sys) + 
+  labs(title = "cover crop plots have lower clay")
 
 ecl2 <- emmeans(fcl,  ~cc_trt) 
 pairs(ecl2)
@@ -116,8 +73,10 @@ dat %>%
 
 dat %>% 
   filter(name == "sand") %>%
-  ggplot(aes(site_sys, value)) + 
-  geom_point(aes(color = cc_trt))
+  ggplot(aes(cc_trt, value)) + 
+  geom_point(aes(color = cc_trt)) + 
+  facet_grid(.~site_sys) + 
+  labs(title = "cover crop plots have higher sand")
 
 #--are sand and clay related?
 
@@ -127,7 +86,7 @@ dat %>%
   ggplot(aes(sand, clay)) + 
   geom_point(aes(color = cc_trt))
 
-#--no interactions
+#--no interactions for sand
 fsa <- lmer(value ~ site_sys * cc_trt + (1|repid), data = dat %>% filter(name == "sand"))
 anova(fsa)
 
@@ -145,6 +104,98 @@ esa %>%
   geom_point() + 
   geom_linerange(aes(ymin = estimate - std.error, ymax = estimate + std.error)) + 
   labs(title = "sand")
+
+
+# organic matter ----------------------------------------------------------
+
+#--ranges in om values
+dat %>% 
+  filter(name %in% c("om")) %>%
+  pull(value) %>% 
+  summary()
+
+  
+#--need to include clay as covariate, as it impacts organic matter accrual
+om_dat <- 
+  dat %>% 
+  filter(name %in% c("om", "clay")) %>%
+  pivot_wider(names_from = name, values_from = value)
+
+#---don't include clay  
+fom_nocl <- lmer(om ~ site_sys * cc_trt + (1|repid), data = om_dat)
+anova(fom_nocl)
+
+#--ok just at rob's, same res as when you don't include clay. 
+eom_nocl <- emmeans(fom_nocl,  ~cc_trt|site_sys) 
+pairs(eom_nocl)
+
+
+#---include clay  
+fom <- lmer(om ~ site_sys * cc_trt + clay + (1|repid), data = om_dat)
+anova(fom)
+
+#--ok just at rob's, same res as when you don't include clay. 
+emmeans(fom,  ~site_sys) 
+eom <- emmeans(fom,  ~cc_trt|site_sys) 
+pairs(eom)
+
+#--yeah, it just enhances the rob effect
+res_om <- 
+  eom %>% 
+  tidy() %>%
+  mutate(cvar = "clay") %>% 
+  bind_rows(eom_nocl %>% tidy() %>% mutate(cvar = "no clay")) %>% 
+  mutate(var = "om")
+
+res_om %>% write_csv("03_fit-models/03dat_om-emmeans.csv")
+pairs(eom) %>% tidy() %>% 
+  mutate(var = "om, clay cov") %>% 
+  write_csv("03_fit-models/03dat_om-emmeans-sig.csv")
+
+res_om %>% 
+  ggplot(aes(cc_trt, estimate, color = cvar)) + 
+  geom_point(size = 2) + 
+  facet_grid(~site_sys) + 
+  labs(title = "org matt")
+
+
+# bulk den ----------------------------------------------------------------
+
+#--does this need to have a covariate? not sure
+bd_dat <- 
+  dat %>% 
+  filter(name %in% c("bulkden_gcm3", "sand")) %>%
+  pivot_wider(names_from = name, values_from = value)
+
+bd_dat %>% 
+  ggplot(aes(cc_trt, bulkden_gcm3)) + 
+  geom_point() + 
+  facet_grid(.~site_sys)
+
+#--no interactions, nothing is different
+fbd <- lmer(bulkden_gcm3 ~ site_sys * cc_trt + (1|repid), data = bd_dat)
+anova(fbd)
+
+#--ignore the west-grain diff, not sig and am doing a lot of comparisons
+ebd <- emmeans(fbd,  ~cc_trt|site_sys) 
+pairs(ebd)
+
+#--with sand? makes a big diff...east grain is now sig
+fbd_sand <- lmer(bulkden_gcm3 ~ site_sys * cc_trt + sand + (1|repid), data = bd_dat)
+anova(fbd_sand)
+
+ebd_sand <- emmeans(fbd_sand,  ~cc_trt|site_sys) 
+pairs(ebd_sand)
+
+ebd_sand %>% 
+  tidy() %>% 
+  mutate(var = "bd") %>% 
+  ggplot(aes(cc_trt, estimate, color = cc_trt)) + 
+  geom_point(size = 2) + 
+  facet_grid(~site_sys) + 
+  labs(title = "bulk den")
+
+
 
 
 # parameters --------------------------------------------------------------

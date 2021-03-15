@@ -34,6 +34,64 @@ rd <-
   filter(!is.na(sand)) #--get rid of extra east grain no cover plot
 
 
+# saturation ----------------------------------------------------------
+
+sat <- 
+  rd %>% 
+  filter(press_cm %in% c(0.038)) %>% 
+  group_by(site_sys, cc_trt, rep_id) %>% 
+  summarise(vtheta_grav = mean(vtheta_grav, na.rm = T),
+            sand = mean(sand, na.rm = T))
+
+sat %>% 
+  ggplot(aes(cc_trt, vtheta_grav)) + 
+  geom_point(aes(size = sand)) +
+  facet_grid(.~site_sys) + 
+  scale_color_viridis_c()
+
+
+#--does it make sense to correct for sand at the saturation? I'm not convinced
+m2 <- lmer(vtheta_grav~cc_trt*site_sys + (1|rep_id), data = sat)
+m2_sand <- lmer(vtheta_grav~cc_trt*site_sys + sand + (1|rep_id), data = sat)
+
+em2 <- emmeans(m2, ~cc_trt|site_sys)
+em2_sand <- emmeans(m2_sand, ~cc_trt|site_sys)
+
+pairs(em2)  #--sig lower w/cc at west grain, if no sand correction
+pairs(em2_sand)  #--sig higher at east if sand correction
+
+sat_sig <- 
+  contrast(em2a) %>% 
+  broom::tidy() %>% 
+  filter(contrast == "cc effect") %>% 
+  mutate(cov = "sand", 
+         param = "saturation")
+
+sat_sig %>% write_csv("03_fit-models/03dat_sat-emmeans-sig.csv")
+
+
+
+sat_res <-
+  confint(em2a, level = 0.9) %>%
+  broom::tidy() %>%
+  mutate(cov = "sand") %>%
+  bind_rows(confint(em2, level = 0.9) %>%
+              broom::tidy() %>%
+              mutate(cov = "no sand")) %>%
+  mutate(param = "saturation") %>%
+  select(param, everything())
+
+sat_res %>% write_csv("03_fit-models/03dat_sat-emmeans.csv")
+
+
+sat_res %>% 
+  ggplot(aes(cc_trt, estimate, color = cov)) + 
+  geom_point() + 
+  geom_linerange(aes(ymin = conf.low,
+                     ymax = conf.high)) + 
+  facet_grid(cov~site_sys)
+
+
 # field capacity ----------------------------------------------------------
 
 fc <- 
@@ -58,16 +116,17 @@ fc %>%
 #--physically, should include sand as covariate for field capacity
 m1 <- lmer(vtheta_grav~cc_trt*site_sys + (1|rep_id), data = fc)
 anova(m1)
-m1a <- lmer(vtheta_grav~cc_trt*site_sys + sand + (1|rep_id), data = fc)
-anova(m1a)
+m1_sand <- lmer(vtheta_grav~cc_trt*site_sys + sand + (1|rep_id), data = fc)
+anova(m1_sand)
 
 em1 <- emmeans(m1, ~cc_trt|site_sys) #-no sand
 contrast(em1) #--centtal silage sig diff
 
-em1a <- emmeans(m1a, ~cc_trt|site_sys) #-with sand
-contrast(em1a) #--central silage plus west
+em1_sand <- emmeans(m1_sand, ~cc_trt|site_sys) #-with sand
+pairs(em1_sand) #--central silage plus west
 
 em1a # just snip it
+pairs(em1a)
 
 fc_sig <- 
   contrast(em1a) %>% 
@@ -100,59 +159,3 @@ fc_res %>%
   facet_grid(cov~site_sys)
 
 
-# saturation ----------------------------------------------------------
-
-sat <- 
-  rd %>% 
-  filter(press_cm %in% c(0.038)) %>% 
-  group_by(site_sys, cc_trt, rep_id) %>% 
-  summarise(vtheta_grav = mean(vtheta_grav, na.rm = T),
-            sand = mean(sand, na.rm = T))
-
-sat %>% 
-  ggplot(aes(cc_trt, vtheta_grav)) + 
-  geom_point(aes(size = sand)) +
-  facet_grid(.~site_sys) + 
-  scale_color_viridis_c()
-
-
-#--does it make sense to correct for sand at the saturation? I'm not convinced
-m2 <- lmer(vtheta_grav~cc_trt*site_sys + (1|rep_id), data = sat)
-m2a <- lmer(vtheta_grav~cc_trt*site_sys + sand + (1|rep_id), data = sat)
-
-em2 <- emmeans(m2, ~cc_trt|site_sys)
-em2a <- emmeans(m2a, ~cc_trt|site_sys)
-
-contrast(em2)  #--sig lower w/cc at west grain, if no sand correction
-contrast(em2a)  #--sig higher at east if sand correction
-
-sat_sig <- 
-  contrast(em2a) %>% 
-  broom::tidy() %>% 
-  filter(contrast == "cc effect") %>% 
-  mutate(cov = "sand", 
-         param = "saturation")
-
-sat_sig %>% write_csv("03_fit-models/03dat_sat-emmeans-sig.csv")
-
-
-
-sat_res <-
-  confint(em2a, level = 0.9) %>%
-  broom::tidy() %>%
-  mutate(cov = "sand") %>%
-  bind_rows(confint(em2, level = 0.9) %>%
-              broom::tidy() %>%
-              mutate(cov = "no sand")) %>%
-  mutate(param = "saturation") %>%
-  select(param, everything())
-
-sat_res %>% write_csv("03_fit-models/03dat_sat-emmeans.csv")
-
-
-sat_res %>% 
-  ggplot(aes(cc_trt, estimate, color = cov)) + 
-  geom_point() + 
-  geom_linerange(aes(ymin = conf.low,
-                     ymax = conf.high)) + 
-  facet_grid(cov~site_sys)
