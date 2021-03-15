@@ -309,7 +309,7 @@ sat %>%
                      ymax = estimate + std.error,
                      color = cc_trt), 
                  size = 1.1, position = position_dodge2(width = 0.2)) +
-  guides(color = F) +
+  #guides(color = F) +
   labs(y = "Volumetric water content (%)",
        x = NULL,
        color = NULL, 
@@ -319,7 +319,8 @@ sat %>%
   scale_color_manual(values = c(pfi_brn, pfi_green)) + 
   facet_grid(. ~ param, scales = "free") + 
   theme(strip.background = element_blank(),
-        strip.text = element_text(size = rel(1.2))) 
+        strip.text = element_text(size = rel(1.2)),
+        legend.position = c(0.1, 0.1)) 
 
 
 ggsave("06_figs/fig_manu-sat-fc.png")  

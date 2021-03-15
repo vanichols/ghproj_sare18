@@ -13,6 +13,7 @@ rm(list = ls())
 library(tidyverse)
 library(HydroMe)
 library(nlraa)
+#remotes::install_github("vanichols/PFIswhc")
 library(PFIswhc)
 library(lme4)
 library(lmerTest)
@@ -21,6 +22,7 @@ library(emmeans)
 # 1 cm water = 0.0980665 kpa
 
 #--data
+#--note, there is a 5th no cover rep at stout where we measured the whc, but not texture
 rd <- 
   sare_pressure %>%
   left_join(sare_plotkey) %>% 
@@ -28,8 +30,8 @@ rd <-
   mutate(press_kPa = press_cm * 0.0980665) %>% 
   unite(site_name, sys_trt, col = "site_sys") %>% 
   mutate(rep_id = paste(site_sys, rep)) %>% 
-  left_join(sare_texture)
-
+  left_join(sare_texture) %>% 
+  filter(!is.na(sand)) #--get rid of extra east grain no cover plot
 
 
 # field capacity ----------------------------------------------------------
@@ -44,20 +46,28 @@ fc <-
 
 fc %>% 
   ggplot(aes(cc_trt, vtheta_grav)) + 
-  geom_point() + 
-  facet_grid(.~site_sys)
+  geom_point(aes(size = sand)) + 
+  facet_grid(.~site_sys) + 
+  labs(title = "field capacity",
+       subtitle = "need to include sand as covariate")
 
 
-fc
+fc %>% 
+  filter(site_sys == "East_grain")
 
+#--physically, should include sand as covariate for field capacity
 m1 <- lmer(vtheta_grav~cc_trt*site_sys + (1|rep_id), data = fc)
 anova(m1)
-
 m1a <- lmer(vtheta_grav~cc_trt*site_sys + sand + (1|rep_id), data = fc)
 anova(m1a)
 
-em1 <- emmeans(m1, ~cc_trt|site_sys)
-em1a <- emmeans(m1a, ~cc_trt|site_sys)
+em1 <- emmeans(m1, ~cc_trt|site_sys) #-no sand
+contrast(em1) #--centtal silage sig diff
+
+em1a <- emmeans(m1a, ~cc_trt|site_sys) #-with sand
+contrast(em1a) #--central silage plus west
+
+em1a # just snip it
 
 fc_sig <- 
   contrast(em1a) %>% 
@@ -99,18 +109,22 @@ sat <-
   summarise(vtheta_grav = mean(vtheta_grav, na.rm = T),
             sand = mean(sand, na.rm = T))
 
-
 sat %>% 
   ggplot(aes(cc_trt, vtheta_grav)) + 
-  geom_point() + 
-  facet_grid(.~site_sys)
+  geom_point(aes(size = sand)) +
+  facet_grid(.~site_sys) + 
+  scale_color_viridis_c()
 
 
+#--does it make sense to correct for sand at the saturation? I'm not convinced
 m2 <- lmer(vtheta_grav~cc_trt*site_sys + (1|rep_id), data = sat)
 m2a <- lmer(vtheta_grav~cc_trt*site_sys + sand + (1|rep_id), data = sat)
 
 em2 <- emmeans(m2, ~cc_trt|site_sys)
 em2a <- emmeans(m2a, ~cc_trt|site_sys)
+
+contrast(em2)  #--sig lower w/cc at west grain, if no sand correction
+contrast(em2a)  #--sig higher at east if sand correction
 
 sat_sig <- 
   contrast(em2a) %>% 
