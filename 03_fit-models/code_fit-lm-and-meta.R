@@ -138,6 +138,7 @@ anova(fom)
 emmeans(fom,  ~site_sys) 
 eom <- emmeans(fom,  ~cc_trt|site_sys) 
 pairs(eom)
+pairs(eom_nocl)
 
 #--yeah, it just enhances the rob effect
 res_om <- 
@@ -212,7 +213,10 @@ dp <-
          vi = std.error^2) %>% 
   mutate(cc_trt = recode(cc_trt, "cc" = "zcc"))
 
-dp
+dp %>% 
+  filter(term == "scal") %>% 
+  pull(estimate) %>% 
+  summary()
 
 #--clay as covariate? yes. 
 dp %>% 

@@ -46,7 +46,6 @@ dat <- read_csv("03_fit-models/03dat_gard-parms-trt.csv") %>%
 dat
 
 mdatcl <- read_csv("03_fit-models/03dat_meta-parms-eu-claycov.csv") 
-
 mdatsa <- read_csv("03_fit-models/03dat_meta-parms-eu-sandcov.csv") 
 
 
@@ -97,7 +96,7 @@ dat %>%
 ggsave("06_figs/fig_manu-parms-fit-by-trt.png")  
 
 
-#--try with patchwork?
+#--use patchwork, look at estimated differnces
 f1 <- 
   dat %>%
   filter(term %in% c("alp")) %>% 
@@ -163,6 +162,7 @@ f2
 f1+f2
 
 ggsave("06_figs/fig_manu-curve-params.png")
+
 
 # fit by eu ---------------------------------------------------------------
 
