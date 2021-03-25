@@ -194,7 +194,7 @@ fig_fc <-
   theme(strip.background = element_blank(),
         strip.text = element_text(size = rel(1.2)),
         legend.position = c(0.1, 0.1),
-        axis.text.y = element_blank(),
+       # axis.text.y = element_blank(),
         axis.title.y = element_blank()) 
 
 
