@@ -38,7 +38,7 @@ rd <-
 
 sat <- 
   rd %>% 
-  filter(press_cm %in% c(0.038)) %>% 
+  filter(press_cm %in% c(2.5)) %>% 
   group_by(site_sys, cc_trt, rep_id) %>% 
   summarise(vtheta_grav = mean(vtheta_grav, na.rm = T),
             sand = mean(sand, na.rm = T))
@@ -57,11 +57,11 @@ m2_sand <- lmer(vtheta_grav~cc_trt*site_sys + sand + (1|rep_id), data = sat)
 em2 <- emmeans(m2, ~cc_trt|site_sys)
 em2_sand <- emmeans(m2_sand, ~cc_trt|site_sys)
 
-pairs(em2)  #--sig lower w/cc at west grain, if no sand correction
-pairs(em2_sand)  #--sig higher at east if sand correction
+pairs(em2)  #--sig lower w/cc at west and central grain, if no sand correction
+pairs(em2_sand)  #--still lower at central grain, not at west
 
 sat_sig <- 
-  contrast(em2a) %>% 
+  contrast(em2_sand) %>% 
   broom::tidy() %>% 
   filter(contrast == "cc effect") %>% 
   mutate(cov = "sand", 
@@ -72,7 +72,7 @@ sat_sig %>% write_csv("03_fit-models/03dat_sat-emmeans-sig.csv")
 
 
 sat_res <-
-  confint(em2a, level = 0.9) %>%
+  confint(em2_sand, level = 0.9) %>%
   broom::tidy() %>%
   mutate(cov = "sand") %>%
   bind_rows(confint(em2, level = 0.9) %>%
@@ -94,9 +94,10 @@ sat_res %>%
 
 # field capacity ----------------------------------------------------------
 
+#--britt suggests doing 100
 fc <- 
   rd %>% 
-  filter(press_cm %in% c(50, 100)) %>% 
+  filter(press_cm %in% c(100)) %>% 
   group_by(site_sys, cc_trt, rep_id) %>% 
   summarise(vtheta_grav = mean(vtheta_grav, na.rm = T),
             sand = mean(sand, na.rm = T))
@@ -125,11 +126,8 @@ contrast(em1) #--centtal silage sig diff
 em1_sand <- emmeans(m1_sand, ~cc_trt|site_sys) #-with sand
 pairs(em1_sand) #--central silage plus west
 
-em1a # just snip it
-pairs(em1a)
-
 fc_sig <- 
-  contrast(em1a) %>% 
+  contrast(em1_sand) %>% 
   broom::tidy() %>% 
   filter(contrast == "cc effect") %>% 
   mutate(cov = "sand", 
@@ -138,7 +136,7 @@ fc_sig <-
 fc_sig %>% write_csv("03_fit-models/03dat_fc-emmeans-sig.csv")
 
 fc_res <- 
-  confint(em1a, level = 0.9) %>% 
+  confint(em1_sand, level = 0.9) %>% 
   broom::tidy() %>% 
   mutate(cov = "sand") %>% 
   bind_rows(

@@ -33,8 +33,9 @@ dat <-
   
 
 #--fig
-dat %>% 
-  ggplot(aes(cc_trt, bulkden_gcm3, color = cc_trt)) + 
+dat %>%
+  mutate(cc_trt2 = ifelse(cc_trt == "No Cover", "No\nCover\nCrop", "Rye\nCover\nCrop")) %>% 
+  ggplot(aes(cc_trt2, bulkden_gcm3, color = cc_trt)) + 
   geom_jitter(color = "gray80", width = 0.1) +
   stat_summary(geom = "point", size = 3) + 
   stat_summary(geom = "linerange", fun.data = 'mean_cl_boot', size= 1.1) +
@@ -49,7 +50,7 @@ dat %>%
         legend.position = "bottom", 
         legend.text = element_text(size = rel(1.2)),
         axis.text = element_text(size = rel(1.2)),
-        axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 0.5),
+        axis.text.x = element_text(angle = 0),
         axis.title = element_text(size = rel(1.3)))
 
 ggsave("06_figs/fig_bulkden.png")
