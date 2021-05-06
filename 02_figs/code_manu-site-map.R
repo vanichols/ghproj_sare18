@@ -77,4 +77,4 @@ ggplot() +
   coord_quickmap() +
   theme_map()
 
-ggsave("06_figs/fig_manu_map.png")
+ggsave("02_figs/fig_manu_map.png")

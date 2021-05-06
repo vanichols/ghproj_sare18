@@ -27,7 +27,8 @@ show_col(pfi_red)
 # data --------------------------------------------------------------------
 
 #--field capacity and saturation
-fc <- read_csv("03_fit-models/03dat_fc-emmeans.csv") %>% 
+fc <- 
+  read_csv("01_fit-models/dat_fc-emmeans-cis.csv") %>% 
   mutate(cc_trt = case_when(
     grepl("cc", cc_trt) ~ "Rye Cover Crop",
     grepl("no", cc_trt) ~ "No Cover",
@@ -36,7 +37,8 @@ fc <- read_csv("03_fit-models/03dat_fc-emmeans.csv") %>%
     site_sys = factor(site_sys, levels = c("West-grain", "Central-silage", "Central-grain", "East-grain"))
     ) 
 
-sat <- read_csv("03_fit-models/03dat_sat-emmeans.csv") %>% 
+sat <- 
+  read_csv("01_fit-models/dat_sat-emmeans-cis.csv") %>% 
   mutate(cc_trt = case_when(
     grepl("cc", cc_trt) ~ "Rye Cover Crop",
     grepl("no", cc_trt) ~ "No Cover",
@@ -101,8 +103,8 @@ sat %>%
 #--site on x-axis
 
 #--get sig ones
-fc_sig <- read_csv("03_fit-models/03dat_fc-emmeans-sig.csv")
-sat_sig <- read_csv("03_fit-models/03dat_sat-emmeans-sig.csv")
+fc_sig <- read_csv("01_fit-models/dat_fc-emmeans-diff.csv")
+sat_sig <- read_csv("01_fit-models/dat_sat-emmeans-diff.csv")
 
 sigs <- 
   fc_sig %>% 
@@ -114,8 +116,9 @@ sigs <-
          site_sys = factor(site_sys, levels = c("West-grain", "Central-silage", "Central-grain", "East-grain")),
          param = factor(param, levels = c("Saturation", "Field capacity"))
   ) %>% 
-  filter(adj.p.value < 0.1) %>% 
-  mutate(cc_trt = "xx")
+  filter(adj.p.value < 0.05) %>% 
+  mutate(cc_trt = "xx") %>% 
+  filter(thing != "No covariates")
 
 
 
@@ -123,15 +126,20 @@ sigs <-
 
 #--to get shapes different, have to manually add stars
 
-#--saturation fig
+#--none
+sigs %>% filter(grepl("Sat", param))
+
+# sat fig, se bars --------------------------------------------------------
+
+
 fig_sat <- 
   sat %>% 
   mutate(estimate = round(estimate, 2),
          param = ifelse(param == "saturation", "Saturation", "Field capacity"), 
          thing = ifelse(cov == "sand", "Sand as a co-variate", "No covariates"),
          site_sys = as.character(site_sys),
-         site_sys = ifelse(site_sys == "East-grain", "East-grain*", site_sys),
-         site_sys = factor(site_sys, levels = c("West-grain", "Central-silage", "Central-grain", "East-grain*")),
+         #site_sys = ifelse(site_sys == "Central-grain", "Central-grain*", site_sys),
+         site_sys = factor(site_sys, levels = c("West-grain", "Central-silage", "Central-grain", "East-grain")),
          param = factor(param, levels = c("Saturation", "Field capacity"))
   ) %>% 
   filter(thing == "Sand as a co-variate") %>% 
@@ -160,17 +168,22 @@ fig_sat <-
 
 fig_sat
 
-#--fc fig
+
+# fc fig, se bars ---------------------------------------------------------
+
+#--sat sig w/sand = central silage, west grain
+sigs %>% filter(grepl("Field", param))
+
 fig_fc <-
   fc %>% 
   mutate(estimate = round(estimate, 2),
-         param = ifelse(param == "saturation", "Saturation", "Field capacity"), 
+         param = ifelse(param == "saturation", "Saturation", "Field capacity (100 cm H2O)"), 
          thing = ifelse(cov == "sand", "Sand as a co-variate", "No covariates"),
          site_sys = as.character(site_sys),
          site_sys = ifelse(site_sys == "West-grain", "West-grain*", 
                            ifelse(site_sys == "Central-silage", "Central-silage*", site_sys)),
          site_sys = factor(site_sys, levels = c("West-grain*", "Central-silage*", "Central-grain", "East-grain")),
-         param = factor(param, levels = c("Saturation", "Field capacity"))
+         param = factor(param, levels = c("Saturation", "Field capacity (100 cm H2O)"))
   ) %>% 
   filter(thing == "Sand as a co-variate") %>% 
   ggplot(aes(site_sys, estimate, color = cc_trt, shape = cc_trt)) + 
@@ -181,7 +194,7 @@ fig_fc <-
                      ymax = estimate + std.error), 
                  size = 1.1, position = position_dodge2(width = 0.2)) +
   #guides(color = F) +
-  labs(y = "Volumetric water content (%)",
+  labs(y = "Soil volumetric water content (%)",
        x = NULL,
        shape = NULL,
        color = NULL, 
@@ -200,9 +213,11 @@ fig_fc <-
 
 fig_sat + fig_fc
 
-ggsave("06_figs/fig_manu-sat-fc.png")  
+ggsave("02_figs/old/fig_manu-sat-fc-ses.png")
 
 
+
+#--ugly, imo
 
 # try again ---------------------------------------------------------------
 fc_thing <- 
@@ -257,4 +272,3 @@ bind_rows(fc_thing, sat_thing) %>%
         axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 0.5),
         axis.title = element_text(size = rel(1.3))) 
 
-ggsave("06_figs/fig_manu-sat-fc.png")

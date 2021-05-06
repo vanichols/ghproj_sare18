@@ -46,6 +46,7 @@ dst
 fom <- lmer(om ~ site_sys * cc_trt + (1|repid), data = dst)
 anova(fom)
 
+#--no effect of cover crop
 emmeans(fom,  ~cc_trt|site_sys)
 
 # figure, averaged over all plots  ------------------------------------------------------------------
@@ -112,7 +113,7 @@ dat_pie2 %>%
         legend.position = "bottom") +
   labs(fill = NULL)
 
-ggsave("06_figs/fig_texture.png")
+ggsave("02_figs/fig_manu-texture.png")
 
 
 
@@ -188,9 +189,6 @@ dat_pie2_cc %>%
   guides(alpha = F)
   
 
-ggsave("06_figs/fig_manu-text-by-cctrt.png")
+ggsave("02_figs/fig_manu-text-by-cctrt.png")
 
-# combine no and cover pies -----------------------------------------------
-
-fig_no / fig_cc
 
