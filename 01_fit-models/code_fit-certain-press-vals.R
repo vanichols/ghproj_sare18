@@ -19,6 +19,16 @@ library(lme4)
 library(lmerTest)
 library(emmeans)
 
+
+library(PFIweeds2020)
+pfi_ccbio %>% 
+  group_by(site_name) %>% 
+  filter(year == max(year))
+
+pfi_ccbio %>% 
+  group_by(site_name) %>% 
+  filter(year == 2018)
+
 # 1 cm water = 0.0980665 kpa
 
 #--data
