@@ -31,7 +31,7 @@ rd <-
   mutate(rep_id = paste(site_sys, rep)) %>% 
   left_join(sare_texture) %>% 
   left_join(sare_om) %>% 
-  left_join(sare_bulkden)
+  left_join(sare_bulkden) %>% 
   filter(!is.na(sand)) #--get rid of extra east grain no cover plot
 
 
@@ -130,10 +130,12 @@ res_om_sand
 # bd -----------------------------------------------------------------
 
 
-#--om is the same
 m_bd <- lmer(bulkden_gcm3 ~ cc_trt*site_sys + (1|rep_id), data = rd)
 m_bd_sand <- lmer(bulkden_gcm3 ~ cc_trt*site_sys + sand + (1|rep_id), data = rd)
+m_bd_sand_fe <- lmer(bulkden_gcm3 ~ cc_trt*site_sys + sand + (1|site_sys), data = rd)
 pairs(emmeans(m_bd_sand, ~cc_trt|site_sys))
+pairs(emmeans(m_bd, ~cc_trt|site_sys))
+pairs(emmeans(m_bd_sand_fe, ~cc_trt|site_sys))
 
 res_bd_nosand <- 
   emmeans(m_bd, ~cc_trt|site_sys) %>% 
@@ -152,7 +154,7 @@ res_bd_nosand <-
   mutate(cov = "none")
 
 res_bd_sand <- 
-  emmeans(m_bd_sand, ~cc_trt|site_sys) %>% 
+  emmeans(m_bd_sand_fe, ~cc_trt|site_sys) %>% 
   broom::tidy() %>% 
   select(site_sys, cc_trt, estimate, std.error) %>% 
   mutate(respvar = "bd") %>% 
@@ -171,6 +173,18 @@ res_bd_nosand %>%
   bind_rows(res_bd_sand) %>% 
   select(cov, everything()) %>% 
   write_csv("01_fit-models/dat_bd-stats.csv")
+
+bind_rows(
+  emmeans(m_bd, ~cc_trt|site_sys) %>% 
+    broom::tidy() %>% 
+    mutate(cov = "sand"),
+  
+  emmeans(m_bd_sand, ~cc_trt|site_sys) %>% 
+  broom::tidy() %>% 
+  mutate(cov = "none")
+)  %>% 
+  
+
 
 
 # biomass -----------------------------------------------------------------
