@@ -6,6 +6,7 @@
 #
 #
 # last modified: 
+# 5/21/2021 (do rand intcp for location when using sand cov)
 #
 ##############################
 
@@ -27,7 +28,7 @@ rd <-
   sare_pressure %>%
   left_join(sare_plotkey) %>% 
   select(plot_id, site_name, sys_trt, cc_trt, rep, press_cm, vtheta) %>% 
-  unite(site_name, sys_trt, col = "site_sys") %>% 
+  unite(site_name, sys_trt, col = "site_sys", remove = F) %>% 
   mutate(rep_id = paste(site_sys, rep)) %>% 
   left_join(sare_texture) %>% 
   left_join(sare_om) %>% 
@@ -35,6 +36,7 @@ rd <-
   filter(!is.na(sand)) #--get rid of extra east grain no cover plot
 
 
+rd
 
 # texture -----------------------------------------------------------------
 
@@ -84,7 +86,7 @@ res_clay %>% write_csv("01_fit-models/dat_clay-stats.csv")
 
 #--om is the same
 m_om <- lmer(om~cc_trt*site_sys + (1|rep_id), data = rd)
-m_om_sand <- lmer(om~cc_trt*site_sys + sand + (1|rep_id), data = rd)
+m_om_sand <- lmer(om~cc_trt*site_sys + sand + (1|site_name), data = rd)
 pairs(emmeans(m_om_sand, ~cc_trt|site_sys))
 
 res_om_nosand <- 
@@ -124,7 +126,6 @@ res_om_nosand %>%
   select(cov, everything()) %>% 
   write_csv("01_fit-models/dat_om-stats.csv")
 
-
 res_om_sand
 
 # bd -----------------------------------------------------------------
@@ -132,7 +133,7 @@ res_om_sand
 
 m_bd <- lmer(bulkden_gcm3 ~ cc_trt*site_sys + (1|rep_id), data = rd)
 m_bd_sand <- lmer(bulkden_gcm3 ~ cc_trt*site_sys + sand + (1|rep_id), data = rd)
-m_bd_sand_fe <- lmer(bulkden_gcm3 ~ cc_trt*site_sys + sand + (1|site_sys), data = rd)
+m_bd_sand_fe <- lmer(bulkden_gcm3 ~ cc_trt*site_sys + sand + (1|site_name), data = rd)
 pairs(emmeans(m_bd_sand, ~cc_trt|site_sys))
 pairs(emmeans(m_bd, ~cc_trt|site_sys))
 pairs(emmeans(m_bd_sand_fe, ~cc_trt|site_sys))
@@ -161,7 +162,7 @@ res_bd_sand <-
   select(-std.error) %>% 
   pivot_wider(names_from = cc_trt, values_from = estimate) %>% 
   left_join(
-    pairs(emmeans(m_bd_sand, ~cc_trt|site_sys)) %>% 
+    pairs(emmeans(m_bd_sand_fe, ~cc_trt|site_sys)) %>% 
       broom::tidy() %>% 
       select(site_sys, contrast, estimate, std.error, p.value) %>% 
       rename("est_diff" = estimate,
@@ -182,7 +183,7 @@ bind_rows(
   emmeans(m_bd_sand, ~cc_trt|site_sys) %>% 
   broom::tidy() %>% 
   mutate(cov = "none")
-)  %>% 
+)
   
 
 

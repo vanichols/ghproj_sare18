@@ -8,6 +8,7 @@
 # last modified: 
 ##############################
 
+# 1 cm water = 0.0980665 kpa
 
 rm(list = ls())
 library(tidyverse)
@@ -17,18 +18,69 @@ library(lme4)
 library(lmerTest)
 library(emmeans)
 
+dp <- 
+  sare_pressure %>%
+  group_by(plot_id) %>%
+  mutate(
+    vlag = lag(vtheta),
+    thng = (vlag - vtheta) / vlag * 100,
+    d_um = 300 / press_cm * 0.0980665,
+    tot = sum(thng, na.rm = T),
+    pct = thng / tot
+  ) %>% 
+  filter(!is.na(pct))
 
-library(PFIweeds2020)
+dp %>% 
+  left_join(sare_plotkey) %>% 
+  ggplot(aes(d_um, pct)) + 
+  geom_col(position = "dodge", aes(fill = cc_trt)) + 
+  facet_wrap(~site_name+sys_trt)
+
+theplots <- dp %>% pull(plot_id) %>% unique()
+
+for (i in 1:length(theplots)) {
+  myplot <- theplots[i]
+  
+  fd <-
+    dp %>%
+    select(plot_id, d_um, pct) %>%
+    filter(plot_id == myplot)
+  
+  Type <- c()
+  for (j in 1:nrow(fd)) {
+    Type <- c(Type,
+              rep(fd$d_um[j], fd$pct[j] * 100))
+  }
+  
+  if (i == 1) {
+    dat <- tibble(plot_id = myplot,
+                  pore_d = Type)
+  } else {
+    dat.tmp <- tibble(plot_id = myplot,
+                      pore_d = Type)
+    dat <- bind_rows(dat, dat.tmp)
+  }
+}
 
 
-sare_pressure %>% 
-  group_by(plot_id) %>% 
-  mutate(vlag = lead(vtheta),
-         thng = (vtheta - vlag)/vtheta*100) %>% 
-  group_by(plot_id ) %>% 
-  mutate(tot = sum(thng, na.rm = T),
-         pct = thng/tot,
-         pore_cat = ifelse(press_cm < 100, "macro", "micro")) %>% 
+dat %>% 
+  left_join(sare_plotkey) %>% 
+  ggplot(aes(pore_d)) + 
+  geom_density(aes(fill = cc_trt), alpha = 0.5) + 
+  facet_wrap(~site_name+sys_trt)
+
+#--create dummy dist
+dp %>% 
+  select()
+
+dp %>% 
+  left_join(sare_plotkey) %>% 
+  ggplot(aes(d_um)) + 
+  geom_density(aes(fill = cc_trt), alpha = 0.5) + 
+  facet_wrap(~site_name + sys_trt)
+
+dp %>% 
+  mutate(pore_cat = ifelse(press_cm < 100, "macro", "micro")) %>% 
   group_by(plot_id, pore_cat) %>% 
   summarise(pct = sum(pct, na.rm = T)) %>% 
   left_join(sare_plotkey) %>% 

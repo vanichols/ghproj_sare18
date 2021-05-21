@@ -5,7 +5,7 @@
 # 
 #
 #
-# last modified: 
+# last modified: 5/21/2021 (do rand intcp for location when using sand cov)
 #
 ##############################
 
