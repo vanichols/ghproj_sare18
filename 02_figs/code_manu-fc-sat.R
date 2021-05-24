@@ -211,6 +211,7 @@ fig_fc <-
         axis.title.y = element_blank()) 
 
 
+library(patchwork)
 fig_sat + fig_fc
 
 ggsave("02_figs/old/fig_manu-sat-fc-ses.png")

@@ -15,7 +15,7 @@ library(emmeans)
 theme_set(theme_bw())
 
 fdat <- 
-  read_csv("03_fit-models/03dat_gard-parms-eu.csv") %>% 
+  read_csv("01_fit-models/dat_gard-parms-eu.csv") %>% 
   select(plot_id, term, estimate) %>% 
   pivot_wider(names_from = term, values_from = estimate) %>% 
   expand_grid(., x = c(seq(0.01, 1, 0.01), 2, 3, 4, seq(5, 500, 1))) %>% 
@@ -34,9 +34,16 @@ fdat <-
     site_sys = factor(site_sys, levels = c("West-grain", "Central-silage", "Central-grain", "East-grain")) 
   ) %>% 
   #--change to kpa
-  mutate(press_kpa = x * 0.0980665,
-         vtheta_grav = y)
+  mutate(press_cm = x,
+         press_kpa = press_cm * 0.0980665,
+         vtheta = y)
 
+
+eus <- 
+  fdat %>% 
+  select(field_id, site_sys, cc_trt, rep) %>% 
+  distinct() %>% 
+  arrange(field_id, site_sys, cc_trt, rep)
 
 dat <- 
   sare_pressure %>% 
@@ -53,8 +60,8 @@ dat <-
     
 davg <- 
   dat %>% 
-  group_by(site_sys, cc_trt, press_kpa) %>% 
-  summarise(vtheta_grav = mean(vtheta_grav, na.rm  = T)) 
+  group_by(site_sys, cc_trt, press_cm) %>% 
+  summarise(vtheta = mean(vtheta, na.rm  = T)) 
 
 
 
@@ -68,71 +75,49 @@ show_col(pfi_red)
 
 # figure not smoothed ------------------------------------------------------------------
 
-ggplot() + 
-  geom_line(data = dat, aes(vtheta_grav, press_kpa, color = cc_trt, group = plot_id), alpha = 0.5) +
-  geom_line(data = davg, aes(vtheta_grav, press_kpa, color = cc_trt), size = 3) +
-  scale_color_manual(values = c("Rye Cover Crop" = pfi_green,
-                                "No Cover" = pfi_brn)) +
-  facet_grid(.~site_sys) + 
-  scale_y_log10() +
-  scale_x_continuous(labels = label_percent(accuracy = 2)) +
-  labs(x = "Volumetric Water (%)",
-       color = NULL,
-       y = "Soil Matric Potential (kPa)\nLog-scale") + 
-  theme(strip.text = element_text(size = rel(1.3)),
-        strip.background = element_blank(),
-        legend.position = "top", 
-        legend.text = element_text(size = rel(1.2)),
-        axis.text = element_text(size = rel(1.2)),
-        #axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 0.5),
-        axis.title = element_text(size = rel(1.3))
-  )
 
-ggsave("06_figs/fig_manu-curves.png")  
 
 
 # figure, smoothed --------------------------------------------------------
 
-
 ggplot() + 
-  geom_line(data = fdat, aes(vtheta_grav, press_kpa, color = cc_trt, group = plot_id), alpha = 0.5) +
-  #geom_line(data = davg, aes(vtheta_grav, press_kpa, color = cc_trt), size = 3) +
+  geom_line(data = fdat, aes(press_cm, vtheta, color = cc_trt, group = plot_id), size = 1) +
+  #geom_line(data = davg, aes(vtheta, press_cm, color = cc_trt), size = 3) +
   scale_color_manual(values = c("Rye Cover Crop" = pfi_green,
                                 "No Cover" = pfi_brn)) +
   facet_grid(.~site_sys) + 
-  scale_y_log10() +
-  scale_x_continuous(labels = label_percent(accuracy = 2)) +
-  labs(x = "Volumetric Water (%)",
-       color = NULL,
-       y = "Soil Matric Potential (kPa)\nLog-scale") + 
-  theme(strip.text = element_text(size = rel(1.3)),
-        strip.background = element_blank(),
-        legend.position = "top", 
-        legend.text = element_text(size = rel(1.2)),
-        axis.text = element_text(size = rel(1.2)),
-        #axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 0.5),
-        axis.title = element_text(size = rel(1.3))
-  )
-
-ggplot() + 
-  geom_line(data = fdat, aes(press_kpa, vtheta_grav, color = cc_trt, group = plot_id), size = 1.1) +
-  #geom_line(data = davg, aes(vtheta_grav, press_kpa, color = cc_trt), size = 3) +
-  scale_color_manual(values = c("Rye Cover Crop" = pfi_green,
-                                "No Cover" = pfi_brn)) +
-  facet_grid(.~site_sys) + 
-  scale_x_log10(labels = label_math()) +
   scale_y_continuous(labels = label_percent(accuracy = 2)) +
   labs(y = "Volumetric Water (%)",
        color = NULL,
-       x = "Soil Matric Potential (kPa)\nLog-scale") + 
-  theme(strip.text = element_text(size = rel(1.3)),
+       x = "Soil Matric Potential (cm water)") + 
+  theme(strip.text = element_text(size = rel(1.2)),
         strip.background = element_blank(),
         legend.position = "top", 
-        legend.text = element_text(size = rel(1.2)),
-        axis.text = element_text(size = rel(1.2)),
+        legend.text = element_text(size = rel(1)),
+        axis.text = element_text(size = rel(1)),
         #axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 0.5),
-        axis.title = element_text(size = rel(1.3))
+        axis.title = element_text(size = rel(1))
   )
 
+ggsave("02_figs/fig_manu-curves.png")  
 
-ggsave("06_figs/fig_manu-curves.png")  
+
+#--just to count the number of curves
+
+ggplot() + 
+  geom_line(data = fdat, aes(press_cm, vtheta, color = cc_trt, group = plot_id), size = 1) +
+  scale_color_manual(values = c("Rye Cover Crop" = pfi_green,
+                                "No Cover" = pfi_brn)) +
+  facet_grid(.~site_sys) + 
+  scale_y_continuous(labels = label_percent(accuracy = 2)) +
+  labs(y = "Volumetric Water (%)",
+       color = NULL,
+       x = "Soil Matric Potential (cm water)") + 
+  theme(strip.text = element_text(size = rel(1.2)),
+        strip.background = element_blank(),
+        legend.position = "top", 
+        legend.text = element_text(size = rel(1)),
+        axis.text = element_text(size = rel(1)),
+        #axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 0.5),
+        axis.title = element_text(size = rel(1))
+  )

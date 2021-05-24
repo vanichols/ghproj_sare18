@@ -27,7 +27,7 @@ rd <-
   sare_pressure %>%
   left_join(sare_plotkey) %>% 
   select(plot_id, site_name, sys_trt, cc_trt, rep, press_cm, vtheta) %>% 
-  unite(site_name, sys_trt, col = "site_sys") %>% 
+  unite(site_name, sys_trt, col = "site_sys", remove = F) %>% 
   mutate(rep_id = paste(site_sys, rep)) %>% 
   left_join(sare_texture) %>% 
   left_join(sare_om) %>% 
@@ -39,7 +39,7 @@ rd <-
 sat <- 
   rd %>% 
   filter(press_cm %in% c(0)) %>% 
-  group_by(site_sys, cc_trt, rep_id) %>% 
+  group_by(site_name, site_sys, cc_trt, rep_id) %>% 
   summarise(vtheta = mean(vtheta, na.rm = T),
             sand = mean(sand, na.rm = T))
 
@@ -58,7 +58,7 @@ sat %>%
 
 #--does it make sense to correct for sand at the saturation? I don't know
 msat <- lmer(vtheta~cc_trt*site_sys + (1|rep_id), data = sat)
-msat_sand <- lmer(vtheta~cc_trt*site_sys + sand + (1|rep_id), data = sat)
+msat_sand <- lm(vtheta~cc_trt*site_sys + sand, data = sat)
 
 emsat <- emmeans(msat, ~cc_trt|site_sys)
 emsat_sand <- emmeans(msat_sand, ~cc_trt|site_sys)
@@ -84,7 +84,7 @@ sat_sig <-
 
 sat_sig %>% write_csv("01_fit-models/dat_sat-emmeans-diff.csv")
 
-emmeans(emsat_sand, ~cctrt|site_sys)
+#emmeans(emsat_sand, ~cctrt|site_sys)
 
 #--sand as cov
 sat_res_sand <- 
@@ -149,7 +149,7 @@ fc %>%
 #--physically, should include sand as covariate for field capacity
 mfc <- lmer(vtheta~cc_trt*site_sys + (1|rep_id), data = fc)
 anova(mfc)
-mfc_sand <- lmer(vtheta~cc_trt*site_sys + sand + (1|rep_id), data = fc)
+mfc_sand <- lm(vtheta~cc_trt*site_sys + sand, data = fc)
 anova(mfc_sand)
 
 emfc <- emmeans(mfc, ~cc_trt|site_sys) #-no sand

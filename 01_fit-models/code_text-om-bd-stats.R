@@ -34,7 +34,7 @@ rd <-
   left_join(sare_om) %>% 
   left_join(sare_bulkden) %>% 
   filter(!is.na(sand)) #--get rid of extra east grain no cover plot
-
+ 
 
 rd
 
@@ -86,8 +86,9 @@ res_clay %>% write_csv("01_fit-models/dat_clay-stats.csv")
 
 #--om is the same
 m_om <- lmer(om~cc_trt*site_sys + (1|rep_id), data = rd)
-m_om_sand <- lmer(om~cc_trt*site_sys + sand + (1|site_name), data = rd)
+m_om_sand <- lm(om~cc_trt*site_sys + sand, data = rd)
 pairs(emmeans(m_om_sand, ~cc_trt|site_sys))
+pairs(emmeans(m_om, ~cc_trt|site_sys))
 
 res_om_nosand <- 
   emmeans(m_om, ~cc_trt|site_sys) %>% 
@@ -133,7 +134,7 @@ res_om_sand
 
 m_bd <- lmer(bulkden_gcm3 ~ cc_trt*site_sys + (1|rep_id), data = rd)
 m_bd_sand <- lmer(bulkden_gcm3 ~ cc_trt*site_sys + sand + (1|rep_id), data = rd)
-m_bd_sand_fe <- lmer(bulkden_gcm3 ~ cc_trt*site_sys + sand + (1|site_name), data = rd)
+m_bd_sand_fe <- lm(bulkden_gcm3 ~ cc_trt*site_sys + sand, data = rd)
 pairs(emmeans(m_bd_sand, ~cc_trt|site_sys))
 pairs(emmeans(m_bd, ~cc_trt|site_sys))
 pairs(emmeans(m_bd_sand_fe, ~cc_trt|site_sys))
