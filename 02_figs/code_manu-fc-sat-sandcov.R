@@ -48,22 +48,43 @@ sat <-
     ) 
 
 
+sat %>% 
+  ggplot(aes(cc_trt, estimate, color = cov)) + 
+  geom_point() + 
+  geom_linerange(aes(ymin = conf.low,
+                     ymax = conf.high)) + 
+  facet_grid(.~site_sys)
+
+
 
 
 # figs --------------------------------------------------------------------
 
 #both on one fig
-sat %>% 
+
+dat_both <- 
+  sat %>% 
   bind_rows(fc) %>% 
-  mutate(estimate = round(estimate, 2),
+  mutate(#estimate = round(estimate, 2),
          param = ifelse(param == "saturation", "Saturation", "Field capacity"), 
          thing = ifelse(cov == "sand", "Sand as a co-variate", "No covariates"),
          site_sys = factor(site_sys, levels = c("West-grain", "Central-silage", "Central-grain", "East-grain")),
          param = factor(param, levels = c("Saturation", "Field capacity"))
-  ) %>% 
+  ) 
+
+dat_sig <- 
+  dat_both %>% 
+  mutate(sig = ifelse(param == "Field capacity" & site_sys == "Central-silage" & cc_trt == "No Cover", "*", 
+                      ifelse(param == "Field capacity" & site_sys == "West-grain" & cc_trt == "No Cover", "*", " "))) %>% 
+  filter(sig == "*", cov == "sand") %>% 
+  select(-cov)
+  
+
+dat_both %>% 
   ggplot(aes(cc_trt, estimate, alpha = thing, color = cc_trt)) + 
-  geom_point(position = position_dodge(width = 0.2), aes(pch = thing), size = 2) + 
-  geom_linerange(aes(ymin = conf.low, ymax = conf.high), position = position_dodge(width = 0.2)) +
+  geom_point(position = position_dodge(width = 0.1), aes(pch = thing), size = 2.5) + 
+  geom_linerange(aes(ymin = conf.low, ymax = conf.high), position = position_dodge(width = 0.1), size = 1) +
+  geom_text(data = dat_sig, x = 1.5, y = 0.32, label = "*", size = 13, show.legend = FALSE) +
   labs(y = "Volumetric water content (%)",
        x = NULL,
        color = NULL, 
@@ -71,11 +92,15 @@ sat %>%
        pch = NULL) +
   scale_y_continuous(labels = label_percent(accuracy = 2)) +
   scale_color_manual(values = c(pfi_brn, pfi_green)) + 
-  scale_alpha_manual(values = c(0.3, 1)) +
+  scale_alpha_manual(values = c(0.2, 1)) +
   facet_grid(param ~ site_sys, scales = "free") + 
+  guides(color = F,
+         label = F,
+         text = F) +
   theme(strip.background = element_blank(),
         strip.text = element_text(size = rel(1.2)), 
         legend.position = "bottom") 
+
 
 ggsave("02_figs/fig_manu-sat-fc-ses-sand.png")
 

@@ -90,7 +90,7 @@ sat_sig %>% write_csv("01_fit-models/dat_sat-emmeans-diff.csv")
 sat_res_sand <- 
   emsat_sand %>% 
   broom::tidy() %>%
-  left_join(confint(emsat_sand, level = 0.5) %>%
+  left_join(confint(emsat_sand, level = 0.95) %>%
               broom::tidy()) %>% 
   mutate(cov = "sand") 
 
@@ -98,7 +98,7 @@ sat_res_sand <-
 sat_res_nosand <- 
   emsat %>% 
   broom::tidy() %>%
-  left_join(confint(emsat, level = 0.5) %>%
+  left_join(confint(emsat, level = 0.95) %>%
               broom::tidy()) %>% 
   mutate(cov = "none") 
 
@@ -172,7 +172,7 @@ fc_sig %>% write_csv("01_fit-models/dat_fc-emmeans-diff.csv")
 fc_res_sand <- 
   emfc_sand %>% 
   broom::tidy() %>%
-  left_join(confint(emfc_sand, level = 0.5) %>%
+  left_join(confint(emfc_sand, level = 0.95) %>%
               broom::tidy()) %>% 
   mutate(cov = "sand") 
 
@@ -180,7 +180,7 @@ fc_res_sand <-
 fc_res_nosand <- 
   emfc %>% 
   broom::tidy() %>%
-  left_join(confint(emfc, level = 0.5) %>%
+  left_join(confint(emfc, level = 0.95) %>%
               broom::tidy()) %>% 
   mutate(cov = "none") 
 
@@ -200,5 +200,12 @@ fc_res %>%
   geom_linerange(aes(ymin = conf.low,
                      ymax = conf.high)) + 
   facet_grid(cov~site_sys)
+
+fc_res %>% 
+  ggplot(aes(cc_trt, estimate, color = cov)) + 
+  geom_point() + 
+  geom_linerange(aes(ymin = conf.low,
+                     ymax = conf.high)) + 
+  facet_grid(.~site_sys)
 
 
