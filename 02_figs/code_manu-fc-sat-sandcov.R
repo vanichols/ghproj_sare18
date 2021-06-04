@@ -30,7 +30,7 @@ show_col(pfi_red)
 fc <- 
   read_csv("01_fit-models/dat_fc-emmeans-cis.csv") %>% 
   mutate(cc_trt = case_when(
-    grepl("cc", cc_trt) ~ "Rye Cover Crop",
+    grepl("cc", cc_trt) ~ "Cover Crop",
     grepl("no", cc_trt) ~ "No Cover",
     TRUE ~ cc_trt),
     site_sys = str_replace_all(site_sys, "_", "-"),
@@ -40,7 +40,7 @@ fc <-
 sat <- 
   read_csv("01_fit-models/dat_sat-emmeans-cis.csv") %>% 
   mutate(cc_trt = case_when(
-    grepl("cc", cc_trt) ~ "Rye Cover Crop",
+    grepl("cc", cc_trt) ~ "Cover Crop",
     grepl("no", cc_trt) ~ "No Cover",
     TRUE ~ cc_trt),
     site_sys = str_replace_all(site_sys, "_", "-"),
@@ -81,17 +81,18 @@ dat_sig <-
   
 
 dat_both %>% 
+  mutate(cc_trt = fct_rev(cc_trt)) %>% 
   ggplot(aes(cc_trt, estimate, alpha = thing, color = cc_trt)) + 
   geom_point(position = position_dodge(width = 0.1), aes(pch = thing), size = 2.5) + 
   geom_linerange(aes(ymin = conf.low, ymax = conf.high), position = position_dodge(width = 0.1), size = 1) +
-  geom_text(data = dat_sig, x = 1.5, y = 0.32, label = "*", size = 13, show.legend = FALSE) +
+  geom_text(data = dat_sig, x = 1.5, y = 0.305, label = "*", size = 13, show.legend = FALSE) +
   labs(y = "Volumetric water content (%)",
        x = NULL,
        color = NULL, 
        alpha = NULL,
        pch = NULL) +
   scale_y_continuous(labels = label_percent(accuracy = 2)) +
-  scale_color_manual(values = c(pfi_brn, pfi_green)) + 
+  scale_color_manual(values = c("No Cover" = pfi_brn, "Cover Crop" = pfi_green)) + 
   scale_alpha_manual(values = c(0.2, 1)) +
   facet_grid(param ~ site_sys, scales = "free") + 
   guides(color = F,

@@ -111,12 +111,12 @@ sare_pressure %>%
   group_by(plot_id ) %>% 
   mutate(tot = sum(thng, na.rm = T),
          pct = thng/tot,
-         pore_cat = ifelse(press_cm < 100, "macro", "micro")) %>% 
+         pore_cat = ifelse(press_cm < 100, "Macropore (>30 um)", "Micropore (<30 um)")) %>% 
   group_by(plot_id, pore_cat) %>% 
   summarise(pct = sum(pct, na.rm = T)) %>% 
   left_join(sare_plotkey) %>% 
   mutate(cc_trt = case_when(
-    grepl("cc", cc_trt) ~ "Rye Cover Crop",
+    grepl("cc", cc_trt) ~ "Cover Crop",
     grepl("no", cc_trt) ~ "No Cover",
     TRUE ~ cc_trt),
     site_sys = paste(site_name, sys_trt, sep = "-"),
@@ -127,10 +127,22 @@ sare_pressure %>%
                                  "East-grain"))) %>%  
   group_by(pore_cat, site_sys, cc_trt) %>% 
   summarise(pct = mean(pct, na.rm = T)) %>% 
+  mutate(cc_trt = fct_rev(cc_trt)) %>% 
   ggplot(aes(cc_trt, pct, alpha = pore_cat)) + 
-  geom_col(aes(fill = cc_trt)) + 
-  scale_fill_manual(values = c(pfi_green, pfi_brn)) +
-  facet_grid(.~site_sys, scales = "free")
+  geom_col(aes(fill = cc_trt), color = "black") + 
+  scale_fill_manual(values = c("No Cover" = pfi_brn, "Cover Crop" = pfi_green)) +
+  guides(fill = F) +
+  scale_y_continuous(labels = label_percent()) +
+  labs(x = NULL, y = "Percentage of Pores",
+       alpha = NULL) +
+  facet_grid(.~site_sys, scales = "free") + 
+  theme(strip.background = element_blank(),
+        strip.text = element_text(size = rel(1.2)), 
+        legend.position = "bottom") 
+
+ggsave("02_figs/fig_manu_poresize.png")
+
+
 
 sare_pressure %>% 
   group_by(plot_id) %>% 

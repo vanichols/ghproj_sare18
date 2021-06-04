@@ -28,7 +28,7 @@ fdat <-
   left_join(sare_plotkey) %>% 
   unite(site_name, sys_trt, col = "site_sys", sep = "-") %>% 
   mutate(cc_trt = case_when(
-    grepl("cc", cc_trt) ~ "Rye Cover Crop",
+    grepl("cc", cc_trt) ~ "Cover Crop",
     grepl("no", cc_trt) ~ "No Cover",
     TRUE ~ cc_trt),
     site_sys = factor(site_sys, levels = c("West-grain", "Central-silage", "Central-grain", "East-grain")) 
@@ -50,13 +50,14 @@ dat <-
   left_join(sare_plotkey) %>% 
   unite(site_name, sys_trt, col = "site_sys", sep = "-") %>% 
   mutate(cc_trt = case_when(
-    grepl("cc", cc_trt) ~ "Rye Cover Crop",
+    grepl("cc", cc_trt) ~ "Cover Crop",
     grepl("no", cc_trt) ~ "No Cover",
     TRUE ~ cc_trt),
     site_sys = factor(site_sys, levels = c("West-grain", "Central-silage", "Central-grain", "East-grain")) 
   ) %>% 
   #--change to kpa
-  mutate(press_kpa = press_cm * 0.0980665)
+  mutate(press_kpa = press_cm * 0.0980665,
+         cc_trt = fct_rev(cc_trt))
     
 davg <- 
   dat %>% 
@@ -83,7 +84,7 @@ show_col(pfi_red)
 ggplot() + 
   geom_line(data = fdat, aes(press_cm, vtheta, color = cc_trt, group = plot_id), size = 1) +
   #geom_line(data = davg, aes(vtheta, press_cm, color = cc_trt), size = 3) +
-  scale_color_manual(values = c("Rye Cover Crop" = pfi_green,
+  scale_color_manual(values = c("Cover Crop" = pfi_green,
                                 "No Cover" = pfi_brn)) +
   facet_grid(.~site_sys) + 
   scale_y_continuous(labels = label_percent(accuracy = 2)) +
@@ -99,14 +100,14 @@ ggplot() +
         axis.title = element_text(size = rel(1))
   )
 
-ggsave("02_figs/fig_manu-curves.png")  
+ggsave("02_figs/fig_manu-curves.png",width = 7, height = 4 )  
 
 
 #--just to count the number of curves
 
 ggplot() + 
   geom_line(data = fdat, aes(press_cm, vtheta, color = cc_trt, group = plot_id), size = 1) +
-  scale_color_manual(values = c("Rye Cover Crop" = pfi_green,
+  scale_color_manual(values = c("Cover Crop" = pfi_green,
                                 "No Cover" = pfi_brn)) +
   facet_grid(.~site_sys) + 
   scale_y_continuous(labels = label_percent(accuracy = 2)) +
