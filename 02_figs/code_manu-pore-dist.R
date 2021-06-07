@@ -14,7 +14,7 @@ rm(list = ls())
 library(tidyverse)
 #remotes::install_github("vanichols/PFIswhc")
 library(PFIswhc)
-
+library(scales)
 
 theme_set(theme_bw())
 
@@ -30,133 +30,67 @@ show_col(pfi_green)
 
 # data --------------------------------------------------------------------
 
+dp <- read_csv("01_fit-models/dat_poresizes.csv") %>% 
+  group_by(pore_cat, site_sys, cc_trt, rep_id) %>% 
+  summarise(pct = sum(pct, na.rm = T))
 
-dp <- 
-  sare_pressure %>%
-  group_by(plot_id) %>%
+
+
+# do macro/micro summary --------------------------------------------------
+raws <- 
+  dp %>% 
+  filter(pore_cat == "Macropores (>30 um)") %>% 
   mutate(
-    vlag = lag(vtheta),
-    thng = (vlag - vtheta) / vlag * 100,
-    d_um = 300 / press_cm * 0.0980665,
-    tot = sum(thng, na.rm = T),
-    pct = thng / tot
-  ) %>% 
-  filter(!is.na(pct))
-
-dp %>% 
-  left_join(sare_plotkey) %>% 
-  ggplot(aes(d_um, pct)) + 
-  geom_col(position = "dodge", aes(fill = cc_trt)) + 
-  facet_wrap(~site_name+sys_trt)
-
-
-
-# create dummy dataset for distribution -----------------------------------
-
-#--something isn't right...
-
-theplots <- dp %>% pull(plot_id) %>% unique()
-
-for (i in 1:length(theplots)) {
-  myplot <- theplots[i]
-  
-  fd <-
-    dp %>%
-    select(plot_id, d_um, pct) %>%
-    filter(plot_id == myplot)
-  
-  Type <- c()
-  for (j in 1:nrow(fd)) {
-    Type <- c(Type,
-              rep(fd$d_um[j], fd$pct[j] * 100))
-  }
-  
-  if (i == 1) {
-    dat <- tibble(plot_id = myplot,
-                  pore_d = Type)
-  } else {
-    dat.tmp <- tibble(plot_id = myplot,
-                      pore_d = Type)
-    dat <- bind_rows(dat, dat.tmp)
-  }
-}
-
-
-dat %>% 
-  left_join(sare_plotkey) %>% 
-  mutate(cc_trt = case_when(
-    grepl("cc", cc_trt) ~ "Rye Cover Crop",
-    grepl("no", cc_trt) ~ "No Cover",
-    TRUE ~ cc_trt),
-    site_sys = paste(site_name, sys_trt, sep = "-"),
     site_sys = factor(site_sys, 
                       levels = c("West-grain",
                                  "Central-silage", 
                                  "Central-grain",
-                                 "East-grain"))) %>%  
-  ggplot(aes(pore_d)) + 
-  geom_density(aes(fill = cc_trt), alpha = 0.5) + 
-  scale_fill_manual(values = c(pfi_green, pfi_brn)) +
-  facet_wrap(~site_sys + cc_trt, ncol = 2) 
-  
+                                 "East-grain")))
 
-# do macro/micro summary --------------------------------------------------
+
 
 #--not sure which order to calculate them (lag/lead)
 
-sare_pressure %>% 
-  group_by(plot_id) %>% 
-  mutate(vlag = lead(vtheta),
-         thng = (vtheta - vlag)/vtheta*100) %>% 
-  group_by(plot_id ) %>% 
-  mutate(tot = sum(thng, na.rm = T),
-         pct = thng/tot,
-         pore_cat = ifelse(press_cm < 100, "Macropore (>30 um)", "Micropore (<30 um)")) %>% 
-  group_by(plot_id, pore_cat) %>% 
-  summarise(pct = sum(pct, na.rm = T)) %>% 
-  left_join(sare_plotkey) %>% 
-  mutate(cc_trt = case_when(
-    grepl("cc", cc_trt) ~ "Cover Crop",
-    grepl("no", cc_trt) ~ "No Cover",
-    TRUE ~ cc_trt),
-    site_sys = paste(site_name, sys_trt, sep = "-"),
+dat_pores <- 
+  dp %>% 
+  filter(pore_cat == 
+           "Micropores (<30 um)") %>% 
+  #--get mean for each trial
+  group_by(pore_cat, site_sys, cc_trt) %>% 
+  summarise(pct = mean(pct, na.rm = T)) %>% 
+  pivot_wider(names_from = pore_cat, values_from = pct) %>% 
+  #--force the macro to fill in the rest
+  mutate(`Macropores (>30 um)` = 1 - `Micropores (<30 um)`) %>% 
+    pivot_longer(3:4, names_to = "pore_cat", values_to = "pct") %>% 
+  mutate(cc_trt = fct_rev(cc_trt)) %>% 
+  mutate(
     site_sys = factor(site_sys, 
                       levels = c("West-grain",
                                  "Central-silage", 
                                  "Central-grain",
-                                 "East-grain"))) %>%  
-  group_by(pore_cat, site_sys, cc_trt) %>% 
-  summarise(pct = mean(pct, na.rm = T)) %>% 
-  mutate(cc_trt = fct_rev(cc_trt)) %>% 
-  ggplot(aes(cc_trt, pct, alpha = pore_cat)) + 
-  geom_col(aes(fill = cc_trt), color = "black") + 
+                                 "East-grain")),
+    pore_cat = factor(pore_cat, 
+                      levels = c("Macropores (>30 um)",
+                                 "Micropores (<30 um)")),
+    pore_cat = fct_rev(pore_cat))
+  
+
+dat_pores %>% 
+  ggplot() + 
+  geom_col(aes(cc_trt, pct, alpha = pore_cat, fill = cc_trt), color = "black") + 
+#  geom_linerange(data = maxmin, aes(x = cc_trt, ymin = min_pct, ymax = max_pct)) +
+  #geom_linerange(data = maxmin, aes(x = cc_trt, ymin = sdlo, ymax = sdhi)) +
+  geom_point(data = raws, aes(x = cc_trt, y = pct)) +
   scale_fill_manual(values = c("No Cover" = pfi_brn, "Cover Crop" = pfi_green)) +
   guides(fill = F) +
   scale_y_continuous(labels = label_percent()) +
   labs(x = NULL, y = "Percentage of Pores",
        alpha = NULL) +
+  guides(alpha = guide_legend(reverse = T)) +
   facet_grid(.~site_sys, scales = "free") + 
   theme(strip.background = element_blank(),
         strip.text = element_text(size = rel(1.2)), 
         legend.position = "bottom") 
 
-ggsave("02_figs/fig_manu_poresize.png")
-
-
-
-sare_pressure %>% 
-  group_by(plot_id) %>% 
-  mutate(vlag = lead(vtheta),
-         thng = (vtheta - vlag)/vtheta*100) %>% 
-  group_by(plot_id ) %>% 
-  mutate(tot = sum(thng, na.rm = T),
-         pct = thng/tot,
-         pore_cat = ifelse(press_cm < 100, "macro", "micro")) %>% 
-  group_by(plot_id, pore_cat) %>% 
-  summarise(pct = sum(pct, na.rm = T)) %>% 
-  left_join(sare_plotkey) %>% 
-  filter(pore_cat == "macro") %>% 
-  ggplot(aes(cc_trt, pct)) + 
-  geom_point() + 
-  facet_grid(.~site_name + sys_trt)
+ggsave("02_figs/fig_manu_poresize.png", width = 7)
 
