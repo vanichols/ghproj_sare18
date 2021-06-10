@@ -1,0 +1,265 @@
+---
+title: "Supplementary Material for 'Effects of Winter Cover Cropping on Soil Water-Holding Capacity'"
+author: "Nichols et al. 2021"
+date: "6/15/2021"
+header-includes: #allows you to add in your own Latex packages
+- \usepackage{float} #use the 'float' package
+- \floatplacement{figure}{H}  #make every figure with caption = h, this was the fix
+output: 
+  pdf_document:
+    fig_cap: yes
+    keep_tex: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, message = F, warning = F)
+library(tidyverse)
+library(PFIweeds2020)
+library(PFIswhc)
+library(scales)
+library(patchwork)
+
+library(knitr)
+library(kableExtra)
+
+```
+
+# General Site Management Summary
+
+```{r gentbl}
+
+pfi_tb <- pfi_sitemgmt %>%
+  rename(
+    "Site Description" = site_desc, 
+    "General Location" = loc,
+    "Treatment Description" = trt_desc,
+    "Year of Initiation" = initiation_year,
+    "Crop Planted in 2019" = crop2019,
+    "Number of Treatment Replicates" = reps_nu,
+    "Sampled in 2019" = sampled2019,
+    "Herbicides Used in 2018 Growing Season" = herb_growingseason2018,
+    "Herbicdes Used in Fall 2018" = herb_fall2018,
+    "Herbicides Used in Spring 2019" = herb_spring2019,
+    "General Herbicide Regime" = herbspring_desc,
+    "General Date of Cover Crop Termination" = herbspring2019_date,
+    "General Date of Crop Planting" = cropplanting2019_date,
+    "Inorganic Fertilizer Used" = inorganic_fert,
+    "Organic Fertilizer Used" = organic_fert,
+    "Tillage Used" = tillage
+    ) 
+
+#--general
+pfi_tb %>% 
+  select(1:7) %>% 
+  kable(caption = "General Site Description", booktabs = T, align = "c") %>% 
+  collapse_rows(columns = 1, latex_hline = "major") %>% 
+  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) %>% 
+  column_spec(column = c(1), width = "5em")  %>% 
+  column_spec(column = c(2), width = "5em")  %>% 
+  column_spec(column = c(3), width = "5em")  %>% 
+  column_spec(column = c(4:6), width = "3em") 
+```
+
+\newpage
+
+```{r herbtable}
+#--herbicide
+pfi_tb %>% 
+  select(1, 8:10) %>% 
+  kable(caption = "2018-2019 Herbicide Use", booktabs = T, align = "c") %>% 
+  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) %>% 
+  column_spec(column = c(1:4), width = "8em") %>% 
+  collapse_rows(columns = 1, latex_hline = "major")
+```
+
+\newpage
+
+```{r mgmttable}
+
+#--mgmt
+pfi_tb %>% 
+  select(1, 11:16) %>% 
+  kable(caption = "General Management", booktabs = T, align = "c") %>% 
+  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) %>% 
+  column_spec(column = c(2), width = "7em") %>% 
+   column_spec(column = c(3:7), width = "5em") %>% 
+   collapse_rows(columns = 1, latex_hline = "major")
+  
+```
+
+
+\newpage
+# Cover crop biomass production over past 10 years of trials
+
+```{r ccbio}
+
+  pfi_ccbio %>% 
+  filter(year > 2009) %>% 
+  mutate(site_name = recode(site_name,
+                            "Boyd" = "Central",
+                            "Funcke" = "West",
+                            "Stout" = "East")) %>% 
+  unite(site_name, sys_trt, col = "trial") %>% 
+  group_by(trial, year) %>% 
+  summarise(mbio = mean(ccbio_Mgha)) %>% 
+  mutate_if(is.numeric, round, 2) %>% 
+  pivot_wider(names_from = year, values_from = mbio) %>% 
+  ungroup() %>% 
+      kable(caption = "Historical cover crop biomass production (Mg/ha) by trial", booktabs = T, align = "c") %>% 
+  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) %>% 
+   collapse_rows(columns = 1, latex_hline = "major")
+
+```
+
+
+
+\newpage
+# Statistical Results
+ 
+## Soil texture
+
+
+```{r texture}
+
+#--text
+PFIswhc::sare_texture %>% 
+  left_join(sare_plotkey) %>% 
+  group_by(site_name, sys_trt, crop_trt, cc_trt) %>% 
+  summarise(clay = mean(clay, na.rm = T),
+            silt = mean(silt, na.rm = T)) %>% 
+  mutate(sand = 100 - clay - silt) %>% 
+  mutate_if(is.numeric, round, 1) %>% 
+  kable(caption = "Mean texture (%) by trial", booktabs = T, align = "c") %>% 
+  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) %>% 
+  #column_spec(column = c(2), width = "7em") %>% 
+  # column_spec(column = c(3:7), width = "5em") %>% 
+   collapse_rows(columns = c(1), latex_hline = "major")
+
+
+clay.stats <- read_csv("../01_fit-models/dat_clay-stats.csv")
+
+clay.stats %>% 
+  mutate_if(is.numeric, round, 3) %>% 
+  mutate(diff_pval = ifelse(diff_pval < 0.001, "<0.001", diff_pval)) %>% 
+  kable(caption = "Statistical analysis of cover crop effect on clay", booktabs = T, align = "c") %>% 
+  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) 
+
+sand.stats <- read_csv("../01_fit-models/dat_sand-stats.csv")
+
+sand.stats %>% 
+  mutate_if(is.numeric, round, 3) %>% 
+  mutate(diff_pval = ifelse(diff_pval < 0.001, "<0.001", diff_pval)) %>% 
+  kable(caption = "Statistical analysis of cover crop effect on sand", booktabs = T, align = "c") %>% 
+  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) 
+
+
+```
+
+```{r om}
+
+#--om
+PFIswhc::sare_om %>% 
+  left_join(sare_plotkey) %>% 
+   group_by(site_name, sys_trt, crop_trt, cc_trt) %>% 
+  summarise(om_mean = mean(om, na.rm = T),
+            om_sd = sd(om, na.rm = T)) %>% 
+  mutate_if(is.numeric, round, 2) %>% 
+  kable(caption = "Mean soil organic matter (%) by trial", booktabs = T, align = "c") %>% 
+  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) %>% 
+   collapse_rows(columns = c(1), latex_hline = "major")
+
+om.stats <- read_csv("../01_fit-models/dat_om-stats.csv")
+
+om.stats %>% 
+  mutate_if(is.numeric, round, 3) %>% 
+  mutate(diff_pval = ifelse(diff_pval < 0.001, "<0.001", diff_pval)) %>% 
+  kable(caption = "Statistical analysis of cover crop effect on organic matter, with and without sand covariate", booktabs = T, align = "c") %>% 
+  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) %>% 
+   collapse_rows(columns = c(1), latex_hline = "major")
+
+
+
+```
+
+```{r bulkden}
+
+#--bd
+PFIswhc::sare_bulkden %>% 
+  left_join(sare_plotkey) %>% 
+   group_by(site_name, sys_trt, crop_trt, cc_trt) %>% 
+  summarise(bulkden_mean = mean(bulkden_gcm3, na.rm = T),
+            bulkden_sd = sd(bulkden_gcm3, na.rm = T)) %>% 
+  mutate_if(is.numeric, round, 2) %>% 
+  kable(caption = "Mean bulk density (g/cm3) by trial", booktabs = T, align = "c") %>% 
+  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) %>% 
+   collapse_rows(columns = c(1), latex_hline = "major")
+
+bd.stats <- read_csv("../01_fit-models/dat_bd-stats.csv")
+
+bd.stats %>% 
+  mutate_if(is.numeric, round, 3) %>% 
+  mutate(diff_pval = ifelse(diff_pval < 0.001, "<0.001", diff_pval)) %>% 
+  kable(caption = "Statistical analysis of cover crop effect on bulk density, with and without sand covariate", booktabs = T, align = "c") %>% 
+  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) %>% 
+   collapse_rows(columns = c(1), latex_hline = "major")
+
+
+
+```
+
+## Soil moisture (%vol) at saturation
+```{r sat}
+
+#--sat
+  sare_pressure %>%
+  left_join(sare_plotkey) %>% 
+  select(plot_id, site_name, sys_trt, cc_trt, rep, press_cm, vtheta) %>% 
+  unite(site_name, sys_trt, col = "site_sys", remove = F) %>% 
+  filter(press_cm %in% c(0)) %>% 
+  group_by(site_sys, cc_trt) %>% 
+  summarise(vtheta_mean = mean(vtheta, na.rm = T),
+            vtheta_sd = sd(vtheta, na.rm = T)) %>% 
+  mutate_if(is.numeric, round, 2) %>% 
+  kable(caption = "Mean volumetric soil moisture (%) at saturation by trial", booktabs = T, align = "c") %>% 
+  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) %>% 
+   collapse_rows(columns = c(1), latex_hline = "major")
+
+
+sat.stats <- read_csv("../01_fit-models/dat_sat-emmeans-diff.csv") %>% 
+  select(cov, site_sys, everything(), -null.value)
+
+sat.stats %>% 
+  mutate_if(is.numeric, round, 3) %>% 
+  mutate(adj.p.value = ifelse(adj.p.value < 0.001, "<0.001",adj.p.value)) %>% 
+  kable(caption = "Statistical analysis of cover crop effect on soil water at saturation, with and without sand covariate", booktabs = T, align = "c") %>% 
+  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) %>% 
+   collapse_rows(columns = c(1), latex_hline = "major")
+```
+## Soil moisture (%vol) at field capacity (-100 cm water)
+```{r fc}
+
+#--fc
+  sare_pressure %>%
+  left_join(sare_plotkey) %>% 
+  select(plot_id, site_name, sys_trt, cc_trt, rep, press_cm, vtheta) %>% 
+  unite(site_name, sys_trt, col = "site_sys", remove = F) %>% 
+  filter(press_cm %in% c(100)) %>% 
+  group_by(site_sys, cc_trt) %>% 
+  summarise(vtheta_mean = mean(vtheta, na.rm = T),
+            vtheta_sd = sd(vtheta, na.rm = T)) %>% 
+  mutate_if(is.numeric, round, 2) %>% 
+  kable(caption = "Mean volumetric soil moisture (%) at field capacity by trial", booktabs = T, align = "c") %>% 
+  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) %>% 
+   collapse_rows(columns = c(1), latex_hline = "major")
+
+
+fc.stats <- read_csv("../01_fit-models/dat_fc-emmeans-diff.csv") %>% 
+  select(cov, site_sys, everything(), -null.value)
+
+fc.stats %>% 
+  mutate_if(is.numeric, round, 3) %>% 
+  mutate(adj.p.value = ifelse(adj.p.value < 0.001, "<0.001",adj.p.value)) %>% 
+  kable(caption = "Statistical analysis of cover crop effect on soil water at field capacity, with and without sand covariate", booktabs = T, align = "c") %>% 
+  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) %>% 
+   collapse_rows(columns = c(1), latex_hline = "major")
+```

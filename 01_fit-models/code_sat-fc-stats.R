@@ -159,11 +159,22 @@ emfc_sand <- emmeans(mfc_sand, ~cc_trt|site_sys) #-with sand
 pairs(emfc_sand) #--central silage plus west
 
 fc_sig <- 
+    bind_rows(
   contrast(emfc_sand) %>% 
   broom::tidy() %>% 
   filter(contrast == "cc effect") %>% 
   mutate(cov = "sand", 
-         param = "field capacity")
+         param = "field capacity"),
+  
+  contrast(emfc) %>% 
+    broom::tidy() %>% 
+    filter(contrast == "cc effect") %>% 
+    mutate(cov = "none", 
+           param = "field capacity")
+  )
+
+
+
  
 fc_sig %>% write_csv("01_fit-models/dat_fc-emmeans-diff.csv")
 
