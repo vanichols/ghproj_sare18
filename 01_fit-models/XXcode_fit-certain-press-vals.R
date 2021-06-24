@@ -5,7 +5,7 @@
 # 
 #
 #
-# last modified: 
+# last modified: 6/24/2021 (update 2.5 to 3.8, vtheta_grav hadn't been updated, uh oh?)
 ##############################
 
 
@@ -36,7 +36,7 @@ pfi_ccbio %>%
 rd <- 
   sare_pressure %>%
   left_join(sare_plotkey) %>% 
-  select(plot_id, site_name, sys_trt, cc_trt, rep, press_cm, vtheta_grav) %>% 
+  select(plot_id, site_name, sys_trt, cc_trt, rep, press_cm, vtheta) %>% 
   mutate(press_kPa = press_cm * 0.0980665) %>% 
   unite(site_name, sys_trt, col = "site_sys") %>% 
   mutate(rep_id = paste(site_sys, rep)) %>% 
@@ -48,21 +48,21 @@ rd <-
 
 sat <- 
   rd %>% 
-  filter(press_cm %in% c(2.5)) %>% 
+  filter(press_cm %in% c(3.8)) %>% 
   group_by(site_sys, cc_trt, rep_id) %>% 
-  summarise(vtheta_grav = mean(vtheta_grav, na.rm = T),
+  summarise(vtheta = mean(vtheta, na.rm = T),
             sand = mean(sand, na.rm = T))
 
 sat %>% 
-  ggplot(aes(cc_trt, vtheta_grav)) + 
+  ggplot(aes(cc_trt, vtheta)) + 
   geom_point(aes(size = sand)) +
   facet_grid(.~site_sys) + 
   scale_color_viridis_c()
 
 
 #--does it make sense to correct for sand at the saturation? I'm not convinced
-m2 <- lmer(vtheta_grav~cc_trt*site_sys + (1|rep_id), data = sat)
-m2_sand <- lmer(vtheta_grav~cc_trt*site_sys + sand + (1|rep_id), data = sat)
+m2 <- lmer(vtheta~cc_trt*site_sys + (1|rep_id), data = sat)
+m2_sand <- lmer(vtheta~cc_trt*site_sys + sand + (1|rep_id), data = sat)
 
 em2 <- emmeans(m2, ~cc_trt|site_sys)
 em2_sand <- emmeans(m2_sand, ~cc_trt|site_sys)
@@ -109,12 +109,12 @@ fc <-
   rd %>% 
   filter(press_cm %in% c(100)) %>% 
   group_by(site_sys, cc_trt, rep_id) %>% 
-  summarise(vtheta_grav = mean(vtheta_grav, na.rm = T),
+  summarise(vtheta = mean(vtheta, na.rm = T),
             sand = mean(sand, na.rm = T))
 
 
 fc %>% 
-  ggplot(aes(cc_trt, vtheta_grav)) + 
+  ggplot(aes(cc_trt, vtheta)) + 
   geom_point(aes(size = sand)) + 
   facet_grid(.~site_sys) + 
   labs(title = "field capacity",
@@ -125,9 +125,9 @@ fc %>%
   filter(site_sys == "East_grain")
 
 #--physically, should include sand as covariate for field capacity
-m1 <- lmer(vtheta_grav~cc_trt*site_sys + (1|rep_id), data = fc)
+m1 <- lmer(vtheta~cc_trt*site_sys + (1|rep_id), data = fc)
 anova(m1)
-m1_sand <- lmer(vtheta_grav~cc_trt*site_sys + sand + (1|rep_id), data = fc)
+m1_sand <- lmer(vtheta~cc_trt*site_sys + sand + (1|rep_id), data = fc)
 anova(m1_sand)
 
 em1 <- emmeans(m1, ~cc_trt|site_sys) #-no sand

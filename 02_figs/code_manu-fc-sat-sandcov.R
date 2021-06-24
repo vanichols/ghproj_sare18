@@ -77,7 +77,9 @@ dat_sig <-
   mutate(sig = ifelse(param == "Field capacity" & site_sys == "Central-silage" & cc_trt == "No Cover", "*", 
                       ifelse(param == "Field capacity" & site_sys == "West-grain" & cc_trt == "No Cover", "*", " "))) %>% 
   filter(sig == "*", cov == "sand") %>% 
-  select(-cov)
+  select(-cov) %>% 
+  group_by(param, site_sys) %>% 
+  mutate(est_place = mean(estimate))
   
 
 dat_both %>% 
@@ -104,6 +106,66 @@ dat_both %>%
 
 
 ggsave("02_figs/fig_manu-sat-fc-ses-sand.png")
+
+
+
+# just sand results -------------------------------------------------------
+
+dat_both %>% 
+  filter(cov == "sand") %>% 
+  mutate(cc_trt = fct_rev(cc_trt)) %>% 
+  ggplot(aes(cc_trt, estimate, color = cc_trt)) + 
+  geom_point(size = 3) + 
+  geom_linerange(aes(ymin = conf.low, ymax = conf.high), size = 1) +
+  geom_text(data = dat_sig, x = 1.5, y = 0.305, label = "*", size = 13, show.legend = FALSE, color = "black") +
+  labs(y = "Volumetric water content (%)",
+       x = NULL,
+       color = NULL, 
+       alpha = NULL,
+       pch = NULL) +
+  scale_y_continuous(labels = label_percent(),
+                     breaks = c(.3, .4, .5)) +
+  scale_color_manual(values = c("No Cover" = pfi_brn, "Cover Crop" = pfi_green)) + 
+  facet_grid(param ~ site_sys)+#, scales = "free") + 
+  guides(color = F,
+         label = F,
+         text = F) +
+  theme(strip.background = element_blank(),
+        axis.text.x = element_text(angle = 30, hjust = 1),
+        strip.text = element_text(size = rel(1.2)), 
+        legend.position = "bottom") 
+
+
+ggsave("02_figs/fig_manu-sat-fc-ses.png")
+
+
+
+
+dat_both %>% 
+  filter(cov == "sand") %>% 
+  mutate(cc_trt = fct_rev(cc_trt)) %>% 
+  ggplot(aes(cc_trt, estimate, color = cc_trt)) + 
+  geom_point(size = 3, aes(pch = param)) + 
+  geom_linerange(aes(ymin = conf.low, ymax = conf.high), size = 1) +
+  geom_text(data = dat_sig, aes(x = 1.5, y = est_place), label = "*", size = 13, show.legend = FALSE, color = "black") +
+  labs(y = "Volumetric water content (%)",
+       x = NULL,
+       color = NULL, 
+       alpha = NULL,
+       pch = NULL) +
+  scale_y_continuous(labels = label_percent(),
+                     breaks = c(.3, .4, .5)) +
+  scale_color_manual(values = c("No Cover" = pfi_brn, "Cover Crop" = pfi_green)) + 
+  facet_grid(. ~ site_sys)+#, scales = "free") + 
+  guides(color = F,
+         label = F,
+         text = F) +
+  theme(strip.background = element_blank(),
+        axis.text.x = element_text(angle = 30, hjust = 1),
+        strip.text = element_text(size = rel(1.2)), 
+        legend.position = "bottom") 
+
+ggsave("02_figs/fig_manu-sat-fc-ses-one-panel.png")
 
 #--get sig ones
 fc_sig <- read_csv("01_fit-models/dat_fc-emmeans-diff.csv")

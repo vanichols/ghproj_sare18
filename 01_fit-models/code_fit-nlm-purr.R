@@ -4,6 +4,7 @@
 # last modified: May 11 2020 (continue model fitting)
 #                March 2 2021 (update using package data)
 #                may 24 2021 (rerunning...still works?)
+#                june 24 2021 (rerunning with 3.8 instead of 2.5)
 #
 # purpose: fit non-linear models
 # 
