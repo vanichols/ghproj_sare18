@@ -88,9 +88,9 @@ ggplot() +
                                 "No Cover" = pfi_brn)) +
   facet_grid(.~site_sys) + 
   scale_y_continuous(labels = label_percent(accuracy = 2)) +
-  labs(y = "Volumetric Water (%)",
+  labs(y = "Volumetric Water (vol%)",
        color = NULL,
-       x = "Soil Matric Potential (cm water)") + 
+       x = "Soil Matric Potential (cmH2O)") + 
   theme(strip.text = element_text(size = rel(1.2)),
         strip.background = element_blank(),
         legend.position = "top", 
@@ -100,7 +100,9 @@ ggplot() +
         axis.title = element_text(size = rel(1))
   )
 
-ggsave("02_figs/fig_manu-curves.png",width = 7, height = 4 )  
+#ggsave("02_figs/fig_manu-curves.png",width = 7, height = 4 )  
+
+ggsave("02_figs/fig_manu-curves.png")  
 
 
 #--just to count the number of curves
