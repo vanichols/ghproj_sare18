@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.6.10)  10 JUN 2021 09:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.6.10)  29 JUN 2021 14:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -542,22 +542,10 @@ File: l3backend-pdftex.def 2021-05-07 L3 backend support: PDF output (pdfTeX)
 \l__pdf_internal_box=\box71
 ) (./rmd-supp-mat.aux
 
-LaTeX Warning: Label `tab:texture' multiply defined.
-
-
-LaTeX Warning: Label `tab:texture' multiply defined.
-
-
-LaTeX Warning: Label `tab:om' multiply defined.
+LaTeX Warning: Label `tab:clay' multiply defined.
 
 
 LaTeX Warning: Label `tab:bulkden' multiply defined.
-
-
-LaTeX Warning: Label `tab:sat' multiply defined.
-
-
-LaTeX Warning: Label `tab:fc' multiply defined.
 
 )
 \openout1 = `rmd-supp-mat.aux'.
@@ -786,74 +774,86 @@ l.193 \newpage
 name{table.5}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.289 \textbackslash
-                     end\{table\}pdfTeX warning (ext4): destination with the sa
-me identifier (name{table.6}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.289 \textbackslash
-                     end\{table\}] [7pdfTeX warning (ext4): destination with th
-e same identifier (name{table.7}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.371 
-      pdfTeX warning (ext4): destination with the same identifier (name{table.8
+l.283 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.6
 }) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.371 
+l.283 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.7
+}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.283 
       ]
-Overfull \hbox (26.38512pt too wide) in paragraph at lines 409--430
+Overfull \hbox (26.38512pt too wide) in paragraph at lines 319--340
  [][] 
  []
 
-[8pdfTeX warning (ext4): destination with the same identifier (name{table.9}) h
+
+Overfull \hbox (39.63524pt too wide) in paragraph at lines 350--371
+ [][] 
+ []
+
+[7pdfTeX warning (ext4): destination with the same identifier (name{table.8}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.438 \textbackslash
-                     caption\{\label{tab:fc}Mean volumetric soil moisture (\%)p
-dfTeX warning (ext4): destination with the same identifier (name{table.10}) has
- been already used, duplicate ignored
+l.372 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.9
+}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.438 \textbackslash
-                     caption\{\label{tab:fc}Mean volumetric soil moisture (\%)]
+l.372 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.1
+0}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.372 
+      ]
+<rmd-supp-mat_files/figure-latex/paramsalp-1.pdf, id=72, 469.755pt x 325.215pt>
 
-Overfull \hbox (39.63524pt too wide) in paragraph at lines 469--490
- [][] 
- []
-
-[9pdfTeX warning (ext4): destination with the same identifier (name{table.11}) 
+File: rmd-supp-mat_files/figure-latex/paramsalp-1.pdf Graphic file (type pdf)
+<use rmd-supp-mat_files/figure-latex/paramsalp-1.pdf>
+Package pdftex.def Info: rmd-supp-mat_files/figure-latex/paramsalp-1.pdf  used 
+on input line 375.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+[8pdfTeX warning (ext4): destination with the same identifier (name{table.11}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.492 \end{document}
-                    ] (./rmd-supp-mat.aux)
+l.379 \end{document}
+                    pdfTeX warning (ext4): destination with the same identifier
+ (name{figure.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.379 \end{document}
+                     <./rmd-supp-mat_files/figure-latex/paramsalp-1.pdf>] (./rm
+d-supp-mat.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `rmd-supp-mat.out' has not changed.
-(rerunfilecheck)             Checksum: CFDAC4CB5650DB5683A71030AF34E18A;1436.
+(rerunfilecheck)             Checksum: 369EB082EC8E41FD3B70889A4EC97E30;1319.
  ) 
 Here is how much of TeX's memory you used:
- 11613 strings out of 480496
- 171168 string characters out of 5897653
- 520671 words of memory out of 5000000
- 29042 multiletter control sequences out of 15000+600000
+ 11619 strings out of 480496
+ 171533 string characters out of 5897653
+ 527702 words of memory out of 5000000
+ 29048 multiletter control sequences out of 15000+600000
  445826 words of font info for 65 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 60i,12n,66p,411b,332s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,12n,66p,411b,328s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/Users/virgi/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.e
 nc}<c:/Users/virgi/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmb
 x12.pfb><c:/Users/virgi/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/l
 m/lmr10.pfb><c:/Users/virgi/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/publ
 ic/lm/lmr12.pfb><c:/Users/virgi/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/
 public/lm/lmr17.pfb>
-Output written on rmd-supp-mat.pdf (9 pages, 132563 bytes).
+Output written on rmd-supp-mat.pdf (8 pages, 144938 bytes).
 PDF statistics:
- 116 PDF objects out of 1000 (max. 8388607)
- 96 compressed objects within 1 object stream
- 33 named destinations out of 1000 (max. 500000)
- 49 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 114 PDF objects out of 1000 (max. 8388607)
+ 93 compressed objects within 1 object stream
+ 31 named destinations out of 1000 (max. 500000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 

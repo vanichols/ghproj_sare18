@@ -1,5 +1,5 @@
 ---
-title: "Supplementary Material for 'Effects of Winter Cover Cropping on Soil Water-Holding Capacity'"
+title: "Supplementary Material for 'Winter Cover Cropping Effects on Soil Water-Holding Capacity Vary by Site'"
 author: "Nichols et al. 2021"
 date: "6/15/2021"
 header-includes: #allows you to add in your own Latex packages
@@ -18,7 +18,6 @@ library(PFIweeds2020)
 library(PFIswhc)
 library(scales)
 library(patchwork)
-
 library(knitr)
 library(kableExtra)
 
@@ -116,26 +115,9 @@ pfi_tb %>%
 \newpage
 # Statistical Results
  
-## Soil texture
 
 
-```{r texture}
-
-#--text
-PFIswhc::sare_texture %>% 
-  left_join(sare_plotkey) %>% 
-  group_by(site_name, sys_trt, crop_trt, cc_trt) %>% 
-  summarise(clay = mean(clay, na.rm = T),
-            silt = mean(silt, na.rm = T)) %>% 
-  mutate(sand = 100 - clay - silt) %>% 
-  mutate_if(is.numeric, round, 1) %>% 
-  kable(caption = "Mean texture (%) by trial", booktabs = T, align = "c") %>% 
-  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) %>% 
-  #column_spec(column = c(2), width = "7em") %>% 
-  # column_spec(column = c(3:7), width = "5em") %>% 
-   collapse_rows(columns = c(1), latex_hline = "major")
-
-
+```{r clay}
 clay.stats <- read_csv("../01_fit-models/dat_clay-stats.csv")
 
 clay.stats %>% 
@@ -155,18 +137,7 @@ sand.stats %>%
 
 ```
 
-```{r om}
-
-#--om
-PFIswhc::sare_om %>% 
-  left_join(sare_plotkey) %>% 
-   group_by(site_name, sys_trt, crop_trt, cc_trt) %>% 
-  summarise(om_mean = mean(om, na.rm = T),
-            om_sd = sd(om, na.rm = T)) %>% 
-  mutate_if(is.numeric, round, 2) %>% 
-  kable(caption = "Mean soil organic matter (%) by trial", booktabs = T, align = "c") %>% 
-  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) %>% 
-   collapse_rows(columns = c(1), latex_hline = "major")
+```{r omstats}
 
 om.stats <- read_csv("../01_fit-models/dat_om-stats.csv")
 
@@ -208,21 +179,8 @@ bd.stats %>%
 ```
 
 ## Soil moisture (%vol) at saturation
-```{r sat}
 
-#--sat
-  sare_pressure %>%
-  left_join(sare_plotkey) %>% 
-  select(plot_id, site_name, sys_trt, cc_trt, rep, press_cm, vtheta) %>% 
-  unite(site_name, sys_trt, col = "site_sys", remove = F) %>% 
-  filter(press_cm %in% c(0)) %>% 
-  group_by(site_sys, cc_trt) %>% 
-  summarise(vtheta_mean = mean(vtheta, na.rm = T),
-            vtheta_sd = sd(vtheta, na.rm = T)) %>% 
-  mutate_if(is.numeric, round, 2) %>% 
-  kable(caption = "Mean volumetric soil moisture (%) at saturation by trial", booktabs = T, align = "c") %>% 
-  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) %>% 
-   collapse_rows(columns = c(1), latex_hline = "major")
+```{r sat}
 
 
 sat.stats <- read_csv("../01_fit-models/dat_sat-emmeans-diff.csv") %>% 
@@ -238,21 +196,6 @@ sat.stats %>%
 ## Soil moisture (%vol) at field capacity (-100 cm water)
 ```{r fc}
 
-#--fc
-  sare_pressure %>%
-  left_join(sare_plotkey) %>% 
-  select(plot_id, site_name, sys_trt, cc_trt, rep, press_cm, vtheta) %>% 
-  unite(site_name, sys_trt, col = "site_sys", remove = F) %>% 
-  filter(press_cm %in% c(100)) %>% 
-  group_by(site_sys, cc_trt) %>% 
-  summarise(vtheta_mean = mean(vtheta, na.rm = T),
-            vtheta_sd = sd(vtheta, na.rm = T)) %>% 
-  mutate_if(is.numeric, round, 2) %>% 
-  kable(caption = "Mean volumetric soil moisture (%) at field capacity by trial", booktabs = T, align = "c") %>% 
-  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) %>% 
-   collapse_rows(columns = c(1), latex_hline = "major")
-
-
 fc.stats <- read_csv("../01_fit-models/dat_fc-emmeans-diff.csv") %>% 
   select(cov, site_sys, everything(), -null.value)
 
@@ -262,4 +205,23 @@ fc.stats %>%
   kable(caption = "Statistical analysis of cover crop effect on soil water at field capacity, with and without sand covariate", booktabs = T, align = "c") %>% 
   kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) %>% 
    collapse_rows(columns = c(1), latex_hline = "major")
+```
+```{r paramsalp, fig.cap="Non-linear model fitted parameters"}
+
+#--nonlinear fits
+nlm.params <- 
+  read_csv("../01_fit-models/dat_gard-parms-eu.csv") %>% 
+  left_join(sare_plotkey) %>%
+  unite(site_name, sys_trt, col = "site_sys") %>% 
+  select(term, site_sys, cc_trt, rep, 
+         estimate, std.error) %>% 
+  arrange(term, site_sys, cc_trt, rep)
+
+nlm.params %>% 
+  ggplot(aes(rep, estimate, color = cc_trt)) + 
+  geom_point() + 
+  geom_linerange(aes(ymin = estimate - std.error, 
+                     ymax = estimate + std.error)) +
+  facet_grid(term ~ site_sys, scales = "free", labeller = label_wrap_gen())
+
 ```
