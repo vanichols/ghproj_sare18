@@ -22,9 +22,10 @@ theme_set(theme_bw())
 pfi_red <- "#9d3c22"
 pfi_green <- "#b2bb1e"
 pfi_blue <- "#036cb6"
+pfi_ltblue <- "#8DC4EB"
 pfi_orng <- "#e87d1e"
 pfi_brn <- "#574319"
-show_col(pfi_green)
+show_col(pfi_brn)
 
 
 
@@ -75,6 +76,9 @@ dat_pores <-
     pore_cat = fct_rev(pore_cat))
   
 
+
+# bar graphs --------------------------------------------------------------
+
 dat_pores %>% 
   ggplot() + 
   geom_col(aes(cc_trt, pct, alpha = pore_cat, fill = cc_trt), color = "black") + 
@@ -94,3 +98,76 @@ dat_pores %>%
 
 ggsave("02_figs/fig_manu_poresize.png", width = 7)
 
+
+
+# pie charts --------------------------------------------------------------
+
+dat_pie <- 
+  dat_pores %>% 
+  mutate(pore_cat = fct_inorder(pore_cat),
+         pore_cat = fct_rev(pore_cat)) %>% 
+  group_by(site_sys, cc_trt, pore_cat) %>% 
+  summarise(value = mean(pct, na.rm = T)) %>% 
+  arrange(pore_cat) %>% 
+  group_by(site_sys, cc_trt) %>% 
+  nest() %>% 
+  mutate(data2 = data %>% purrr::map(. %>%
+                                       arrange(pore_cat) %>% 
+                                       mutate(half = value/2,
+                                              prev = lag(value),
+                                              prev = ifelse(is.na(prev), 0, prev),
+                                              cumprev = cumsum(prev),
+                                              pos = half + cumprev) %>% 
+                                       select(-c(half, prev, cumprev)))) %>% 
+  unnest(data2)
+
+
+
+# pie chart ---------------------------------------------------------------
+
+dat_pie %>% 
+  mutate(site = site_sys,
+         pos2 = 1-pos,
+         value2 = ifelse(pore_cat == "Micropores (<30 um)", NA, value),
+         clr = paste(cc_trt, pore_cat)) %>% 
+  ggplot(aes(x = "", y = value, fill = pore_cat)) +
+  geom_bar(stat = "identity", color = "black") +
+  coord_polar("y", start = 0) +
+  geom_text(aes(y = pos2,
+                label = percent(value2, accuracy = 2)), size = 5, show.legend = FALSE) +
+  scale_fill_manual(values = c(pfi_ltblue, "white")) + 
+  facet_grid(cc_trt~site) +
+  guides(alpha = F) +
+  theme_minimal() +
+  theme(axis.text.x = element_blank(),
+        axis.title = element_blank(),
+        strip.text = element_text(size = rel(1.5)),
+        legend.text = element_text(size = rel(1.3)),
+        legend.position = "bottom") +
+  labs(fill = NULL)
+
+
+
+dat_pie %>% 
+  mutate(site = site_sys,
+         pos2 = 1-pos,
+         value2 = ifelse(pore_cat == "Micropores (<30 um)", NA, value),
+         clr = paste(cc_trt, pore_cat)) %>% 
+  ggplot(aes(x = "", y = value, fill = clr)) +
+  geom_bar(stat = "identity") +
+  coord_polar("y", start = 0) +
+  geom_text(aes(y = pos2,
+                label = percent(value2, accuracy = 2)), size = 5, show.legend = FALSE) +
+  scale_fill_manual(values = c(pfi_brn, "white",
+                               pfi_brn, "white",
+                               pfi_green, "white",
+                               pfi_green, "white")) + 
+  facet_grid(cc_trt~site) +
+  guides(alpha = F) +
+  theme_minimal() +
+  theme(axis.text.x = element_blank(),
+        axis.title = element_blank(),
+        strip.text = element_text(size = rel(1.5)),
+        legend.text = element_text(size = rel(1.3)),
+        legend.position = "bottom") +
+  labs(fill = NULL)

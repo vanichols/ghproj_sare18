@@ -71,11 +71,6 @@ pfi_green <- "#b2bb1e"
 pfi_blue <- "#036cb6"
 pfi_orng <- "#e87d1e"
 pfi_brn <- "#574319"
-show_col(pfi_red)
-
-
-# figure not smoothed ------------------------------------------------------------------
-
 
 
 
@@ -124,3 +119,41 @@ ggplot() +
         #axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 0.5),
         axis.title = element_text(size = rel(1))
   )
+
+
+# figure, smoothed and averaged --------------------------------------------------------
+
+fdat_avg <- 
+  fdat %>% 
+  group_by(site_sys, cc_trt, press_cm) %>% 
+  summarise(vtheta = mean(vtheta, na.rm = T))
+
+ggplot() + 
+  geom_line(data = fdat_avg, 
+            aes(press_cm, vtheta, color = cc_trt), 
+            size = 1.5) +
+  geom_line(data = fdat, 
+            aes(press_cm, vtheta, color = cc_trt, group = plot_id), 
+            size = 1, 
+            alpha = 0.5, 
+            linetype = "dotted") +
+  #geom_line(data = davg, aes(vtheta, press_cm, color = cc_trt), size = 3) +
+  scale_color_manual(values = c("Cover Crop" = pfi_green,
+                                "No Cover" = pfi_brn)) +
+  facet_grid(.~site_sys) + 
+  scale_y_continuous(labels = label_percent(accuracy = 2)) +
+  labs(y = "Volumetric Water (vol%)",
+       color = NULL,
+       x = "Soil Matric Potential (cmH2O)") + 
+  theme(strip.text = element_text(size = rel(1.2)),
+        strip.background = element_blank(),
+        legend.position = "top", 
+        legend.text = element_text(size = rel(1)),
+        axis.text = element_text(size = rel(1)),
+        #axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 0.5),
+        axis.title = element_text(size = rel(1))
+  )
+
+#ggsave("02_figs/fig_manu-curves.png",width = 7, height = 4 )  
+
+ggsave("02_figs/fig_manu-curves-dotted.png", width = 8.85, height = 3.72)  

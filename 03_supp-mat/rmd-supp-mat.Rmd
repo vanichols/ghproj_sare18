@@ -219,6 +219,114 @@ dat_pie_cc %>%
 ```
 
 
+# Supplemental Figure S3. Macro/micropore results
+```{r pores, fig.cap="Mean percentage macropores (>30 µm) for each trial; percent macropores in the cover crop treatment was significantly lower (p=0.04) at the West-grain trial compared to the control treatment"}
+
+pfi_red <- "#9d3c22"
+pfi_green <- "#b2bb1e"
+pfi_blue <- "#036cb6"
+pfi_ltblue <- "#8DC4EB"
+pfi_orng <- "#e87d1e"
+pfi_brn <- "#574319"
+
+
+
+# data --------------------------------------------------------------------
+
+dp <- read_csv("../01_fit-models/dat_poresizes.csv") %>% 
+  group_by(pore_cat, site_sys, cc_trt, rep_id) %>% 
+  summarise(pct = sum(pct, na.rm = T))
+
+
+
+# do macro/micro summary --------------------------------------------------
+raws <- 
+  dp %>% 
+  filter(pore_cat == "Macropores (>30 um)") %>% 
+  mutate(
+    site_sys = factor(site_sys, 
+                      levels = c("West-grain",
+                                 "Central-silage", 
+                                 "Central-grain",
+                                 "East-grain")))
+
+
+#--not sure which order to calculate them (lag/lead)
+
+dat_pores <- 
+  dp %>% 
+  filter(pore_cat == 
+           "Micropores (<30 um)") %>% 
+  #--get mean for each trial
+  group_by(pore_cat, site_sys, cc_trt) %>% 
+  summarise(pct = mean(pct, na.rm = T)) %>% 
+  pivot_wider(names_from = pore_cat, values_from = pct) %>% 
+  #--force the macro to fill in the rest
+  mutate(`Macropores (>30 um)` = 1 - `Micropores (<30 um)`) %>% 
+    pivot_longer(3:4, names_to = "pore_cat", values_to = "pct") %>% 
+  mutate(cc_trt = fct_rev(cc_trt)) %>% 
+  mutate(
+    site_sys = factor(site_sys, 
+                      levels = c("West-grain",
+                                 "Central-silage", 
+                                 "Central-grain",
+                                 "East-grain")),
+    pore_cat = factor(pore_cat, 
+                      levels = c("Macropores (>30 um)",
+                                 "Micropores (<30 um)")),
+    pore_cat = fct_rev(pore_cat))
+  
+
+
+
+# pie charts --------------------------------------------------------------
+
+dat_pie <- 
+  dat_pores %>% 
+  mutate(pore_cat = fct_inorder(pore_cat),
+         pore_cat = fct_rev(pore_cat)) %>% 
+  group_by(site_sys, cc_trt, pore_cat) %>% 
+  summarise(value = mean(pct, na.rm = T)) %>% 
+  arrange(pore_cat) %>% 
+  group_by(site_sys, cc_trt) %>% 
+  nest() %>% 
+  mutate(data2 = data %>% purrr::map(. %>%
+                                       arrange(pore_cat) %>% 
+                                       mutate(half = value/2,
+                                              prev = lag(value),
+                                              prev = ifelse(is.na(prev), 0, prev),
+                                              cumprev = cumsum(prev),
+                                              pos = half + cumprev) %>% 
+                                       select(-c(half, prev, cumprev)))) %>% 
+  unnest(data2)
+
+
+
+# pie chart ---------------------------------------------------------------
+
+dat_pie %>% 
+  mutate(site = site_sys,
+         pos2 = 1-pos,
+         value2 = ifelse(pore_cat == "Micropores (<30 um)", NA, value),
+         clr = paste(cc_trt, pore_cat)) %>% 
+  ggplot(aes(x = "", y = value, fill = pore_cat)) +
+  geom_bar(stat = "identity", color = "black") +
+  coord_polar("y", start = 0) +
+  geom_text(aes(y = pos2,
+                label = percent(value2, accuracy = 2)), size = 5, show.legend = FALSE) +
+  scale_fill_manual(values = c(pfi_ltblue, "white")) + 
+  facet_grid(cc_trt~site) +
+  guides(alpha = F) +
+  theme_minimal() +
+  theme(axis.text.x = element_blank(),
+        axis.title = element_blank(),
+        strip.text = element_text(size = rel(1.1)),
+        legend.text = element_text(size = rel(1.1)),
+        legend.position = "bottom") +
+  labs(fill = NULL)
+
+
+```
 
 
 # General Site Management Summary

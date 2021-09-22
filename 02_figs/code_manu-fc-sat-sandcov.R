@@ -149,7 +149,7 @@ ggsave("02_figs/fig_manu-sat-fc-ses.png")
 
 dat_sig_bars <- 
   dat_sig %>%
-  mutate(sig_lab = ifelse(site_sys == "West-grain", "+2.4 vol%*", "+2.5 vol%*"))
+  mutate(sig_lab = ifelse(site_sys == "West-grain", "+2.4 vol%*", "+2.5 vol%**"))
 
 
 dat_both %>% 
@@ -173,14 +173,17 @@ dat_both %>%
               x = 1.5, 
               y = 0.5, 
               label = sig_lab),
-            size = 6, 
+            size = 5, 
             show.legend = FALSE, 
-            color = "black") +
+            color = "black",
+            fontface = "italic") +
   labs(y = "Volumetric water content (%)",
        x = NULL,
        color = NULL, 
        alpha = NULL,
-       pch = NULL) +
+       pch = NULL,
+       #caption = "* = p<0.10, ** = p<0.05"
+       caption = "*p<=0.10, **p<=0.05") +
   scale_y_continuous(labels = label_percent()) +
   scale_fill_manual(values = c("No Cover" = pfi_brn, "Cover Crop" = pfi_green)) + 
   facet_grid(site_sys ~ param) +#, scales = "free") + 
@@ -195,7 +198,7 @@ ggsave("02_figs/fig_manu-sat-fc-vert-bars.png", width = 4.04, height = 6.62)
 
 
 
-# other crap --------------------------------------------------------------
+n# other crap --------------------------------------------------------------
 
 
 dat_both %>% 

@@ -176,7 +176,7 @@ dat_pie2_cc %>%
   geom_text(aes(y = pos,
                 label = paste(round(value, 4)*100, "%")),
                 #label = percent(value, accuracy = 4)), 
-            size = 5) +a
+            size = 5) +
   scale_fill_manual(values = c("clay" = pfi_brn, "silt" = pfi_red, "sand" = pfi_orng)) + 
   facet_grid(cc_trt~site_sys) +
   scale_alpha_manual(values = c(0.4, 0.4, 1)) +
