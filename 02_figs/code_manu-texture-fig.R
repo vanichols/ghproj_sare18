@@ -2,6 +2,7 @@
 #--updated: 2/4/2021
 #           2/22/2021 - added organic matters to pie chart
 #           3/3/2021 - separating central site by crop sys
+#           9/22/2021 - putting in supp mat
 
 
 rm(list = ls())
@@ -31,7 +32,6 @@ pfi_green <- "#b2bb1e"
 pfi_blue <- "#036cb6"
 pfi_orng <- "#e87d1e"
 pfi_brn <- "#574319"
-show_col(pfi_red)
 
 
 # quick stats -------------------------------------------------------------
@@ -64,6 +64,9 @@ dat_pie <-
   mutate(sand = 100 - clay - silt) %>% 
   pivot_longer(clay:silt) %>% 
   mutate(value = value/100)
+
+dat_pie %>% 
+  mutate(value = value * 100)
 
 
 myorder <- c("clay", "silt", "sand")
@@ -112,10 +115,6 @@ dat_pie2 %>%
         legend.text = element_text(size = rel(1.3)),
         legend.position = "bottom") +
   labs(fill = NULL)
-
-ggsave("02_figs/fig_manu-texture.png")
-
-
 
 # cover cover plots and no-cover separate----------------------------------------------------------
 
@@ -175,7 +174,9 @@ dat_pie2_cc %>%
   geom_bar(stat = "identity") +
   coord_polar("y", start = 0) +
   geom_text(aes(y = pos,
-                label = percent(value, accuracy = 2)), size = 5) +
+                label = paste(round(value, 4)*100, "%")),
+                #label = percent(value, accuracy = 4)), 
+            size = 5) +a
   scale_fill_manual(values = c("clay" = pfi_brn, "silt" = pfi_red, "sand" = pfi_orng)) + 
   facet_grid(cc_trt~site_sys) +
   scale_alpha_manual(values = c(0.4, 0.4, 1)) +

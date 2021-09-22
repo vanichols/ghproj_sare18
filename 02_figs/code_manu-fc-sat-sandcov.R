@@ -1,5 +1,6 @@
 #--make curves w/ obs and predictions (maybe)
 #--updated: 3/4/2021
+#--         9/22/2021 - try a bar graph
 
 
 rm(list = ls())
@@ -21,7 +22,6 @@ pfi_green <- "#b2bb1e"
 pfi_blue <- "#036cb6"
 pfi_orng <- "#e87d1e"
 pfi_brn <- "#574319"
-show_col(pfi_red)
 
 
 # data --------------------------------------------------------------------
@@ -82,6 +82,9 @@ dat_sig <-
   mutate(est_place = mean(estimate))
   
 
+
+# has wo sand correction in gray, points ------------------------------------------
+
 dat_both %>% 
   mutate(cc_trt = fct_rev(cc_trt)) %>% 
   ggplot(aes(cc_trt, estimate, alpha = thing, color = cc_trt)) + 
@@ -109,7 +112,7 @@ ggsave("02_figs/fig_manu-sat-fc-ses-sand.png")
 
 
 
-# just sand results -------------------------------------------------------
+# just sand results, points -------------------------------------------------------
 
 dat_both %>% 
   filter(cov == "sand") %>% 
@@ -139,6 +142,60 @@ dat_both %>%
 ggsave("02_figs/fig_manu-sat-fc-ses.png")
 
 
+
+
+# just sand, bars ---------------------------------------------------------
+
+
+dat_sig_bars <- 
+  dat_sig %>%
+  mutate(sig_lab = ifelse(site_sys == "West-grain", "+2.4 vol%*", "+2.5 vol%*"))
+
+
+dat_both %>% 
+  filter(cov == "sand") %>% 
+  mutate(cc_trt = fct_rev(cc_trt)) %>% 
+  ggplot(aes(cc_trt, estimate, fill = cc_trt)) + 
+  geom_col(color = "black", width = 0.5) + 
+  geom_linerange(aes(ymin = conf.low, ymax = conf.high), size = 1) +
+  scale_color_manual(values = c("No Cover" = pfi_brn, "Cover Crop" = pfi_green)) + 
+  facet_grid(param ~ site_sys)+#, scales = "free") + 
+  guides(color = F,
+         label = F,
+         text = F) +
+  theme(strip.background = element_blank(),
+        axis.title.y = element_text(size = rel(1.1)),
+        axis.text.x = element_text(angle = 30, hjust = 1, size = rel(1.1)),
+        strip.text = element_text(size = rel(1.2)), 
+        legend.position = "bottom") +
+  geom_text(data = dat_sig_bars, 
+            aes(
+              x = 1.5, 
+              y = 0.5, 
+              label = sig_lab),
+            size = 6, 
+            show.legend = FALSE, 
+            color = "black") +
+  labs(y = "Volumetric water content (%)",
+       x = NULL,
+       color = NULL, 
+       alpha = NULL,
+       pch = NULL) +
+  scale_y_continuous(labels = label_percent()) +
+  scale_fill_manual(values = c("No Cover" = pfi_brn, "Cover Crop" = pfi_green)) + 
+  facet_grid(site_sys ~ param) +#, scales = "free") + 
+  guides(color = F,
+         label = F,
+         text = F,
+         fill = F) 
+
+ggsave("02_figs/fig_manu-sat-fc-vert-bars.png", width = 4.04, height = 6.62)
+
+
+
+
+
+# other crap --------------------------------------------------------------
 
 
 dat_both %>% 

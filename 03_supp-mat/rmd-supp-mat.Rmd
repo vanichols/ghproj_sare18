@@ -22,10 +22,18 @@ library(knitr)
 library(kableExtra)
 library(maps)
 library(ggthemes)
+
+
+library(purrr)
+
+library(lme4)
+library(lmerTest)
+library(emmeans)
+
 ```
 
-# Map of sites
-```{r sitemap}
+# Supplemental Figure S1. Map of sites
+```{r sitemap, fig.cap="Map of site locations in Iowa"}
 
 pfi_red <- "#9d3c22"
 pfi_green <- "#b2bb1e"
@@ -57,13 +65,13 @@ ggplot() +
     color = "gray80",
     fill = NA
   ) +
-  geom_polygon(
-    data = map_county3,
-    aes(x = long, y = lat, group = group),
-    color = pfi_blue,
-    fill = "white",
-    size = 3
-  ) +
+  # geom_polygon(
+  #   data = map_county3,
+  #   aes(x = long, y = lat, group = group),
+  #   color = pfi_blue,
+  #   fill = "white",
+  #   size = 3
+  # ) +
   geom_jitter(
     data = pfi_siteinfo %>% rename("long" = "lon"),
     aes(x = long, y = lat),
@@ -83,6 +91,134 @@ ggplot() +
   coord_quickmap() +
   theme_map()
 ```
+
+# Supplemental Figure S2. Soil texture results
+```{r texture, fig.cap="Soil texture components varied by trial and cover crop treatment, with the cover cropped plots having significantly more sand bolded orange color, and significantly less clay at the West-grain and East-grain trials both, commercial fields"}
+
+dat <- 
+  sare_texture %>% 
+  left_join(sare_plotkey) %>% 
+  unite(site_name, sys_trt, col = "site_sys", sep = "-")
+
+om <- 
+  sare_om %>% 
+  left_join(sare_plotkey) %>% 
+  unite(site_name, sys_trt, col = "site_sys", sep = "-")
+
+
+pfi_red <- "#9d3c22"
+pfi_green <- "#b2bb1e"
+pfi_blue <- "#036cb6"
+pfi_orng <- "#e87d1e"
+pfi_brn <- "#574319"
+
+myorder <- c("clay", "silt", "sand")
+
+# cover cover plots and no-cover separate----------------------------------------------------------
+
+dat_pie_cc <- 
+  dat %>% 
+  select(site_sys, cc_trt, clay, silt, sand) %>% 
+  pivot_longer(clay:sand) %>% 
+  group_by(site_sys, cc_trt, name) %>% 
+  summarise(value  = mean(value, na.rm = T)) %>% 
+  ungroup() %>% 
+  pivot_wider(names_from =  name, values_from = value)  %>% 
+  mutate_if(is.numeric, round, 0) %>% 
+  mutate(sand = 100 - clay - silt) %>% 
+  pivot_longer(clay:silt) %>% 
+  mutate(value = value/100)
+
+
+#--use purrr to amek labels
+dat_pie2_cc <- 
+  dat_pie_cc %>% 
+  mutate(name = factor(name, levels = myorder),
+         name2 = fct_rev(name),
+         value = round(value, 2)) %>% 
+  arrange(name2) %>% 
+  group_by(site_sys, cc_trt) %>% 
+  nest() %>% 
+  mutate(data2 = data %>% purrr::map(. %>% 
+                                       arrange(name2) %>% 
+                                       mutate(half = value/2,
+                                              prev = lag(value),
+                                              prev = ifelse(is.na(prev), 0, prev),
+                                              cumprev = cumsum(prev),
+                                              pos = half + cumprev) %>% 
+                                       select(-c(half, prev, cumprev)))) %>% 
+  unnest(data2)
+
+
+
+#--fig
+dat_pie2_cc %>% 
+  # left_join(om %>% 
+  #             group_by(site_sys, cc_trt) %>% 
+  #             summarise(om = round(mean(om, na.rm = T), 1))) %>% 
+  mutate(
+    cc_trt = case_when(
+      grepl("cc", cc_trt) ~ "Rye Cover Crop",
+      grepl("no", cc_trt) ~ "No Cover",
+      TRUE ~ cc_trt),
+    site = site_sys,
+    site_sys = factor(site_sys, levels = c("West-grain", "Central-silage", "Central-grain", "East-grain")) 
+    #site = paste0(site, "\n", om, "% OM")
+  ) %>% 
+  ggplot(aes(x = "", y = value, fill = name, alpha = name)) +
+  geom_bar(stat = "identity") +
+  coord_polar("y", start = 0) +
+  geom_text(aes(y = pos,
+                label = paste(round(value, 4)*100, "%")),
+                #label = percent(value, accuracy = 4)), 
+            size = 5) +
+  scale_fill_manual(values = c("clay" = pfi_brn, "silt" = pfi_red, "sand" = pfi_orng)) + 
+  facet_grid(cc_trt~site_sys) +
+  scale_alpha_manual(values = c(0.4, 0.4, 1)) +
+  theme_minimal() +
+  theme(axis.text.x = element_blank(),
+        axis.title = element_blank(),
+        strip.text = element_text(size = rel(1.5)),
+        legend.text = element_text(size = rel(1.3)),
+        legend.position = "bottom") +
+  labs(fill = NULL) +
+  guides(alpha = F)
+  
+
+```
+
+Table with values:
+```{r texture2}
+
+dat <- 
+  sare_texture %>% 
+  left_join(sare_plotkey) %>% 
+  unite(site_name, sys_trt, col = "site_sys", sep = "-")
+
+dat_pie_cc <- 
+  dat %>% 
+  select(site_sys, cc_trt, clay, silt, sand) %>% 
+  pivot_longer(clay:sand) %>% 
+  group_by(site_sys, cc_trt, name) %>% 
+  summarise(value  = mean(value, na.rm = T)) %>% 
+  ungroup() %>% 
+  pivot_wider(names_from =  name, values_from = value)  %>% 
+  mutate_if(is.numeric, round, 0) %>% 
+  mutate(sand = 100 - clay - silt) %>% 
+  pivot_longer(clay:silt) %>% 
+  mutate(value = value/100)
+
+dat_pie_cc %>% 
+  pivot_wider(names_from = name, values_from = value) %>% 
+  mutate(tot = clay + sand + silt,
+         sig_sand_diff = ifelse(site_sys %in% c("East-grain", "West-grain"), "Yes", "No")) %>% 
+  kable(caption = "Table of values", booktabs = T, align = "c") %>% 
+  collapse_rows(columns = c(1,7), latex_hline = "major") %>% 
+  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) 
+
+```
+
+
 
 
 # General Site Management Summary
