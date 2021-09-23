@@ -397,7 +397,9 @@ sat.stats %>%
   kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) %>% 
    collapse_rows(columns = c(1), latex_hline = "major")
 ```
+
 ## Soil moisture (%vol) at field capacity (-100 cm water)
+
 ```{r fc}
 
 fc.stats <- read_csv("../01_fit-models/dat_fc-emmeans-diff.csv") %>% 
@@ -410,6 +412,9 @@ fc.stats %>%
   kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) %>% 
    collapse_rows(columns = c(1), latex_hline = "major")
 ```
+
+## Fitted parameters a and n
+
 ```{r paramsalp, fig.cap="Non-linear model fitted parameters"}
 
 #--nonlinear fits
@@ -420,6 +425,23 @@ nlm.params <-
   select(term, site_sys, cc_trt, rep, 
          estimate, std.error) %>% 
   arrange(term, site_sys, cc_trt, rep)
+
+nlm.params %>% 
+  filter(term == "alp") %>% 
+  select(-term) %>% 
+  mutate_if(is.numeric, round, 3) %>% 
+  kable(caption = "Table of 'a' Gardener parameter estimate", booktabs = T, align = "c") %>% 
+  collapse_rows(columns = c(1, 2), latex_hline = "major") %>% 
+  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) 
+
+nlm.params %>% 
+  filter(term == "scal") %>% 
+  select(-term) %>% 
+  mutate_if(is.numeric, round, 3) %>% 
+  kable(caption = "Table of 'n' Gardener parameter estimate", booktabs = T, align = "c") %>% 
+  collapse_rows(columns = c(1, 2), latex_hline = "major") %>% 
+  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) 
+
 
 nlm.params %>% 
   ggplot(aes(rep, estimate, color = cc_trt)) + 

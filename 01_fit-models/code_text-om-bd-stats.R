@@ -88,6 +88,30 @@ m_silt <- lmer(silt~cc_trt*site_sys + (1|rep_id), data = rd)
 anova(m_silt)
 pairs(emmeans(m_silt, ~cc_trt|site_sys))
 
+res_silt <- 
+  emmeans(m_silt, ~cc_trt|site_sys) %>% 
+  broom::tidy() %>% 
+  select(site_sys, cc_trt, estimate, std.error) %>% 
+  mutate(respvar = "silt") %>% 
+  select(-std.error) %>% 
+  pivot_wider(names_from = cc_trt, values_from = estimate) %>% 
+  left_join(
+    pairs(emmeans(m_silt, ~cc_trt|site_sys)) %>% 
+      broom::tidy() %>% 
+      select(site_sys, contrast, estimate, std.error, p.value) %>% 
+      rename("est_diff" = estimate,
+             "diff_pval" = p.value,
+             "diff_se" = std.error) )
+
+
+res_sand %>% 
+  mutate(diff_pval = round(diff_pval, 3))
+
+res_silt %>% 
+  mutate(diff_pval = round(diff_pval, 3))
+
+res_clay %>% 
+  mutate(diff_pval = round(diff_pval, 3))
 
 # om -----------------------------------------------------------------
 

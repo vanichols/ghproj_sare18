@@ -18,7 +18,7 @@ library(lme4)
 library(lmerTest)
 library(emmeans)
 
-dp <- 
+dp_raw <- 
   sare_pressure %>% 
   group_by(plot_id) %>% 
   #--each pressure is reflective of the pore size it is draining
@@ -39,7 +39,10 @@ dp <-
   group_by(plot_id) %>% 
   mutate(sum = sum(pct, na.rm = T)) %>% 
   left_join(sare_plotkey) %>% 
-  ungroup() %>% 
+  ungroup() 
+
+dp <- 
+  dp_raw %>% 
   mutate(
     site_sys = paste(site_name, sys_trt, sep = "-"),
     rep_id = paste(field_id, rep),
@@ -60,6 +63,14 @@ dp_macro <-
   summarise(pct = sum(pct, na.rm = T)) %>% 
   filter(pore_cat == "Macropores (>30 um)")
 
+dp_raw %>% 
+  group_by(pore_cat, site_sys, cc_trt, rep_id) %>% 
+  summarise(pct = sum(pct, na.rm = T)) %>% 
+  filter(pore_cat == "Macropores (>30 um)")
+
+  left_join(sare_plotkey %>% 
+              mutate(site_sys = paste(site_name, sys_trt, sep = "-"))
+              )
 
 dp_macro %>% 
   arrange(rep_id)

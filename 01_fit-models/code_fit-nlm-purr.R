@@ -115,7 +115,7 @@ nls_gardfit <- function(x){
 
 
 
-#--map function to data, each eu
+#--map function to data, each eu (doesn't run?)
 dparms_eu <-
   rd %>%
   select(plot_id, x, y) %>% 
@@ -129,7 +129,7 @@ dparms_eu <-
 
 dparms_eu %>% write_csv("01_fit-models/dat_gard-parms-eu.csv")
 
-#--map function to data, each trt (pool reps)
+#--map function to data, each trt (pool reps) (doesn't run?)
 
 dparms_gr <-
   rd %>%
@@ -145,6 +145,57 @@ dparms_gr <-
 
 dparms_gr %>% write_csv("01_fit-models/dat_gard-parms-trt.csv")
 
+
+# stats -------------------------------------------------------------------
+dparms_eu <- 
+  read_csv("01_fit-models/dat_gard-parms-eu.csv") %>% 
+  left_join(sare_plotkey) %>% 
+  mutate(site_sys = paste(site_name, sys_trt),
+         block = paste(site_name, "B", rep)) %>% 
+  left_join(sare_texture)
+
+# air entry potential -----------------------------------------------------
+
+m1 <- lmer(estimate ~ site_sys*cc_trt + (1|block), data = dparms_eu %>% filter(term == "alp"))
+m1a <- lm(estimate ~ site_sys*cc_trt + sand, data = dparms_eu %>% filter(term == "alp"))
+
+anova(m1)
+anova(m1a)
+summary(m1a)
+pairs(emmeans(m1, ~cc_trt|site_sys))
+emmeans(m1, ~site_sys)
+emmeans(m1, ~cc_trt|site_sys)
+
+sare_texture %>% 
+  left_join(sare_plotkey) %>% 
+  mutate(site_sys = paste(site_name, sys_trt)) %>% 
+  group_by(site_sys) %>% 
+  summarise(sand = mean(sand, na.rm = T)) %>% 
+  left_join(emmeans(m1, ~site_sys) %>% 
+              broom::tidy()) %>% 
+  ggplot(aes(sand, estimate)) + 
+  geom_point() + 
+  geom_label(aes(label = site_sys))
+
+# pores size dist -----------------------------------------------------
+
+m2 <- lmer(estimate ~ site_sys*cc_trt + (1|block), data = dparms_eu %>% filter(term == "scal"))
+
+anova(m2)
+pairs(emmeans(m2, ~cc_trt|site_sys))
+emmeans(m2, ~site_sys)
+emmeans(m2, ~cc_trt|site_sys)
+
+sare_texture %>% 
+  left_join(sare_plotkey) %>% 
+  mutate(site_sys = paste(site_name, sys_trt)) %>% 
+  group_by(site_sys) %>% 
+  summarise(sand = mean(sand, na.rm = T)) %>% 
+  left_join(emmeans(m2, ~site_sys) %>% 
+              broom::tidy()) %>% 
+  ggplot(aes(sand, estimate)) + 
+  geom_point() + 
+  geom_label(aes(label = site_sys))
 
 #--look at it
 #--shoudl use 95%cis to emphasize no differences
