@@ -42,6 +42,7 @@ rd
 
 #--sand is higher in cover crop trts
 m_sand <- lmer(sand~cc_trt*site_sys + (1|rep_id), data = rd)
+anova(m_sand)
 
 res_sand <- 
   emmeans(m_sand, ~cc_trt|site_sys) %>% 
@@ -62,6 +63,7 @@ res_sand %>% write_csv("01_fit-models/dat_sand-stats.csv")
 
 #--clay is lower in cc trts
 m_clay <- lmer(clay~cc_trt*site_sys + (1|rep_id), data = rd)
+anova(m_clay)
 pairs(emmeans(m_clay, ~cc_trt|site_sys))
 
 res_clay <- 
@@ -80,6 +82,11 @@ res_clay <-
              "diff_se" = std.error) )
 
 res_clay %>% write_csv("01_fit-models/dat_clay-stats.csv")
+
+#--silt is lower in cc trts
+m_silt <- lmer(silt~cc_trt*site_sys + (1|rep_id), data = rd)
+anova(m_silt)
+pairs(emmeans(m_silt, ~cc_trt|site_sys))
 
 
 # om -----------------------------------------------------------------
