@@ -199,7 +199,7 @@ sare_texture %>%
   ) %>% 
   ggplot(aes(sand, estimate)) + 
   geom_point() + 
-  geom_label(aes(label = site_sys))
+  geom_label(aes(label = site_sys, fill = cc_trt))
 
 
 # pores size dist -----------------------------------------------------
