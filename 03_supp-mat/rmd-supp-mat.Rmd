@@ -33,6 +33,7 @@ library(emmeans)
 ```
 
 # Supplemental material S1. Map of sites
+
 ```{r sitemap, fig.cap="Map of site locations in Iowa"}
 
 pfi_red <- "#9d3c22"
@@ -183,7 +184,170 @@ Cover crop biomass production over past 10 years of trials
 
 \newpage
 
-# Supplemental material S3. Soil texture results
+# Supplemental material S3. Statistical summaries
+ 
+## Clay, silt, and sand components
+
+```{r clay}
+clay.stats <- read_csv("../01_fit-models/dat_clay-stats.csv")
+
+clay.stats %>% 
+  mutate_if(is.numeric, round, 3) %>% 
+  mutate(diff_pval = ifelse(diff_pval < 0.001, "<0.001", diff_pval)) %>% 
+  kable(caption = "Statistical analysis of cover crop effect on clay", booktabs = T, align = "c") %>% 
+  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) 
+
+silt.stats <- read_csv("../01_fit-models/dat_silt-stats.csv")
+
+silt.stats %>% 
+  mutate_if(is.numeric, round, 3) %>% 
+  mutate(diff_pval = ifelse(diff_pval < 0.001, "<0.001", diff_pval)) %>% 
+  kable(caption = "Statistical analysis of cover crop effect on silt", booktabs = T, align = "c") %>% 
+  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) 
+
+sand.stats <- read_csv("../01_fit-models/dat_sand-stats.csv")
+
+sand.stats %>% 
+  mutate_if(is.numeric, round, 3) %>% 
+  mutate(diff_pval = ifelse(diff_pval < 0.001, "<0.001", diff_pval)) %>% 
+  kable(caption = "Statistical analysis of cover crop effect on sand", booktabs = T, align = "c") %>% 
+  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) 
+
+```
+
+## Soil organic matter
+
+```{r omstats}
+
+om.stats <- read_csv("../01_fit-models/dat_om-stats.csv")
+
+om.stats %>% 
+  mutate_if(is.numeric, round, 3) %>% 
+  mutate(diff_pval = ifelse(diff_pval < 0.001, "<0.001", diff_pval)) %>% 
+  kable(caption = "Statistical analysis of cover crop effect on organic matter, with and without sand covariate", booktabs = T, align = "c") %>% 
+  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) %>% 
+   collapse_rows(columns = c(1), latex_hline = "major")
+
+
+
+```
+
+## Soil bulk density
+```{r bulkden}
+
+#--bd
+PFIswhc::sare_bulkden %>% 
+  left_join(sare_plotkey) %>% 
+   group_by(site_name, sys_trt, crop_trt, cc_trt) %>% 
+  summarise(bulkden_mean = mean(bulkden_gcm3, na.rm = T),
+            bulkden_sd = sd(bulkden_gcm3, na.rm = T)) %>% 
+  mutate_if(is.numeric, round, 2) %>% 
+  kable(caption = "Mean bulk density (g/cm3) by trial", booktabs = T, align = "c") %>% 
+  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) %>% 
+   collapse_rows(columns = c(1), latex_hline = "major")
+
+bd.stats <- read_csv("../01_fit-models/dat_bd-stats.csv")
+
+bd.stats %>% 
+  mutate_if(is.numeric, round, 3) %>% 
+  mutate(diff_pval = ifelse(diff_pval < 0.001, "<0.001", diff_pval)) %>% 
+  kable(caption = "Statistical analysis of cover crop effect on bulk density, with and without sand covariate", booktabs = T, align = "c") %>% 
+  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) %>% 
+   collapse_rows(columns = c(1), latex_hline = "major")
+
+
+
+```
+
+## Soil moisture (%vol) at saturation
+
+```{r sat}
+
+
+sat.stats <- read_csv("../01_fit-models/dat_sat-emmeans-diff.csv") %>% 
+  select(cov, site_sys, everything(), -null.value)
+
+sat.stats %>% 
+  mutate_if(is.numeric, round, 3) %>% 
+  mutate(adj.p.value = ifelse(adj.p.value < 0.001, "<0.001",adj.p.value)) %>% 
+  kable(caption = "Statistical analysis of cover crop effect on soil water at saturation, with and without sand covariate", booktabs = T, align = "c") %>% 
+  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) %>% 
+   collapse_rows(columns = c(1), latex_hline = "major")
+```
+
+## Soil moisture (%vol) at field capacity (-100 cm water)
+
+```{r fc}
+
+fc.stats <- read_csv("../01_fit-models/dat_fc-emmeans-diff.csv") %>% 
+  select(cov, site_sys, everything(), -null.value)
+
+fc.stats %>% 
+  mutate_if(is.numeric, round, 3) %>% 
+  mutate(adj.p.value = ifelse(adj.p.value < 0.001, "<0.001",adj.p.value)) %>% 
+  kable(caption = "Statistical analysis of cover crop effect on soil water at field capacity, with and without sand covariate", booktabs = T, align = "c") %>% 
+  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) %>% 
+   collapse_rows(columns = c(1), latex_hline = "major")
+```
+
+## Fitted parameters a and n
+
+```{r paramsalp, fig.cap="Non-linear model fitted parameters"}
+
+#--nonlinear fits
+nlm.params <- 
+  read_csv("../01_fit-models/dat_gard-parms-eu.csv") %>% 
+  left_join(sare_plotkey) %>%
+  unite(site_name, sys_trt, col = "site_sys") %>% 
+  select(term, site_sys, cc_trt, rep, 
+         estimate, std.error) %>% 
+  arrange(term, site_sys, cc_trt, rep)
+
+nlm.params %>% 
+  filter(term == "alp") %>% 
+  select(-term) %>% 
+  mutate_if(is.numeric, round, 3) %>% 
+  kable(caption = "Table of 'a' Gardener parameter estimate", booktabs = T, align = "c") %>% 
+  collapse_rows(columns = c(1, 2), latex_hline = "major") %>% 
+  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) 
+
+nlm.params %>% 
+  filter(term == "scal") %>% 
+  select(-term) %>% 
+  mutate_if(is.numeric, round, 3) %>% 
+  kable(caption = "Table of 'n' Gardener parameter estimate", booktabs = T, align = "c") %>% 
+  collapse_rows(columns = c(1, 2), latex_hline = "major") %>% 
+  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) 
+
+
+nlm.params %>% 
+  ggplot(aes(rep, estimate, color = cc_trt)) + 
+  geom_point() + 
+  geom_linerange(aes(ymin = estimate - std.error, 
+                     ymax = estimate + std.error)) +
+  facet_grid(term ~ site_sys, scales = "free", labeller = label_wrap_gen())
+
+```
+
+
+## Macro-pore percentages
+
+```{r macropore}
+read_csv("../01_fit-models/dat_poresize-emmeans.csv") %>% 
+  mutate_if(is.numeric, round, 3) %>% 
+  select(site_sys, cc_trt, estimate, df, conf.low, conf.high, contrast, est_diff, pval_diff) %>% 
+  kable(caption = "Table of macropores estimates and comparisons", booktabs = T, align = "c") %>% 
+  collapse_rows(columns = c(1, 8, 9), latex_hline = "major") %>% 
+  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) 
+
+
+```
+
+
+
+
+# Supplemental material S4. Detailed soil texture results
+
 ```{r texture, fig.cap="Soil texture components varied by trial and cover crop treatment, with the cover cropped plots having significantly more sand bolded orange color, and significantly less clay at the West-grain and East-grain trials both, commercial fields"}
 
 dat <- 
@@ -317,248 +481,4 @@ read_csv("../01_fit-models/dat_sand-stats.csv") %>%
 
 ```
 
-# Supplemental material S4. Statistical summaries
- 
-
-
-```{r clay}
-clay.stats <- read_csv("../01_fit-models/dat_clay-stats.csv")
-
-clay.stats %>% 
-  mutate_if(is.numeric, round, 3) %>% 
-  mutate(diff_pval = ifelse(diff_pval < 0.001, "<0.001", diff_pval)) %>% 
-  kable(caption = "Statistical analysis of cover crop effect on clay", booktabs = T, align = "c") %>% 
-  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) 
-
-sand.stats <- read_csv("../01_fit-models/dat_sand-stats.csv")
-
-sand.stats %>% 
-  mutate_if(is.numeric, round, 3) %>% 
-  mutate(diff_pval = ifelse(diff_pval < 0.001, "<0.001", diff_pval)) %>% 
-  kable(caption = "Statistical analysis of cover crop effect on sand", booktabs = T, align = "c") %>% 
-  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) 
-
-
-```
-
-```{r omstats}
-
-om.stats <- read_csv("../01_fit-models/dat_om-stats.csv")
-
-om.stats %>% 
-  mutate_if(is.numeric, round, 3) %>% 
-  mutate(diff_pval = ifelse(diff_pval < 0.001, "<0.001", diff_pval)) %>% 
-  kable(caption = "Statistical analysis of cover crop effect on organic matter, with and without sand covariate", booktabs = T, align = "c") %>% 
-  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) %>% 
-   collapse_rows(columns = c(1), latex_hline = "major")
-
-
-
-```
-
-```{r bulkden}
-
-#--bd
-PFIswhc::sare_bulkden %>% 
-  left_join(sare_plotkey) %>% 
-   group_by(site_name, sys_trt, crop_trt, cc_trt) %>% 
-  summarise(bulkden_mean = mean(bulkden_gcm3, na.rm = T),
-            bulkden_sd = sd(bulkden_gcm3, na.rm = T)) %>% 
-  mutate_if(is.numeric, round, 2) %>% 
-  kable(caption = "Mean bulk density (g/cm3) by trial", booktabs = T, align = "c") %>% 
-  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) %>% 
-   collapse_rows(columns = c(1), latex_hline = "major")
-
-bd.stats <- read_csv("../01_fit-models/dat_bd-stats.csv")
-
-bd.stats %>% 
-  mutate_if(is.numeric, round, 3) %>% 
-  mutate(diff_pval = ifelse(diff_pval < 0.001, "<0.001", diff_pval)) %>% 
-  kable(caption = "Statistical analysis of cover crop effect on bulk density, with and without sand covariate", booktabs = T, align = "c") %>% 
-  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) %>% 
-   collapse_rows(columns = c(1), latex_hline = "major")
-
-
-
-```
-
-## Soil moisture (%vol) at saturation
-
-```{r sat}
-
-
-sat.stats <- read_csv("../01_fit-models/dat_sat-emmeans-diff.csv") %>% 
-  select(cov, site_sys, everything(), -null.value)
-
-sat.stats %>% 
-  mutate_if(is.numeric, round, 3) %>% 
-  mutate(adj.p.value = ifelse(adj.p.value < 0.001, "<0.001",adj.p.value)) %>% 
-  kable(caption = "Statistical analysis of cover crop effect on soil water at saturation, with and without sand covariate", booktabs = T, align = "c") %>% 
-  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) %>% 
-   collapse_rows(columns = c(1), latex_hline = "major")
-```
-
-## Soil moisture (%vol) at field capacity (-100 cm water)
-
-```{r fc}
-
-fc.stats <- read_csv("../01_fit-models/dat_fc-emmeans-diff.csv") %>% 
-  select(cov, site_sys, everything(), -null.value)
-
-fc.stats %>% 
-  mutate_if(is.numeric, round, 3) %>% 
-  mutate(adj.p.value = ifelse(adj.p.value < 0.001, "<0.001",adj.p.value)) %>% 
-  kable(caption = "Statistical analysis of cover crop effect on soil water at field capacity, with and without sand covariate", booktabs = T, align = "c") %>% 
-  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) %>% 
-   collapse_rows(columns = c(1), latex_hline = "major")
-```
-
-## Fitted parameters a and n
-
-```{r paramsalp, fig.cap="Non-linear model fitted parameters"}
-
-#--nonlinear fits
-nlm.params <- 
-  read_csv("../01_fit-models/dat_gard-parms-eu.csv") %>% 
-  left_join(sare_plotkey) %>%
-  unite(site_name, sys_trt, col = "site_sys") %>% 
-  select(term, site_sys, cc_trt, rep, 
-         estimate, std.error) %>% 
-  arrange(term, site_sys, cc_trt, rep)
-
-nlm.params %>% 
-  filter(term == "alp") %>% 
-  select(-term) %>% 
-  mutate_if(is.numeric, round, 3) %>% 
-  kable(caption = "Table of 'a' Gardener parameter estimate", booktabs = T, align = "c") %>% 
-  collapse_rows(columns = c(1, 2), latex_hline = "major") %>% 
-  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) 
-
-nlm.params %>% 
-  filter(term == "scal") %>% 
-  select(-term) %>% 
-  mutate_if(is.numeric, round, 3) %>% 
-  kable(caption = "Table of 'n' Gardener parameter estimate", booktabs = T, align = "c") %>% 
-  collapse_rows(columns = c(1, 2), latex_hline = "major") %>% 
-  kable_styling(latex_options = c("striped", "HOLD_position"), position = "center", full_width = F) 
-
-
-nlm.params %>% 
-  ggplot(aes(rep, estimate, color = cc_trt)) + 
-  geom_point() + 
-  geom_linerange(aes(ymin = estimate - std.error, 
-                     ymax = estimate + std.error)) +
-  facet_grid(term ~ site_sys, scales = "free", labeller = label_wrap_gen())
-
-```
-
-
-# Supplemental Material S5. Macro/micropore results
-```{r pores, fig.cap="Mean percentage macropores (>30 µm) for each trial; percent macropores in the cover crop treatment was significantly lower (p=0.04) at the West-grain trial compared to the control treatment"}
-
-pfi_red <- "#9d3c22"
-pfi_green <- "#b2bb1e"
-pfi_blue <- "#036cb6"
-pfi_ltblue <- "#8DC4EB"
-pfi_orng <- "#e87d1e"
-pfi_brn <- "#574319"
-
-
-
-# data --------------------------------------------------------------------
-
-dp <- read_csv("../01_fit-models/dat_poresizes.csv") %>% 
-  group_by(pore_cat, site_sys, cc_trt, rep_id) %>% 
-  summarise(pct = sum(pct, na.rm = T))
-
-
-
-# do macro/micro summary --------------------------------------------------
-raws <- 
-  dp %>% 
-  filter(pore_cat == "Macropores (>30 um)") %>% 
-  mutate(
-    site_sys = factor(site_sys, 
-                      levels = c("West-grain",
-                                 "Central-silage", 
-                                 "Central-grain",
-                                 "East-grain")))
-
-
-#--not sure which order to calculate them (lag/lead)
-
-dat_pores <- 
-  dp %>% 
-  filter(pore_cat == 
-           "Micropores (<30 um)") %>% 
-  #--get mean for each trial
-  group_by(pore_cat, site_sys, cc_trt) %>% 
-  summarise(pct = mean(pct, na.rm = T)) %>% 
-  pivot_wider(names_from = pore_cat, values_from = pct) %>% 
-  #--force the macro to fill in the rest
-  mutate(`Macropores (>30 um)` = 1 - `Micropores (<30 um)`) %>% 
-    pivot_longer(3:4, names_to = "pore_cat", values_to = "pct") %>% 
-  mutate(cc_trt = fct_rev(cc_trt)) %>% 
-  mutate(
-    site_sys = factor(site_sys, 
-                      levels = c("West-grain",
-                                 "Central-silage", 
-                                 "Central-grain",
-                                 "East-grain")),
-    pore_cat = factor(pore_cat, 
-                      levels = c("Macropores (>30 um)",
-                                 "Micropores (<30 um)")),
-    pore_cat = fct_rev(pore_cat))
-  
-
-
-
-# pie charts --------------------------------------------------------------
-
-dat_pie <- 
-  dat_pores %>% 
-  mutate(pore_cat = fct_inorder(pore_cat),
-         pore_cat = fct_rev(pore_cat)) %>% 
-  group_by(site_sys, cc_trt, pore_cat) %>% 
-  summarise(value = mean(pct, na.rm = T)) %>% 
-  arrange(pore_cat) %>% 
-  group_by(site_sys, cc_trt) %>% 
-  nest() %>% 
-  mutate(data2 = data %>% purrr::map(. %>%
-                                       arrange(pore_cat) %>% 
-                                       mutate(half = value/2,
-                                              prev = lag(value),
-                                              prev = ifelse(is.na(prev), 0, prev),
-                                              cumprev = cumsum(prev),
-                                              pos = half + cumprev) %>% 
-                                       select(-c(half, prev, cumprev)))) %>% 
-  unnest(data2)
-
-
-
-# pie chart ---------------------------------------------------------------
-
-dat_pie %>% 
-  mutate(site = site_sys,
-         pos2 = 1-pos,
-         value2 = ifelse(pore_cat == "Micropores (<30 um)", NA, value),
-         clr = paste(cc_trt, pore_cat)) %>% 
-  ggplot(aes(x = "", y = value, fill = pore_cat)) +
-  geom_bar(stat = "identity", color = "black") +
-  coord_polar("y", start = 0) +
-  geom_text(aes(y = pos2,
-                label = percent(value2, accuracy = 2)), size = 5, show.legend = FALSE) +
-  scale_fill_manual(values = c(pfi_ltblue, "white")) + 
-  facet_grid(cc_trt~site) +
-  guides(alpha = F) +
-  theme_minimal() +
-  theme(axis.text.x = element_blank(),
-        axis.title = element_blank(),
-        strip.text = element_text(size = rel(1.1)),
-        legend.text = element_text(size = rel(1.1)),
-        legend.position = "bottom") +
-  labs(fill = NULL)
-
-
-```
 

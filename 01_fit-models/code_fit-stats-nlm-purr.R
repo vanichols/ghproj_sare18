@@ -5,6 +5,7 @@
 #                March 2 2021 (update using package data)
 #                may 24 2021 (rerunning...still works?)
 #                june 24 2021 (rerunning with 3.8 instead of 2.5)
+#                sept 24 2021 (getting stats for manu)
 #
 # purpose: fit non-linear models
 # 
@@ -146,7 +147,10 @@ dparms_gr <-
 dparms_gr %>% write_csv("01_fit-models/dat_gard-parms-trt.csv")
 
 
+
 # stats -------------------------------------------------------------------
+
+#--the above code sin't running any more, so just read in the results it wrote when it did run, sigh
 dparms_eu <- 
   read_csv("01_fit-models/dat_gard-parms-eu.csv") %>% 
   left_join(sare_plotkey) %>% 
@@ -154,18 +158,23 @@ dparms_eu <-
          block = paste(site_name, "B", rep)) %>% 
   left_join(sare_texture)
 
+
 # air entry potential -----------------------------------------------------
 
 m1 <- lmer(estimate ~ site_sys*cc_trt + (1|block), data = dparms_eu %>% filter(term == "alp"))
-m1a <- lm(estimate ~ site_sys*cc_trt + sand, data = dparms_eu %>% filter(term == "alp"))
+m1_sand <- lm(estimate ~ site_sys*cc_trt + sand, data = dparms_eu %>% filter(term == "alp"))
 
 anova(m1)
-anova(m1a)
-summary(m1a)
+anova(m1_sand)
+summary(m1_sand)
+
+#--p-values
 pairs(emmeans(m1, ~cc_trt|site_sys))
+#--estimates
 emmeans(m1, ~site_sys)
 emmeans(m1, ~cc_trt|site_sys)
 
+#--texture by site
 sare_texture %>% 
   left_join(sare_plotkey) %>% 
   mutate(site_sys = paste(site_name, sys_trt)) %>% 
@@ -176,6 +185,22 @@ sare_texture %>%
   ggplot(aes(sand, estimate)) + 
   geom_point() + 
   geom_label(aes(label = site_sys))
+
+
+#--texture by site+cc_trt
+sare_texture %>% 
+  left_join(sare_plotkey) %>% 
+  mutate(site_sys = paste(site_name, sys_trt)) %>% 
+  group_by(site_sys, cc_trt) %>% 
+  summarise(sand = mean(sand, na.rm = T)) %>% 
+  left_join(
+    emmeans(m1, ~cc_trt|site_sys) %>% 
+              broom::tidy()
+  ) %>% 
+  ggplot(aes(sand, estimate)) + 
+  geom_point() + 
+  geom_label(aes(label = site_sys))
+
 
 # pores size dist -----------------------------------------------------
 

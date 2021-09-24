@@ -5,7 +5,7 @@
 # 
 #
 #
-# last modified: 
+# last modified: sept 24 2021 (getting stats for manu table)
 ##############################
 
 # 1 cm water = 0.0980665 kpa
@@ -63,23 +63,35 @@ dp_macro <-
   summarise(pct = sum(pct, na.rm = T)) %>% 
   filter(pore_cat == "Macropores (>30 um)")
 
-dp_raw %>% 
-  group_by(pore_cat, site_sys, cc_trt, rep_id) %>% 
-  summarise(pct = sum(pct, na.rm = T)) %>% 
-  filter(pore_cat == "Macropores (>30 um)")
 
+# stats -------------------------------------------------------------------
+
+dp_stat <- 
+  dp_raw %>% 
+  filter(!is.na(pct)) %>% 
+  select(plot_id, press_cm, pore_cat, pct) %>% 
+  group_by(plot_id, pore_cat) %>% 
+  summarise(pct = sum(pct, na.rm = T)) %>% 
+  filter(pore_cat == "Macropores (>30 um)") %>% 
   left_join(sare_plotkey %>% 
-              mutate(site_sys = paste(site_name, sys_trt, sep = "-"))
+              mutate(site_sys = paste(site_name, sys_trt, sep = "-"),
+                     rep = paste0("B", rep))
               )
 
-dp_macro %>% 
-  arrange(rep_id)
+dp_stat %>% 
+  write_csv("01_fit-models/dat_macropores-for-stats.csv")
+
+
+
+# stats for real ----------------------------------------------------------
+
+
 #--physically, should include sand as covariate for field capacity
-m1 <- lmer(pct~cc_trt*site_sys + (1|rep_id), data = dp_macro)
+m1 <- lmer(pct ~ cc_trt*site_sys + (1|rep), data = dp_stat)
 anova(m1)
 
 em1 <- emmeans(m1, ~cc_trt|site_sys) 
-contrast(em1) 
+em1
 pairs(em1) 
 
 
@@ -99,5 +111,6 @@ pore_res <-
   select(param, everything())
 
 pore_res %>% 
-  left_join(pore_sig) %>% write_csv("01_fit-models/dat_poresize-emmeans.csv")
+  left_join(pore_sig) %>% 
+  write_csv("01_fit-models/dat_poresize-emmeans.csv")
 

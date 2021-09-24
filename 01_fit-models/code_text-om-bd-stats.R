@@ -104,6 +104,8 @@ res_silt <-
              "diff_se" = std.error) )
 
 
+res_silt %>% write_csv("01_fit-models/dat_silt-stats.csv")
+
 res_sand %>% 
   mutate(diff_pval = round(diff_pval, 3))
 
@@ -112,6 +114,7 @@ res_silt %>%
 
 res_clay %>% 
   mutate(diff_pval = round(diff_pval, 3))
+
 
 # om -----------------------------------------------------------------
 

@@ -12,7 +12,19 @@ library(lme4)
 library(lmerTest)
 library(emmeans)
 
+
+# theme and colors --------------------------------------------------------
+
 theme_set(theme_bw())
+
+pfi_red <- "#9d3c22"
+pfi_green <- "#b2bb1e"
+pfi_blue <- "#036cb6"
+pfi_orng <- "#e87d1e"
+pfi_brn <- "#574319"
+
+
+# data --------------------------------------------------------------------
 
 fdat <- 
   read_csv("01_fit-models/dat_gard-parms-eu.csv") %>% 
@@ -27,11 +39,18 @@ fdat <-
          y = Thr + (exp1 * exp5)) %>% 
   left_join(sare_plotkey) %>% 
   unite(site_name, sys_trt, col = "site_sys", sep = "-") %>% 
+  mutate(site_sys2 = ifelse(site_sys %in% c("East-grain", "West-grain"), 
+                            paste(site_sys, "\n(commercial farm)", sep = ""),
+                            site_sys)) %>% 
   mutate(cc_trt = case_when(
-    grepl("cc", cc_trt) ~ "Cover Crop",
-    grepl("no", cc_trt) ~ "No Cover",
+    grepl("cc", cc_trt) ~ "Rye cover crop",
+    grepl("no", cc_trt) ~ "No cover",
     TRUE ~ cc_trt),
-    site_sys = factor(site_sys, levels = c("West-grain", "Central-silage", "Central-grain", "East-grain")) 
+    site_sys = factor(site_sys, levels = c("West-grain", "East-grain", 
+                                           "Central-silage", "Central-grain")),
+    site_sys2 = factor(site_sys2, levels = c("West-grain\n(commercial farm)", 
+                                             "East-grain\n(commercial farm)", 
+                                             "Central-silage", "Central-grain"))
   ) %>% 
   #--change to kpa
   mutate(press_cm = x,
@@ -49,11 +68,18 @@ dat <-
   sare_pressure %>% 
   left_join(sare_plotkey) %>% 
   unite(site_name, sys_trt, col = "site_sys", sep = "-") %>% 
+  mutate(site_sys2 = ifelse(site_sys %in% c("East-grain", "West-grain"), 
+                            paste(site_sys, "\n(commercial farm)", sep = ""),
+                            site_sys)) %>% 
   mutate(cc_trt = case_when(
-    grepl("cc", cc_trt) ~ "Cover Crop",
-    grepl("no", cc_trt) ~ "No Cover",
+    grepl("cc", cc_trt) ~ "Rye cover crop",
+    grepl("no", cc_trt) ~ "No cover",
     TRUE ~ cc_trt),
-    site_sys = factor(site_sys, levels = c("West-grain", "Central-silage", "Central-grain", "East-grain")) 
+    site_sys = factor(site_sys, levels = c("West-grain", "East-grain", 
+                                           "Central-silage", "Central-grain")),
+    site_sys2 = factor(site_sys2, levels = c("West-grain\n(commercial farm)", 
+                                             "East-grain\n(commercial farm)", 
+                                           "Central-silage", "Central-grain")) 
   ) %>% 
   #--change to kpa
   mutate(press_kpa = press_cm * 0.0980665,
@@ -66,66 +92,13 @@ davg <-
 
 
 
-pfi_red <- "#9d3c22"
-pfi_green <- "#b2bb1e"
-pfi_blue <- "#036cb6"
-pfi_orng <- "#e87d1e"
-pfi_brn <- "#574319"
-
-
-
-# figure, smoothed --------------------------------------------------------
-
-ggplot() + 
-  geom_line(data = fdat, aes(press_cm, vtheta, color = cc_trt, group = plot_id), size = 1) +
-  #geom_line(data = davg, aes(vtheta, press_cm, color = cc_trt), size = 3) +
-  scale_color_manual(values = c("Cover Crop" = pfi_green,
-                                "No Cover" = pfi_brn)) +
-  facet_grid(.~site_sys) + 
-  scale_y_continuous(labels = label_percent(accuracy = 2)) +
-  labs(y = "Volumetric Water (vol%)",
-       color = NULL,
-       x = "Soil Matric Potential (cmH2O)") + 
-  theme(strip.text = element_text(size = rel(1.2)),
-        strip.background = element_blank(),
-        legend.position = "top", 
-        legend.text = element_text(size = rel(1)),
-        axis.text = element_text(size = rel(1)),
-        #axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 0.5),
-        axis.title = element_text(size = rel(1))
-  )
-
-#ggsave("02_figs/fig_manu-curves.png",width = 7, height = 4 )  
-
-ggsave("02_figs/fig_manu-curves.png")  
-
-
-#--just to count the number of curves
-
-ggplot() + 
-  geom_line(data = fdat, aes(press_cm, vtheta, color = cc_trt, group = plot_id), size = 1) +
-  scale_color_manual(values = c("Cover Crop" = pfi_green,
-                                "No Cover" = pfi_brn)) +
-  facet_grid(.~site_sys) + 
-  scale_y_continuous(labels = label_percent(accuracy = 2)) +
-  labs(y = "Volumetric Water (%)",
-       color = NULL,
-       x = "Soil Matric Potential (cm water)") + 
-  theme(strip.text = element_text(size = rel(1.2)),
-        strip.background = element_blank(),
-        legend.position = "top", 
-        legend.text = element_text(size = rel(1)),
-        axis.text = element_text(size = rel(1)),
-        #axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 0.5),
-        axis.title = element_text(size = rel(1))
-  )
 
 
 # figure, smoothed and averaged --------------------------------------------------------
 
 fdat_avg <- 
   fdat %>% 
-  group_by(site_sys, cc_trt, press_cm) %>% 
+  group_by(site_sys, site_sys2, cc_trt, press_cm) %>% 
   summarise(vtheta = mean(vtheta, na.rm = T))
 
 ggplot() + 
@@ -138,22 +111,22 @@ ggplot() +
             alpha = 0.5, 
             linetype = "dotted") +
   #geom_line(data = davg, aes(vtheta, press_cm, color = cc_trt), size = 3) +
-  scale_color_manual(values = c("Cover Crop" = pfi_green,
-                                "No Cover" = pfi_brn)) +
-  facet_grid(.~site_sys) + 
+  scale_color_manual(values = c("Rye cover crop" = pfi_green,
+                                "No cover" = pfi_brn)) +
+  facet_grid(.~site_sys2) + 
   scale_y_continuous(labels = label_percent(accuracy = 2)) +
   labs(y = "Volumetric Water (vol%)",
        color = NULL,
        x = "Soil Matric Potential (cmH2O)") + 
   theme(strip.text = element_text(size = rel(1.2)),
         strip.background = element_blank(),
-        legend.position = "top", 
+        legend.position = "bottom", 
         legend.text = element_text(size = rel(1)),
         axis.text = element_text(size = rel(1)),
         #axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 0.5),
         axis.title = element_text(size = rel(1))
   )
 
-#ggsave("02_figs/fig_manu-curves.png",width = 7, height = 4 )  
-
 ggsave("02_figs/fig_manu-curves-dotted.png", width = 8.85, height = 3.72)  
+
+

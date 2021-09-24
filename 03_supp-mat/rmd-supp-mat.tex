@@ -187,67 +187,13 @@ West\_grain & 2.11 & 0.21 & 1.33 & 0.00 & 0.00 & 0.04 & 0.45 & 0.63 & 0.00 & 0.0
 
 \newpage
 
-\hypertarget{supplemental-material-s3.-soil-texture-results}{%
-\section{Supplemental material S3. Soil texture
-results}\label{supplemental-material-s3.-soil-texture-results}}
+\hypertarget{supplemental-material-s3.-statistical-summaries}{%
+\section{Supplemental material S3. Statistical
+summaries}\label{supplemental-material-s3.-statistical-summaries}}
 
-\begin{figure}
-\centering
-\includegraphics{rmd-supp-mat_files/figure-latex/texture-1.pdf}
-\caption{Soil texture components varied by trial and cover crop
-treatment, with the cover cropped plots having significantly more sand
-bolded orange color, and significantly less clay at the West-grain and
-East-grain trials both, commercial fields}
-\end{figure}
-
-Table with values:
-
-\begin{table}[H]
-
-\caption{\label{tab:texture2}Table of values}
-\centering
-\begin{tabular}[t]{ccccccc}
-\toprule
-site\_sys & cc\_trt & clay & sand & silt & tot & sig\_sand\_diff\\
-\midrule
-\cellcolor{gray!6}{} & \cellcolor{gray!6}{cc} & \cellcolor{gray!6}{0.28} & \cellcolor{gray!6}{0.32} & \cellcolor{gray!6}{0.40} & \cellcolor{gray!6}{1} & \cellcolor{gray!6}{}\\
-
-\multirow{-2}{*}{\centering\arraybackslash Central-grain} & no & 0.28 & 0.32 & 0.40 & 1 & \\
-
-\cellcolor{gray!6}{} & \cellcolor{gray!6}{cc} & \cellcolor{gray!6}{0.29} & \cellcolor{gray!6}{0.30} & \cellcolor{gray!6}{0.41} & \cellcolor{gray!6}{1} & \cellcolor{gray!6}{}\\
-
-\multirow{-2}{*}{\centering\arraybackslash Central-silage} & no & 0.30 & 0.29 & 0.41 & 1 & \multirow{-4}{*}{\centering\arraybackslash No}\\
-\cmidrule{1-7}
-\cellcolor{gray!6}{} & \cellcolor{gray!6}{cc} & \cellcolor{gray!6}{0.32} & \cellcolor{gray!6}{0.12} & \cellcolor{gray!6}{0.56} & \cellcolor{gray!6}{1} & \cellcolor{gray!6}{}\\
-
-\multirow{-2}{*}{\centering\arraybackslash East-grain} & no & 0.35 & 0.09 & 0.56 & 1 & \\
-
-\cellcolor{gray!6}{} & \cellcolor{gray!6}{cc} & \cellcolor{gray!6}{0.27} & \cellcolor{gray!6}{0.31} & \cellcolor{gray!6}{0.42} & \cellcolor{gray!6}{1} & \cellcolor{gray!6}{}\\
-
-\multirow{-2}{*}{\centering\arraybackslash West-grain} & no & 0.30 & 0.25 & 0.45 & 1 & \multirow{-4}{*}{\centering\arraybackslash Yes}\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\begin{table}[H]
-
-\caption{\label{tab:texture2}Table of sand statistics}
-\centering
-\begin{tabular}[t]{cccccccc}
-\toprule
-site\_sys & respvar & cc & no & contrast & est\_diff & diff\_se & pval\\
-\midrule
-\cellcolor{gray!6}{Central\_grain} & \cellcolor{gray!6}{sand} & \cellcolor{gray!6}{32.486} & \cellcolor{gray!6}{31.600} & \cellcolor{gray!6}{cc - no} & \cellcolor{gray!6}{0.886} & \cellcolor{gray!6}{0.299} & \cellcolor{gray!6}{0.003}\\
-Central\_silage & sand & 29.811 & 29.233 & cc - no & 0.578 & 0.335 & 0.085\\
-\cellcolor{gray!6}{East\_grain} & \cellcolor{gray!6}{sand} & \cellcolor{gray!6}{12.715} & \cellcolor{gray!6}{9.837} & \cellcolor{gray!6}{cc - no} & \cellcolor{gray!6}{2.877} & \cellcolor{gray!6}{0.335} & \cellcolor{gray!6}{<0.001}\\
-West\_grain & sand & 30.506 & 25.610 & cc - no & 4.896 & 0.335 & <0.001\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\hypertarget{supplemental-material-s4.-statistical-summaries}{%
-\section{Supplemental material S4. Statistical
-summaries}\label{supplemental-material-s4.-statistical-summaries}}
+\hypertarget{clay-silt-and-sand-components}{%
+\subsection{Clay, silt, and sand
+components}\label{clay-silt-and-sand-components}}
 
 \begin{table}[H]
 
@@ -267,6 +213,22 @@ West\_grain & clay & 27.349 & 29.511 & cc - no & -2.162 & 0.208 & <0.001\\
 
 \begin{table}[H]
 
+\caption{\label{tab:clay}Statistical analysis of cover crop effect on silt}
+\centering
+\begin{tabular}[t]{cccccccc}
+\toprule
+site\_sys & respvar & cc & no & contrast & est\_diff & diff\_se & diff\_pval\\
+\midrule
+\cellcolor{gray!6}{Central\_grain} & \cellcolor{gray!6}{silt} & \cellcolor{gray!6}{39.772} & \cellcolor{gray!6}{40.399} & \cellcolor{gray!6}{cc - no} & \cellcolor{gray!6}{-0.627} & \cellcolor{gray!6}{0.206} & \cellcolor{gray!6}{0.003}\\
+Central\_silage & silt & 41.313 & 40.793 & cc - no & 0.520 & 0.230 & 0.025\\
+\cellcolor{gray!6}{East\_grain} & \cellcolor{gray!6}{silt} & \cellcolor{gray!6}{55.552} & \cellcolor{gray!6}{55.557} & \cellcolor{gray!6}{cc - no} & \cellcolor{gray!6}{-0.005} & \cellcolor{gray!6}{0.230} & \cellcolor{gray!6}{0.983}\\
+West\_grain & silt & 41.896 & 44.728 & cc - no & -2.831 & 0.230 & <0.001\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+
 \caption{\label{tab:clay}Statistical analysis of cover crop effect on sand}
 \centering
 \begin{tabular}[t]{cccccccc}
@@ -280,6 +242,9 @@ West\_grain & sand & 30.506 & 25.610 & cc - no & 4.896 & 0.335 & <0.001\\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\hypertarget{soil-organic-matter}{%
+\subsection{Soil organic matter}\label{soil-organic-matter}}
 
 \begin{table}[H]
 
@@ -303,6 +268,9 @@ cov & site\_sys & respvar & cc & no & contrast & est\_diff & diff\_se & diff\_pv
 \bottomrule
 \end{tabular}
 \end{table}
+
+\hypertarget{soil-bulk-density}{%
+\subsection{Soil bulk density}\label{soil-bulk-density}}
 
 \begin{table}[H]
 
@@ -404,22 +372,267 @@ cov & site\_sys & term & contrast & estimate & std.error & df & statistic & adj.
 \end{tabular}
 \end{table}
 
+\hypertarget{fitted-parameters-a-and-n}{%
+\subsection{Fitted parameters a and n}\label{fitted-parameters-a-and-n}}
+
+\begin{table}[H]
+
+\caption{\label{tab:paramsalp}Table of 'a' Gardener parameter estimate}
+\centering
+\begin{tabular}[t]{ccccc}
+\toprule
+site\_sys & cc\_trt & rep & estimate & std.error\\
+\midrule
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{} & \cellcolor{gray!6}{1} & \cellcolor{gray!6}{0.043} & \cellcolor{gray!6}{0.010}\\
+
+ &  & 2 & 0.025 & 0.006\\
+
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{} & \cellcolor{gray!6}{3} & \cellcolor{gray!6}{0.015} & \cellcolor{gray!6}{0.012}\\
+
+ &  & 4 & 0.021 & 0.010\\
+
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{\multirow{-5}{*}{\centering\arraybackslash cc}} & \cellcolor{gray!6}{5} & \cellcolor{gray!6}{0.002} & \cellcolor{gray!6}{0.001}\\
+
+ &  & 1 & 0.020 & 0.010\\
+
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{} & \cellcolor{gray!6}{2} & \cellcolor{gray!6}{0.025} & \cellcolor{gray!6}{0.009}\\
+
+ &  & 3 & 0.010 & 0.005\\
+
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{} & \cellcolor{gray!6}{4} & \cellcolor{gray!6}{0.013} & \cellcolor{gray!6}{0.007}\\
+
+\multirow{-10}{*}{\centering\arraybackslash Central\_grain} & \multirow{-5}{*}{\centering\arraybackslash no} & 5 & 0.041 & 0.014\\
+\cmidrule{1-5}
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{} & \cellcolor{gray!6}{1} & \cellcolor{gray!6}{0.028} & \cellcolor{gray!6}{0.014}\\
+
+ &  & 2 & 0.030 & 0.013\\
+
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{} & \cellcolor{gray!6}{3} & \cellcolor{gray!6}{0.011} & \cellcolor{gray!6}{0.008}\\
+
+ &  & 4 & 0.015 & 0.011\\
+
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{\multirow{-5}{*}{\centering\arraybackslash cc}} & \cellcolor{gray!6}{5} & \cellcolor{gray!6}{0.044} & \cellcolor{gray!6}{0.013}\\
+
+ &  & 1 & 0.049 & 0.029\\
+
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{} & \cellcolor{gray!6}{2} & \cellcolor{gray!6}{0.046} & \cellcolor{gray!6}{0.014}\\
+
+ &  & 3 & 0.048 & 0.014\\
+
+\cellcolor{gray!6}{\multirow{-9}{*}{\centering\arraybackslash Central\_silage}} & \cellcolor{gray!6}{\multirow{-4}{*}{\centering\arraybackslash no}} & \cellcolor{gray!6}{4} & \cellcolor{gray!6}{0.016} & \cellcolor{gray!6}{0.007}\\
+\cmidrule{1-5}
+ &  & 1 & 0.100 & 0.027\\
+
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{} & \cellcolor{gray!6}{2} & \cellcolor{gray!6}{0.180} & \cellcolor{gray!6}{0.046}\\
+
+ &  & 3 & 0.054 & 0.022\\
+
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{\multirow{-4}{*}{\centering\arraybackslash cc}} & \cellcolor{gray!6}{4} & \cellcolor{gray!6}{0.085} & \cellcolor{gray!6}{0.024}\\
+
+ &  & 1 & 0.088 & 0.022\\
+
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{} & \cellcolor{gray!6}{2} & \cellcolor{gray!6}{0.080} & \cellcolor{gray!6}{0.028}\\
+
+ &  & 3 & 0.073 & 0.026\\
+
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{} & \cellcolor{gray!6}{4} & \cellcolor{gray!6}{0.080} & \cellcolor{gray!6}{0.024}\\
+
+\multirow{-9}{*}{\centering\arraybackslash East\_grain} & \multirow{-5}{*}{\centering\arraybackslash no} & 5 & 0.092 & 0.029\\
+\cmidrule{1-5}
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{} & \cellcolor{gray!6}{1} & \cellcolor{gray!6}{0.007} & \cellcolor{gray!6}{0.008}\\
+
+ &  & 2 & 0.026 & 0.006\\
+
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{} & \cellcolor{gray!6}{3} & \cellcolor{gray!6}{0.039} & \cellcolor{gray!6}{0.016}\\
+
+ & \multirow{-4}{*}{\centering\arraybackslash cc} & 4 & 0.032 & 0.015\\
+
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{} & \cellcolor{gray!6}{1} & \cellcolor{gray!6}{0.013} & \cellcolor{gray!6}{0.013}\\
+
+ &  & 2 & 0.029 & 0.012\\
+
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{} & \cellcolor{gray!6}{3} & \cellcolor{gray!6}{0.051} & \cellcolor{gray!6}{0.017}\\
+
+\multirow{-8}{*}{\centering\arraybackslash West\_grain} & \multirow{-4}{*}{\centering\arraybackslash no} & 4 & 0.102 & 0.017\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+
+\caption{\label{tab:paramsalp}Table of 'n' Gardener parameter estimate}
+\centering
+\begin{tabular}[t]{ccccc}
+\toprule
+site\_sys & cc\_trt & rep & estimate & std.error\\
+\midrule
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{} & \cellcolor{gray!6}{1} & \cellcolor{gray!6}{0.987} & \cellcolor{gray!6}{0.079}\\
+
+ &  & 2 & 1.099 & 0.073\\
+
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{} & \cellcolor{gray!6}{3} & \cellcolor{gray!6}{1.106} & \cellcolor{gray!6}{0.219}\\
+
+ &  & 4 & 1.086 & 0.141\\
+
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{\multirow{-5}{*}{\centering\arraybackslash cc}} & \cellcolor{gray!6}{5} & \cellcolor{gray!6}{1.468} & \cellcolor{gray!6}{0.198}\\
+
+ &  & 1 & 0.999 & 0.154\\
+
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{} & \cellcolor{gray!6}{2} & \cellcolor{gray!6}{1.007} & \cellcolor{gray!6}{0.110}\\
+
+ &  & 3 & 1.291 & 0.139\\
+
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{} & \cellcolor{gray!6}{4} & \cellcolor{gray!6}{1.264} & \cellcolor{gray!6}{0.153}\\
+
+\multirow{-10}{*}{\centering\arraybackslash Central\_grain} & \multirow{-5}{*}{\centering\arraybackslash no} & 5 & 0.949 & 0.112\\
+\cmidrule{1-5}
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{} & \cellcolor{gray!6}{1} & \cellcolor{gray!6}{0.813} & \cellcolor{gray!6}{0.158}\\
+
+ &  & 2 & 0.850 & 0.137\\
+
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{} & \cellcolor{gray!6}{3} & \cellcolor{gray!6}{1.006} & \cellcolor{gray!6}{0.220}\\
+
+ &  & 4 & 1.173 & 0.212\\
+
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{\multirow{-5}{*}{\centering\arraybackslash cc}} & \cellcolor{gray!6}{5} & \cellcolor{gray!6}{0.639} & \cellcolor{gray!6}{0.116}\\
+
+ &  & 1 & 0.923 & 0.197\\
+
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{} & \cellcolor{gray!6}{2} & \cellcolor{gray!6}{0.705} & \cellcolor{gray!6}{0.108}\\
+
+ &  & 3 & 0.614 & 0.121\\
+
+\cellcolor{gray!6}{\multirow{-9}{*}{\centering\arraybackslash Central\_silage}} & \cellcolor{gray!6}{\multirow{-4}{*}{\centering\arraybackslash no}} & \cellcolor{gray!6}{4} & \cellcolor{gray!6}{1.041} & \cellcolor{gray!6}{0.125}\\
+\cmidrule{1-5}
+ &  & 1 & 0.772 & 0.104\\
+
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{} & \cellcolor{gray!6}{2} & \cellcolor{gray!6}{0.817} & \cellcolor{gray!6}{0.115}\\
+
+ &  & 3 & 0.994 & 0.140\\
+
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{\multirow{-4}{*}{\centering\arraybackslash cc}} & \cellcolor{gray!6}{4} & \cellcolor{gray!6}{0.740} & \cellcolor{gray!6}{0.105}\\
+
+ &  & 1 & 0.651 & 0.099\\
+
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{} & \cellcolor{gray!6}{2} & \cellcolor{gray!6}{0.973} & \cellcolor{gray!6}{0.133}\\
+
+ &  & 3 & 0.880 & 0.131\\
+
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{} & \cellcolor{gray!6}{4} & \cellcolor{gray!6}{0.880} & \cellcolor{gray!6}{0.110}\\
+
+\multirow{-9}{*}{\centering\arraybackslash East\_grain} & \multirow{-5}{*}{\centering\arraybackslash no} & 5 & 0.737 & 0.116\\
+\cmidrule{1-5}
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{} & \cellcolor{gray!6}{1} & \cellcolor{gray!6}{1.009} & \cellcolor{gray!6}{0.305}\\
+
+ &  & 2 & 0.834 & 0.071\\
+
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{} & \cellcolor{gray!6}{3} & \cellcolor{gray!6}{0.488} & \cellcolor{gray!6}{0.175}\\
+
+ & \multirow{-4}{*}{\centering\arraybackslash cc} & 4 & 0.997 & 0.145\\
+
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{} & \cellcolor{gray!6}{1} & \cellcolor{gray!6}{1.039} & \cellcolor{gray!6}{0.268}\\
+
+ &  & 2 & 0.970 & 0.133\\
+
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{} & \cellcolor{gray!6}{3} & \cellcolor{gray!6}{0.837} & \cellcolor{gray!6}{0.110}\\
+
+\multirow{-8}{*}{\centering\arraybackslash West\_grain} & \multirow{-4}{*}{\centering\arraybackslash no} & 4 & 0.743 & 0.064\\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \begin{figure}
 \centering
 \includegraphics{rmd-supp-mat_files/figure-latex/paramsalp-1.pdf}
 \caption{Non-linear model fitted parameters}
 \end{figure}
 
-\hypertarget{supplemental-material-s5.-macromicropore-results}{%
-\section{Supplemental Material S5. Macro/micropore
-results}\label{supplemental-material-s5.-macromicropore-results}}
+\hypertarget{macro-pore-percentages}{%
+\subsection{Macro-pore percentages}\label{macro-pore-percentages}}
+
+\begin{table}[H]
+
+\caption{\label{tab:macropore}Table of macropores estimates and comparisons}
+\centering
+\begin{tabular}[t]{ccccccccc}
+\toprule
+site\_sys & cc\_trt & estimate & df & conf.low & conf.high & contrast & est\_diff & pval\_diff\\
+\midrule
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{cc} & \cellcolor{gray!6}{0.589} & \cellcolor{gray!6}{26.228} & \cellcolor{gray!6}{0.518} & \cellcolor{gray!6}{0.660} & \cellcolor{gray!6}{cc - no} & \cellcolor{gray!6}{} & \cellcolor{gray!6}{}\\
+
+\multirow{-2}{*}{\centering\arraybackslash Central-grain} & no & 0.618 & 26.228 & 0.547 & 0.689 & cc - no & \multirow{-2}{*}{\centering\arraybackslash -0.029} & \multirow{-2}{*}{\centering\arraybackslash 0.606}\\
+\cmidrule{1-9}
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{cc} & \cellcolor{gray!6}{0.535} & \cellcolor{gray!6}{26.228} & \cellcolor{gray!6}{0.464} & \cellcolor{gray!6}{0.606} & \cellcolor{gray!6}{cc - no} & \cellcolor{gray!6}{} & \cellcolor{gray!6}{}\\
+
+\multirow{-2}{*}{\centering\arraybackslash Central-silage} & no & 0.586 & 26.989 & 0.506 & 0.665 & cc - no & \multirow{-2}{*}{\centering\arraybackslash -0.051} & \multirow{-2}{*}{\centering\arraybackslash 0.403}\\
+\cmidrule{1-9}
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{cc} & \cellcolor{gray!6}{0.731} & \cellcolor{gray!6}{26.989} & \cellcolor{gray!6}{0.651} & \cellcolor{gray!6}{0.811} & \cellcolor{gray!6}{cc - no} & \cellcolor{gray!6}{} & \cellcolor{gray!6}{}\\
+
+\multirow{-2}{*}{\centering\arraybackslash East-grain} & no & 0.712 & 26.228 & 0.641 & 0.783 & cc - no & \multirow{-2}{*}{\centering\arraybackslash 0.019} & \multirow{-2}{*}{\centering\arraybackslash 0.750}\\
+\cmidrule{1-9}
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{cc} & \cellcolor{gray!6}{0.478} & \cellcolor{gray!6}{26.989} & \cellcolor{gray!6}{0.399} & \cellcolor{gray!6}{0.558} & \cellcolor{gray!6}{cc - no} & \cellcolor{gray!6}{} & \cellcolor{gray!6}{}\\
+
+\multirow{-2}{*}{\centering\arraybackslash West-grain} & no & 0.605 & 26.989 & 0.525 & 0.685 & cc - no & \multirow{-2}{*}{\centering\arraybackslash -0.127} & \multirow{-2}{*}{\centering\arraybackslash 0.053}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\hypertarget{supplemental-material-s4.-detailed-soil-texture-results}{%
+\section{Supplemental material S4. Detailed soil texture
+results}\label{supplemental-material-s4.-detailed-soil-texture-results}}
 
 \begin{figure}
 \centering
-\includegraphics{rmd-supp-mat_files/figure-latex/pores-1.pdf}
-\caption{Mean percentage macropores (\textgreater30 µm) for each trial;
-percent macropores in the cover crop treatment was significantly lower
-(p=0.04) at the West-grain trial compared to the control treatment}
+\includegraphics{rmd-supp-mat_files/figure-latex/texture-1.pdf}
+\caption{Soil texture components varied by trial and cover crop
+treatment, with the cover cropped plots having significantly more sand
+bolded orange color, and significantly less clay at the West-grain and
+East-grain trials both, commercial fields}
 \end{figure}
+
+Table with values:
+
+\begin{table}[H]
+
+\caption{\label{tab:texture2}Table of values}
+\centering
+\begin{tabular}[t]{ccccccc}
+\toprule
+site\_sys & cc\_trt & clay & sand & silt & tot & sig\_sand\_diff\\
+\midrule
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{cc} & \cellcolor{gray!6}{0.28} & \cellcolor{gray!6}{0.32} & \cellcolor{gray!6}{0.40} & \cellcolor{gray!6}{1} & \cellcolor{gray!6}{}\\
+
+\multirow{-2}{*}{\centering\arraybackslash Central-grain} & no & 0.28 & 0.32 & 0.40 & 1 & \\
+
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{cc} & \cellcolor{gray!6}{0.29} & \cellcolor{gray!6}{0.30} & \cellcolor{gray!6}{0.41} & \cellcolor{gray!6}{1} & \cellcolor{gray!6}{}\\
+
+\multirow{-2}{*}{\centering\arraybackslash Central-silage} & no & 0.30 & 0.29 & 0.41 & 1 & \multirow{-4}{*}{\centering\arraybackslash No}\\
+\cmidrule{1-7}
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{cc} & \cellcolor{gray!6}{0.32} & \cellcolor{gray!6}{0.12} & \cellcolor{gray!6}{0.56} & \cellcolor{gray!6}{1} & \cellcolor{gray!6}{}\\
+
+\multirow{-2}{*}{\centering\arraybackslash East-grain} & no & 0.35 & 0.09 & 0.56 & 1 & \\
+
+\cellcolor{gray!6}{} & \cellcolor{gray!6}{cc} & \cellcolor{gray!6}{0.27} & \cellcolor{gray!6}{0.31} & \cellcolor{gray!6}{0.42} & \cellcolor{gray!6}{1} & \cellcolor{gray!6}{}\\
+
+\multirow{-2}{*}{\centering\arraybackslash West-grain} & no & 0.30 & 0.25 & 0.45 & 1 & \multirow{-4}{*}{\centering\arraybackslash Yes}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+
+\caption{\label{tab:texture2}Table of sand statistics}
+\centering
+\begin{tabular}[t]{cccccccc}
+\toprule
+site\_sys & respvar & cc & no & contrast & est\_diff & diff\_se & pval\\
+\midrule
+\cellcolor{gray!6}{Central\_grain} & \cellcolor{gray!6}{sand} & \cellcolor{gray!6}{32.486} & \cellcolor{gray!6}{31.600} & \cellcolor{gray!6}{cc - no} & \cellcolor{gray!6}{0.886} & \cellcolor{gray!6}{0.299} & \cellcolor{gray!6}{0.003}\\
+Central\_silage & sand & 29.811 & 29.233 & cc - no & 0.578 & 0.335 & 0.085\\
+\cellcolor{gray!6}{East\_grain} & \cellcolor{gray!6}{sand} & \cellcolor{gray!6}{12.715} & \cellcolor{gray!6}{9.837} & \cellcolor{gray!6}{cc - no} & \cellcolor{gray!6}{2.877} & \cellcolor{gray!6}{0.335} & \cellcolor{gray!6}{<0.001}\\
+West\_grain & sand & 30.506 & 25.610 & cc - no & 4.896 & 0.335 & <0.001\\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \end{document}
