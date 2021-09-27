@@ -19,6 +19,8 @@
 
 
 rm(list = ls())
+library(lme4)
+library(emmeans)
 library(tidyverse)
 library(HydroMe)
 library(nlraa)
