@@ -27,12 +27,13 @@ library(emmeans)
 rd <- 
   sare_pressure %>%
   left_join(sare_plotkey) %>% 
-  select(plot_id, site_name, sys_trt, cc_trt, rep, press_cm, vtheta) %>% 
+  select(plot_id, site_name, sys_trt, cc_trt, rep) %>% 
   unite(site_name, sys_trt, col = "site_sys", remove = F) %>% 
   mutate(rep_id = paste(site_sys, rep)) %>% 
   left_join(sare_texture) %>% 
   left_join(sare_om) %>% 
   left_join(sare_bulkden) %>% 
+  distinct() %>% 
   filter(!is.na(sand)) #--get rid of extra east grain no cover plot
  
 
@@ -117,6 +118,11 @@ res_clay %>%
 
 
 # om -----------------------------------------------------------------
+
+#--what are site-avg OMs?
+rd %>% 
+  group_by(site_sys) %>% 
+  summarise(om = mean(om, na.rm = T))
 
 #--om is the same
 m_om <- lmer(om~cc_trt*site_sys + (1|rep_id), data = rd)
